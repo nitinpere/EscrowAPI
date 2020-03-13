@@ -32,8 +32,8 @@ UpdateSellerDetails
     ${mailingAddress}=  create dictionary  mailAddress1=mailAddress1  mailAddress2=mailAddress2  countryId=004  stateId=001  state=bangkok  postalCode=111001  addressDefine1=11  addressDefine2=22  addressDefine3=33  ressDefine4=44
     ${PayLoad}=  create dictionary   escrowCompanyId=${escrowCompId}  sellerId=${sellerid}  idNumber=${IdNumber}  typeOfId=${3}  mobileCountryCode=66  mobileNo=${mobileNo}  email=pavan.p+${enum}@gmail.com  gender=F  titleEn=MR.  firstNameEn=kavita  lastNameEn=Mehra  titleLocal=TH  firstNameLocal=Test  lastNameLocal=Test1  dateOfBirth=02/01/2001  nationalityId=764  otherVerification=AB1215563203  workPlace=test co  userDefine1=1  userDefine2=2  userDefine3=3  userDefine4=4  userDefine5=5  kycRequest=${0}  address=${address}  mailingAddress=${mailingAddress}
     Log to Console  ${PayLoad}
-#    ${PayBody}=  Evaluate    json.dumps($PayLoad)    json
-#    Log to Console  ${PayBody}
+    ${PayBody}=  Evaluate    json.dumps($PayLoad)    json
+    Log to Console  ${PayBody}
     UpdateSeller   ${TokenEscrow}  ${PayLoad}
 
 GetSellerDetails
