@@ -33,4 +33,4 @@ RegisterNewSeller valid data
 
 RegisterNewSeller Empty Mandatory Field
     ${TokenEscrow}=  GetToken Escrow
-    ${sellerid_locaL}=  RegisterSeller   ${TokenEscrow}  ${}  ${}  ${}  ${}  000
+#    ${sellerid_locaL}=  RegisterSeller   ${TokenEscrow}  ${}  ${}  ${}  ${}  000
