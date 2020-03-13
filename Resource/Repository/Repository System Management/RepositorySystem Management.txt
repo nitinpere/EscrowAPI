@@ -1,0 +1,2 @@
+*** Variable ***
+${RepoSystem Management}    //ul[@id="side-menu"]/li[@class="active"]

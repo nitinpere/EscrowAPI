@@ -1,0 +1,2 @@
+*** Setting ***
+Resource    Repository System Management/RepositorySystem Management.txt
