@@ -4,7 +4,7 @@ Library    SeleniumLibrary
 Resource    ../../Resource/Keyword/Global Keyword/Get Token.robot
 Resource    ../../Resource/Keyword/Global Keyword/Register_Seller_API.robot
 #Resource    ../../Resource/Keyword/All Keyword mobileAPI.robot
-#Resource    ../../Resource/Variable/User data.robot
+Resource    ../../Resource/Variable/User data.robot
 *** Variables ***
 ${escrowCompId}=  001
 ${IdNumber}
@@ -31,3 +31,6 @@ RegisterNewSeller valid data
     ${TokenEscrow}=  GetToken Escrow
     ${sellerid_locaL}=  RegisterSeller   ${TokenEscrow}  ${escrowCompId}  ${IdNumber}  ${1}  ${0}  000
 
+RegisterNewSeller Empty Mandatory Field
+    ${TokenEscrow}=  GetToken Escrow
+    ${sellerid_locaL}=  RegisterSeller   ${TokenEscrow}  ${}  ${}  ${}  ${}  000
