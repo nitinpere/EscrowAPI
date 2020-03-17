@@ -16,7 +16,6 @@ ${escrowCompId_Invalid}=  YUT
 ${escrowCompId_Length}=  YUT234
 ${IdNumber_more_than_30}
 
-
 *** Test Cases ***
 Register Seller Valid data
     ${TokenEscrow}=    GetToken Escrow
@@ -99,3 +98,4 @@ TC_24 RegisterNewSeller IDnumber enter 1 kyc
     ${TokenEscrow}=  GetToken Escrow
     ${Id}=  Generate Random String  14   [NUMBERS]
     ${sellerid_locaL}=  RegisterSeller IDnumber enter kyc is 1 @post   ${TokenEscrow}      @{IDno_enter_kyc_1}[0]      @{IDno_enter_kyc_1}[1]      @{IDno_enter_kyc_1}[2]      @{IDno_enter_kyc_1}[3]      @{IDno_enter_kyc_1}[4]    ${Id}   ${1}    ${1}  000
+

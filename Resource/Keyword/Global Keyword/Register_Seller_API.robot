@@ -19,10 +19,9 @@ RegisterSeller
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['ResponseCode']}    ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
 #    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
     Log    ${response.json()}
-
     [Return]  ${response}
 RegisterSeller WITH invalidescrowCompanyID @post
     [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}  ${ResponseCode}
@@ -39,7 +38,6 @@ RegisterSeller WITH invalidescrowCompanyID @post
 #    Should be Equal as Strings    ${response.json()['ResponseCode']}    ${ResponseCode}
 #    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
     Log    ${response.json()}
-
     [Return]  ${response}
 RegisterSeller WITH Empty mandatoryfield @post
     [Arguments]    ${Token}    ${None}    ${None}    ${None}    ${None}  ${ResponseCode}
@@ -73,7 +71,6 @@ RegisterSeller WITH Empty escrowCompanyId @post
 #    Should be Equal as Strings    ${response.json()['ResponseCode']}    ${ResponseCode}
 #    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
     Log    ${response.json()}
-
     [Return]  ${response}
 
 RegisterSeller WITH Invalid escrowCompanyId @post
@@ -91,7 +88,6 @@ RegisterSeller WITH Invalid escrowCompanyId @post
 #    Should be Equal as Strings    ${response.json()['ResponseCode']}    ${ResponseCode}
 #    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
     Log    ${response.json()}
-
     [Return]  ${response}
 
 RegisterSeller WITH extralength escrowCompanyId @post
@@ -109,7 +105,6 @@ RegisterSeller WITH extralength escrowCompanyId @post
 #    Should be Equal as Strings    ${response.json()['ResponseCode']}    ${ResponseCode}
 #    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
     Log    ${response.json()}
-
     [Return]  ${response}
 
 RegisterSeller WITH extralength idNumber @post
@@ -127,7 +122,6 @@ RegisterSeller WITH extralength idNumber @post
 #    Should be Equal as Strings    ${response.json()['ResponseCode']}    ${ResponseCode}
 #    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
     Log    ${response.json()}
-
     [Return]  ${response}
 
 RegisterSeller typeID NOT THERE @post
@@ -145,7 +139,6 @@ RegisterSeller typeID NOT THERE @post
 #    Should be Equal as Strings    ${response.json()['ResponseCode']}    ${ResponseCode}
 #    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
     Log    ${response.json()}
-
     [Return]  ${response}
 
 RegisterSeller IDnumber is not enter kyc is 1 @post
@@ -262,7 +255,7 @@ RegisterSeller duplicateIdNO Diff TYPEID kyc is 0 @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
+#    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
 #    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
     Log    ${response.json()}
     [Return]  ${response}
@@ -279,7 +272,7 @@ RegisterSeller IDnumber enter kyc is 1 @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
+#    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
 #    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
     Log    ${response.json()}
     [Return]  ${response}
