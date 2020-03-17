@@ -97,4 +97,4 @@ RegisterSeller duplicate_ID_NO Diff TYPEID kyc is 0 @post_23
 RegisterNewSeller IDnumber enter 1 kyc_24
     ${TokenEscrow}=  GetToken Escrow
     ${Id}=  Generate Random String  14   [NUMBERS]
-    ${sellerid_locaL}=  RegisterSeller IDnumber enter kyc is 1 @post   ${TokenEscrow}      @{IDno_not_enter_kyc_1}[0]      @{IDno_not_enter_kyc_1}[1]      @{IDno_not_enter_kyc_1}[2]      @{IDno_not_enter_kyc_1}[3]      @{IDno_not_enter_kyc_1}[4]    ${Id}   ${1}    ${1}  000
+    ${sellerid_locaL}=  RegisterSeller IDnumber enter kyc is 1 @post   ${TokenEscrow}      @{IDno_enter_kyc_1}[0]      @{IDno_enter_kyc_1}[1]      @{IDno_enter_kyc_1}[2]      @{IDno_enter_kyc_1}[3]      @{IDno_enter_kyc_1}[4]    ${Id}   ${1}    ${1}  000
