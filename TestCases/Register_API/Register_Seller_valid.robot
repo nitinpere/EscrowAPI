@@ -126,6 +126,10 @@ TC_29 RegisterNewSeller TYPEOFID,IDNO kyc is 1
     ${sellerid_locaL}=  RegisterSeller valid TYPEOFID,IDNO kyc is 1 @post  ${TokenEscrow}  @{Not_enter_typeOFID_KYC1}[0]  @{Not_enter_typeOFID_KYC1}[1]  @{Not_enter_typeOFID_KYC1}[2]  @{Not_enter_typeOFID_KYC1}[3]  @{Not_enter_typeOFID_KYC1}[4]  ${Idr}  ${2}  ${1}  000
 
 
+TC_30 RegisterNewSeller TYPEOFID is equal two citizen kyc is 1
+    ${TokenEscrow}=  GetToken Escrow
+    ${Idr}=  Generate Random String  14   [NUMBERS]
+    ${sellerid_locaL}=  RegisterSeller valid TYPEOFID is equal two citizen kyc is 1 @post  ${TokenEscrow}  @{Not_enter_typeOFID_KYC1}[0]  @{Not_enter_typeOFID_KYC1}[1]  @{Not_enter_typeOFID_KYC1}[2]  @{Not_enter_typeOFID_KYC1}[3]  @{Not_enter_typeOFID_KYC1}[4]  ${Idr}  ${1}  ${1}  000
 
 
 

@@ -399,4 +399,21 @@ RegisterSeller valid TYPEOFID,IDNO kyc is 1 @post
     [Return]  ${response}
 
 
+RegisterSeller valid TYPEOFID is equal two citizen kyc is 1 @post
+    [Arguments]    ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${dateOfBirth}  ${otherVerification}    ${idNumber}     ${typeOfId}    ${kycRequest}  ${ResponseCode}
+    Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
+    ${typeID}=  Convert To Integer  ${typeOfID}
+    ${KeyReq}=  Convert To Integer  ${kycRequest}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  firstNameLocal=${firstNameLocal}  lastNameLocal=${lastNameLocal}  dateOfBirth=${dateOfBirth}  otherVerification=${otherVerification}  idNumber=${idNumber}  typeOfId=${typeOfId}  kycRequest=${KeyReq}
+    ${AuthToken}=  Set Variable  bearer ${Token}
+    ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
+    ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}
+    Log  ${response.text}    console=True
+    log to console  ${response.content}
+    Should Be Equal As Strings    ${response.status_code}    200
+#    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
+#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Log    ${response.json()}
+    [Return]  ${response}
+
 
