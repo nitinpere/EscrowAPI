@@ -35,66 +35,67 @@ RandomeGenerateVaribales with Values
     ${Emailnum}=  Generate Random String  3  [NUMBERS]
     SET GLOBAL VARIABLE  ${enum}  ${Emailnum}
 
-RegisterNewSeller valid data_14
-    ${TokenEscrow}=  GetToken Escrow
-    ${sellerid_locaL}=  RegisterSeller   ${TokenEscrow}  @{escrowCompId}  ${IdNumber}  ${1}  ${0}  000
 
-
-RegisterNewSeller Empty Mandatory Field_9
+TC_09 RegisterNewSeller Empty Mandatory Field
     ${TokenEscrow}=  GetToken Escrow
     ${sellerid_locaL}=  RegisterSeller WITH Empty mandatoryfield @post   ${TokenEscrow}  ${None}  ${None}  ${None}  ${None}  000
 
-RegisterNewSeller Empty escrowCompanyId_10
+TC_10 RegisterNewSeller Empty escrowCompanyId
     ${TokenEscrow}=  GetToken Escrow
     ${sellerid_locaL}=  RegisterSeller   ${TokenEscrow}     ${None}   ${IdNumber}  ${1}  ${0}  000
 
-RegisterNewSeller invalid escrowCompanyId_11
+TC_11 RegisterNewSeller invalid escrowCompanyId
     ${TokenEscrow}=  GetToken Escrow
     ${sellerid_locaL}=  RegisterSeller   ${TokenEscrow}     ${escrowCompId_Invalid}   ${IdNumber}  ${1}  ${0}  000
 
-RegisterNewSeller length more than 3 escrowCompanyId_12
+TC_12 RegisterNewSeller length more than 3 escrowCompanyId
     ${TokenEscrow}=  GetToken Escrow
     ${sellerid_locaL}=  RegisterSeller WITH extralength escrowCompanyId @post   ${TokenEscrow}     ${escrowCompId_Length}   ${IdNumber}  ${1}  ${0}  000
 
-RegisterNewSeller length more than 30 idNumber_15
+TC_14 RegisterNewSeller valid data
+    ${TokenEscrow}=  GetToken Escrow
+    ${sellerid_locaL}=  RegisterSeller   ${TokenEscrow}  @{escrowCompId}  ${IdNumber}  ${1}  ${0}  000
+
+TC_15 RegisterNewSeller length more than 30 idNumber
     ${TokenEscrow}=  GetToken Escrow
     ${sellerid_locaL}=  RegisterSeller WITH extralength idNumber @post   ${TokenEscrow}     ${escrowCompId_Length}   ${IdNumber_more_than_30}  ${1}  ${0}  000
 
-RegisterNewSeller typeID not enter_16
+TC_16 RegisterNewSeller typeID not enter
     ${TokenEscrow}=  GetToken Escrow
     ${sellerid_locaL}=  RegisterSeller typeID NOT THERE @post   ${TokenEscrow}     ${escrowCompId_Length}   ${IdNumber}   ${None}    ${0}  000
-RegisterNewSeller IDnumber not enter 1 kyc_17
+TC_17 RegisterNewSeller IDnumber not enter 1 kyc
     ${TokenEscrow}=  GetToken Escrow
     ${sellerid_locaL}=  RegisterSeller IDnumber is not enter kyc is 1 @post   ${TokenEscrow}      @{IDno_not_enter_kyc_1}[0]      @{IDno_not_enter_kyc_1}[1]      @{IDno_not_enter_kyc_1}[2]      @{IDno_not_enter_kyc_1}[3]      @{IDno_not_enter_kyc_1}[4]        ${None}   ${1}    ${1}  000
 
-RegisterNewSeller IDnumber not enter 0 kyc_18
+TC_18 RegisterNewSeller IDnumber not enter 0 kyc
     ${TokenEscrow}=  GetToken Escrow
     ${sellerid_locaL}=  RegisterSeller IDnumber is not enter kyc is 0 @post   ${TokenEscrow}      @{IDno_not_enter_kyc_0}[0]      @{IDno_not_enter_kyc_0}[1]      ${mobileNo}    ${0}    000
 
-RegisterNewSeller IDnumber valid 0 kyc_19
+TC_19 RegisterNewSeller IDnumber valid 0 kyc
     ${TokenEscrow}=  GetToken Escrow
     ${Id}=  Generate Random String  14   [NUMBERS]
     ${sellerid_locaL}=  RegisterSeller IDnumber is valid kyc is 0 @post   ${TokenEscrow}  @{escrowCompId}  ${Id}  ${1}  ${0}  000
 
-RegisterNewSeller typeID citizenID valid 0 kyc_20
+TC_20 RegisterNewSeller typeID citizenID valid 0 kyc
     ${TokenEscrow}=  GetToken Escrow
     ${Id}=  Generate Random String  14   [NUMBERS]
     ${sellerid_locaL}=  RegisterSeller typeID citizenID is valid kyc is 0 @post   ${TokenEscrow}      @{escrowCompId}[0]  ${Id}  ${1}  ${0}    000
 
-RegisterSeller typeOfId equalsto Passport is valid kyc is 0 @post_21
+TC_21 RegisterSeller typeOfId equalsto Passport is valid kyc is 0 @post
     ${TokenEscrow}=  GetToken Escrow
     ${Id}=  Generate Random String  14   [NUMBERS]
     ${sellerid_locaL}=  RegisterSeller typeOfId equalsto Passport is valid kyc is 0 @post  ${TokenEscrow}      @{escrowCompId}[0]  ${Id}  ${2}  ${0}    000
 
-RegisterSeller typeOfId equalsto others is valid kyc is 0 @post_22
+TC_22 RegisterSeller typeOfId equalsto others is valid kyc is 0 @post
     ${TokenEscrow}=  GetToken Escrow
     ${Id}=  Generate Random String  14   [NUMBERS]
     ${sellerid_locaL}=  RegisterSeller typeOfId equalsto others is valid kyc is 0 @post  ${TokenEscrow}      @{escrowCompId}[0]  ${Id}  ${3}  ${0}    000
-RegisterSeller duplicate_ID_NO Diff TYPEID kyc is 0 @post_23
+
+TC_23 RegisterSeller duplicate_ID_NO Diff TYPEID kyc is 0 @post
     ${TokenEscrow}=  GetToken Escrow
     ${sellerid_locaL}=  RegisterSeller duplicateIdNO Diff TYPEID kyc is 0 @post  ${TokenEscrow}      @{escrowCompId}[0]  ${IdNumber}  ${3}  ${0}    000
 
-RegisterNewSeller IDnumber enter 1 kyc_24
+TC_24 RegisterNewSeller IDnumber enter 1 kyc
     ${TokenEscrow}=  GetToken Escrow
     ${Id}=  Generate Random String  14   [NUMBERS]
     ${sellerid_locaL}=  RegisterSeller IDnumber enter kyc is 1 @post   ${TokenEscrow}      @{IDno_enter_kyc_1}[0]      @{IDno_enter_kyc_1}[1]      @{IDno_enter_kyc_1}[2]      @{IDno_enter_kyc_1}[3]      @{IDno_enter_kyc_1}[4]    ${Id}   ${1}    ${1}  000
