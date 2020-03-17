@@ -6,3 +6,5 @@ ${escrowCompanyID_exeed_length}=  YUP0111
 @{IDno_valid__kyc_0}=  001
 @{Type_id_citizenID}=  001
 @{IDno_enter_kyc_1}=  001    ปฏิทัศน์    กิจการ     08/03/1992    AB12345678919
+@{Not_enter_typeOFID_KYC1}=  001    abc   xyz     08/03/1992    AB12345678919
+@{EScrow_id_less_th3}=  12

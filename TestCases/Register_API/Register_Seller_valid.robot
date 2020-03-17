@@ -51,6 +51,11 @@ TC_12 RegisterNewSeller length more than 3 escrowCompanyId
     ${TokenEscrow}=  GetToken Escrow
     ${sellerid_locaL}=  RegisterSeller WITH extralength escrowCompanyId @post   ${TokenEscrow}     ${escrowCompId_Length}   ${IdNumber}  ${1}  ${0}  000
 
+TC_13 RegisterNewSeller EscrowIDless than 3 escrowCompanyId_13
+    ${TokenEscrow}=  GetToken Escrow
+    ${Id}=  Generate Random String  14   [NUMBERS]
+    ${sellerid_locaL}=  RegisterSeller ESCROWID less than 3 @post   ${TokenEscrow}     @{EScrow_id_less_th3}[0]   ${Id}  ${1}  ${0}  000
+
 TC_14 RegisterNewSeller valid data
     ${TokenEscrow}=  GetToken Escrow
     ${sellerid_locaL}=  RegisterSeller   ${TokenEscrow}  @{escrowCompId}  ${IdNumber}  ${1}  ${0}  000
@@ -98,4 +103,30 @@ TC_24 RegisterNewSeller IDnumber enter 1 kyc
     ${TokenEscrow}=  GetToken Escrow
     ${Id}=  Generate Random String  14   [NUMBERS]
     ${sellerid_locaL}=  RegisterSeller IDnumber enter kyc is 1 @post   ${TokenEscrow}      @{IDno_enter_kyc_1}[0]      @{IDno_enter_kyc_1}[1]      @{IDno_enter_kyc_1}[2]      @{IDno_enter_kyc_1}[3]      @{IDno_enter_kyc_1}[4]    ${Id}   ${1}    ${1}  000
+TC_25 RegisterSeller duplicate_ID_NO Belong to seller status @post
+    ${TokenEscrow}=  GetToken Escrow
+    ${sellerid_locaL}=  RegisterSeller duplicateIdNO Belong to sellerID @post  ${TokenEscrow}      @{escrowCompId}[0]  ${IdNumber}  ${2}  ${0}    000
+
+TC_26 RegisterSeller duplicate_IDnumber @post
+    ${TokenEscrow}=  GetToken Escrow
+    ${sellerid_locaL}=  RegisterSeller duplicateIdNumber @post  ${TokenEscrow}      @{escrowCompId}[0]  ${IdNumber}  ${1}  ${0}    000
+
+TC_27 RegisterNewSeller NotENTER TYPEOFID kyc is 1
+    ${TokenEscrow}=  GetToken Escrow
+    ${Idr}=  Generate Random String  14   [NUMBERS]
+    ${sellerid_locaL}=  RegisterSeller NotENTER TYPEOFID kyc is 1 @post  ${TokenEscrow}  @{Not_enter_typeOFID_KYC1}[0]  @{Not_enter_typeOFID_KYC1}[1]  @{Not_enter_typeOFID_KYC1}[2]  @{Not_enter_typeOFID_KYC1}[3]  @{Not_enter_typeOFID_KYC1}[4]  ${Idr}  ${None}  ${1}  000
+
+TC_28 RegisterNewSeller TYPEOFID is enter IDNO not enter kyc is 1
+    ${TokenEscrow}=  GetToken Escrow
+    ${sellerid_locaL}=  RegisterSeller NotENTER TYPEOFID kyc is 1 @post  ${TokenEscrow}  @{Not_enter_typeOFID_KYC1}[0]  @{Not_enter_typeOFID_KYC1}[1]  @{Not_enter_typeOFID_KYC1}[2]  @{Not_enter_typeOFID_KYC1}[3]  @{Not_enter_typeOFID_KYC1}[4]  ${None}  ${1}  ${1}  000
+
+TC_29 RegisterNewSeller TYPEOFID,IDNO kyc is 1
+    ${TokenEscrow}=  GetToken Escrow
+    ${Idr}=  Generate Random String  14   [NUMBERS]
+    ${sellerid_locaL}=  RegisterSeller valid TYPEOFID,IDNO kyc is 1 @post  ${TokenEscrow}  @{Not_enter_typeOFID_KYC1}[0]  @{Not_enter_typeOFID_KYC1}[1]  @{Not_enter_typeOFID_KYC1}[2]  @{Not_enter_typeOFID_KYC1}[3]  @{Not_enter_typeOFID_KYC1}[4]  ${Idr}  ${2}  ${1}  000
+
+
+
+
+
 
