@@ -156,56 +156,56 @@ TC_30 RegisterNewSeller TYPEOFID is equal two citizen kyc is 1
     RegisterSeller valid TYPEOFID is equal two citizen kyc is 1 @post  ${TokenEscrow}  @{Not_enter_typeOFID_KYC1}[0]  @{Not_enter_typeOFID_KYC1}[1]  @{Not_enter_typeOFID_KYC1}[2]  @{Not_enter_typeOFID_KYC1}[3]  @{Not_enter_typeOFID_KYC1}[4]  ${Idnumber1}  ${1}  ${1}  000
 
 TC_31 RegisterNewSeller TYPEOFID is equal_to passport kyc is 0
-    [Documentation]  Valid: To Verify response when  typeOfId = Citizen id and request is sent with all mandatory fields
+    [Documentation]  Valid: To Verify response when  typeOfId = Passport and request is sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
     ${Idno}=  Generate Random String  14   [NUMBERS]
     ${mobile23}=   Generate Random String  10   [NUMBERS]
     RegisterSeller valid TYPEOFID is equal_to passport kyc is 0 @post  ${TokenEscrow}  @{type_id_passport}[0]  @{type_id_passport}[1]  @{type_id_passport}[2]  @{type_id_passport}[3]  @{type_id_passport}[4]  ${mobile23}  @{type_id_passport}[5]  @{type_id_passport}[6]    ${Idno}  ${2}  ${0}  000
 
 TC_32 RegisterNewSeller TYPEOFID is equal_to others kyc is 0
-    [Documentation]  Valid: To Verify response when  typeOfId = Citizen id and request is sent with all mandatory fields
+    [Documentation]  Valid: To Verify response when  typeOfId = Others  and request is sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
     ${Idr}=  Generate Random String  14   [NUMBERS]
     ${mobile24}=   Generate Random String  10   [NUMBERS]
     RegisterSeller valid TYPEOFID is equal_to others kyc is 0 @post  ${TokenEscrow}  @{type_id_passport}[0]  @{type_id_passport}[1]  @{type_id_passport}[2]  @{type_id_passport}[3]  @{type_id_passport}[4]  ${mobile24}  @{type_id_passport}[5]  @{type_id_passport}[6]    ${Idr}  ${3}  ${0}  000
 TC_33 RegisterNewSeller Invalid TYPEOFID kyc is 1
-    [Documentation]  Valid: To Verify response when  typeOfId = Citizen id and request is sent with all mandatory fields
+    [Documentation]  Invalid: To Verify response if we enter Invalid typeOfId and request is sent with all mandatory fields with KYCRequest=1 and valid IdNumber
     ${TokenEscrow}=  GetToken Escrow
     ${Idr}=  Generate Random String  14   [NUMBERS]
     RegisterSeller Invalid TYPEOFID kyc is 1 @post  ${TokenEscrow}  @{type_id_passport}[0]  @{type_id_passport}[1]  @{type_id_passport}[2]  @{type_id_passport}[3]  @{type_id_passport}[4]  ${Idr}  ${33}  ${1}  000
 
 TC_34 RegisterNewSeller Empty Mobilecountrycode kyc is 0
-    [Documentation]  Valid: To Verify response when  typeOfId = Citizen id and request is sent with all mandatory fields
+    [Documentation]  Invalid To Verify response if mobileCountryCode paramter is entered empty and request sent with all mandatory fields with Mobile number
     ${TokenEscrow}=  GetToken Escrow
     ${Idr}=  Generate Random String  14   [NUMBERS]
     ${mobile2}=   Generate Random String  10   [NUMBERS]
     RegisterSeller Empty mobileCountryCode kyc is 0 @post  ${TokenEscrow}  @{Empty_mobile_country_code}[0]  ${None}  ${mobile2}  ${0}  000
 
 TC_35 RegisterNewSeller Invalid Mobilecountrycode kyc is 0
-    [Documentation]  Valid: To Verify response when  typeOfId = Citizen id and request is sent with all mandatory fields
+    [Documentation]  Invalid: To Verify response if mobileCountryCode paramter is  entered invalid(length is more than 10) and request sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
     ${mobile2}=   Generate Random String  10   [NUMBERS]
     RegisterSeller mobileCountryCode kyc is 0 @post  ${TokenEscrow}  @{Invalid_mobile_country_code}[0]  ${Invalid_mobile_country_code}[1]  ${mobile2}  ${0}  000
 
 TC_36 RegisterNewSeller valid Mobilecountrycode kyc is 0
-    [Documentation]  Valid: To Verify response when  typeOfId = Citizen id and request is sent with all mandatory fields
+    [Documentation]  Valid: To Verify response if mobileCountryCode paramter is  entered valid and request sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
     ${mobile2}=   Generate Random String  10   [NUMBERS]
     RegisterSeller mobileCountryCode kyc is 0 @post  ${TokenEscrow}  @{valid_mobile_country_code}[0]  @{valid_mobile_country_code}[1]  ${mobile2}  ${0}  000
 
 TC_37 RegisterNewSeller valid Mobilecountrycode kyc is 0
-    [Documentation]  Valid: To Verify response when  typeOfId = Citizen id and request is sent with all mandatory fields
+    [Documentation]  Empty: To Verify response if mobileNo paramter is not entered and request sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
     RegisterSeller Empty mobileno kyc is 0 @post  ${TokenEscrow}  @{valid_mobile_country_code}[0]  @{valid_mobile_country_code}[1]  ${None}  ${0}  000
 
 TC_38 RegisterNewSeller valid Mobilecountrycode kyc is 0
-    [Documentation]  Valid: To Verify response when  typeOfId = Citizen id and request is sent with all mandatory fields
+    [Documentation]  Empty: To Verify response if mobileNo paramter is entered and mobileCountryCode is NOT entered and request sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
     ${mobile2}=   Generate Random String  10   [NUMBERS]
     RegisterSeller Empty mobileCountryCode kyc is 0 @post  ${TokenEscrow}  @{valid_mobile_country_code}[0]  ${None}  ${mobile2}  ${0}  000
 
 TC_39 RegisterNewSeller mobileno length morethan 50 kyc is 0
-    [Documentation]  Valid: To Verify response when  typeOfId = Citizen id and request is sent with all mandatory fields
+    [Documentation]  Invalid: To Verify response if mobileNo paramter is  entered invalid (length is more than 50) and request sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
     ${mobile2}=   Generate Random String  55   [NUMBERS]
     RegisterSeller mobileno length morethan50 kyc is 0 @post  ${TokenEscrow}  @{valid_mobile_country_code}[0]  @{valid_mobile_country_code}[1]  ${mobile2}  ${0}  000
