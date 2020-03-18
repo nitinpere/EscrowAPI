@@ -534,3 +534,65 @@ RegisterSeller mobileno length morethan50 kyc is 0 @post
 #    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
     Log    ${response.json()}
     [Return]  ${response}
+
+
+RegisterSeller MobileNo
+    [Arguments]  ${Token}  ${escrowCompanyID}  ${MobileCountryCode}  ${MobileNo}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    Create Session  RegisterSeller  http://172.31.2.28/escrow_core/api/v1
+    ${KeyReq}=  Convert To Integer  ${kycRequest}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  mobileCountryCode=${MobileCountryCode}  mobileNo=${MobileNo}  kycRequest=${KeyReq}
+    ${AuthToken}=  Set Variable  bearer ${Token}
+    ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
+    ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}
+    Log  ${response.text}    console=True
+    log to console  ${response.content}
+    Should Be Equal As Strings    ${response.status_code}    200
+    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
+    Log    ${response.json()}
+
+RegisterSeller Email
+    [Arguments]  ${Token}  ${escrowCompanyID}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    Create Session  RegisterSeller  http://172.31.2.28/escrow_core/api/v1
+    ${KeyReq}=  Convert To Integer  ${kycRequest}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  kycRequest=${KeyReq}
+    ${AuthToken}=  Set Variable  bearer ${Token}
+    ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
+    ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}
+    Log  ${response.text}    console=True
+    log to console  ${response.content}
+    Should Be Equal As Strings    ${response.status_code}    200
+    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
+    Log    ${response.json()}
+
+RegisterSeller with Email
+    [Arguments]  ${Token}  ${escrowCompanyID}  ${InvalidEmail}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    Create Session  RegisterSeller  http://172.31.2.28/escrow_core/api/v1
+    ${KeyReq}=  Convert To Integer  ${kycRequest}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  email=${InvalidEmail}  kycRequest=${KeyReq}
+    ${AuthToken}=  Set Variable  bearer ${Token}
+    ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
+    ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}
+    Log  ${response.text}    console=True
+    log to console  ${response.content}
+    Should Be Equal As Strings    ${response.status_code}    200
+    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
+    Log    ${response.json()}
+
+RegisterSeller with Genter
+    [Arguments]  ${Token}  ${escrowCompanyID}  ${MobileCountryCode}  ${MobileNo}  ${gender}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    Create Session  RegisterSeller  http://172.31.2.28/escrow_core/api/v1
+    ${KeyReq}=  Convert To Integer  ${kycRequest}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  mobileCountryCode=${MobileCountryCode}  mobileNo=${MobileNo}  gender=${gender}  kycRequest=${KeyReq}
+    ${AuthToken}=  Set Variable  bearer ${Token}
+    ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
+    ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}
+    Log  ${response.text}    console=True
+    log to console  ${response.content}
+    Should Be Equal As Strings    ${response.status_code}    200
+    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
+    Log    ${response.json()}
+

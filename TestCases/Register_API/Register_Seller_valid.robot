@@ -2,7 +2,8 @@
 Library    String
 Library    SeleniumLibrary
 Resource    ../../Resource/Keyword/Global Keyword/Get Token.robot
-Resource    ../../Resource/Keyword/Global Keyword/Register_Seller_API.robot
+Resource    ../../Resource/Keyword/Global Keyword/Register_Global_Keywords.robot
+Resource    ../../Resource/Keyword/Register_Seller_API.robot
 #Resource    ../../Resource/Keyword/All Keyword mobileAPI.robot
 Resource    ../../Resource/Variable/user data.robot
 *** Variables ***
@@ -11,6 +12,7 @@ ${IdNumber}
 ${sellerid}
 ${mobileNo}
 ${enum}
+${email}
 
 ${escrowCompId_Invalid}=  YUT
 ${escrowCompId_Length}=  YUT234
@@ -34,6 +36,8 @@ RandomeGenerateVaribales with Values
     SET GLOBAL VARIABLE  ${mobileNo}  ${mobile}
     ${Emailnum}=  Generate Random String  3  [NUMBERS]
     SET GLOBAL VARIABLE  ${enum}  ${Emailnum}
+    ${emailid}=  SET VARIABLE  pavan${Emailnum}@2c2p.com
+    SET GLOBAL VARIABLE  ${email}  ${emailid}
 
 
 TC_09 RegisterNewSeller Empty Mandatory Field
@@ -168,6 +172,7 @@ TC_32 RegisterNewSeller TYPEOFID is equal_to others kyc is 0
     ${Idr}=  Generate Random String  14   [NUMBERS]
     ${mobile24}=   Generate Random String  10   [NUMBERS]
     RegisterSeller valid TYPEOFID is equal_to others kyc is 0 @post  ${TokenEscrow}  @{type_id_passport}[0]  @{type_id_passport}[1]  @{type_id_passport}[2]  @{type_id_passport}[3]  @{type_id_passport}[4]  ${mobile24}  @{type_id_passport}[5]  @{type_id_passport}[6]    ${Idr}  ${3}  ${0}  000
+
 TC_33 RegisterNewSeller Invalid TYPEOFID kyc is 1
     [Documentation]  Invalid: To Verify response if we enter Invalid typeOfId and request is sent with all mandatory fields with KYCRequest=1 and valid IdNumber
     ${TokenEscrow}=  GetToken Escrow
@@ -209,3 +214,60 @@ TC_39 RegisterNewSeller mobileno length morethan 50 kyc is 0
     ${TokenEscrow}=  GetToken Escrow
     ${mobile2}=   Generate Random String  55   [NUMBERS]
     RegisterSeller mobileno length morethan50 kyc is 0 @post  ${TokenEscrow}  @{valid_mobile_country_code}[0]  @{valid_mobile_country_code}[1]  ${mobile2}  ${0}  000
+
+TC_40 RegisterNewSeller Valid MobileNo
+    [Documentation]  Valid: To Verify response if mobileNo paramter is  entered valid and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Generate Random String  10   [NUMBERS]
+    RegisterSeller MobileNo   ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  ${0}  000  Success
+
+TC_41 RegisterNewSeller MobileNo without First 0
+    [Documentation]  Valid: To Verify response if mobileNo paramter is  entered valid without first digit 0 and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Generate Random String  10   [NUMBERS]
+    SET GLOBAL VARIABLE  ${mobileNo}  ${MobNo}
+    RegisterSeller MobileNo   ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  ${0}  000  Success
+
+TC_42 RegisterNewSeller Duplicate MobileNo
+    [Documentation]  Duplicate: To Verify response if mobileNo paramter is entered which is already registered  and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    RegisterSeller MobileNo  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${mobileNo}  ${0}  R03  Duplicate ID card, email or mobile no.
+
+TC_43 RegisterNewSeller without Email
+    [Documentation]  Empty: To Verify response if email paramter is not entered and escrowCompanyId and kycRequest is entered and request sent.
+    ${TokenEscrow}=  GetToken Escrow
+    RegisterSeller Email  ${TokenEscrow}  @{escrowCompId}  ${0}  E05  Missing mandatory field
+
+TC_44 RegisterNewSeller with Invalid Email
+    [Documentation]  Invalid: To Verify response if email paramter is  entered invalid and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    RegisterSeller with Email  ${TokenEscrow}  @{escrowCompId}  pavan${enum}2c2p.com  ${0}  R01  Validation failed
+
+TC_45 RegisterNewSeller with Valid Email
+    [Documentation]  Valid: To Verify response if email paramter is  entered valid and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    RegisterSeller with Email  ${TokenEscrow}  @{escrowCompId}  ${email}  ${0}  000  Success
+
+TC_46 RegisterNewSeller with Dublicate Email
+    [Documentation]  Duplicate: To Verify response if email paramter is entered which is already registered  and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    RegisterSeller with Email  ${TokenEscrow}  @{escrowCompId}  ${email}  ${0}  R03   Duplicate ID card, email or mobile no.
+
+TC_49 RegisterNewSeller with Empty Gender
+    [Documentation]  Empty: To Verify response if gender paramter is not entered and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller with Genter  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  ${None}  ${0}  000  Success
+
+TC_50 RegisterNewSeller with Invalid Gender
+    [Documentation]  Invalid: To Verify response if gender paramter is  entered invalid and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    RegisterSeller with Genter  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${mobileNo}  X  ${0}  R01  Validation failed
+
+TC_50 RegisterNewSeller with Valid Gender
+    [Documentation]  Valid: To Verify response if gender paramter is  entered valid and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller with Genter  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  M  ${0}  000  Success
+
+

@@ -13,3 +13,4 @@ ${escrowCompanyID_exeed_length}=  YUP0111
 @{Empty_mobile_country_code}=  001
 @{Invalid_mobile_country_code}=  001  6623434423425
 @{valid_mobile_country_code}=  001  67
+@{Escrow_Valid_MobileNo}=  001  67

@@ -35,6 +35,6 @@ TC_05 RegisterNewSeller with Valid JWT Token
 TC_03 RegisterNewSeller with Expired JWT Token
     [Documentation]  Invalid : To verify response for Expired JWT token.
     ${TokenEscrow}=  GetToken Escrow
-    Sleep  7 minutes
+#    Sleep  7 minutes
     ${sellerid_locaL}=  RegisterSeller  ${TokenEscrow}  @{escrowCompId}  ${IdNumber}  ${1}  ${0}  A02
 
