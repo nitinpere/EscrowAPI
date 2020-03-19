@@ -14,3 +14,6 @@ ${escrowCompanyID_exeed_length}=  YUP0111
 @{Invalid_mobile_country_code}=  001  6623434423425
 @{valid_mobile_country_code}=  001  67
 @{Escrow_Valid_MobileNo}=  001  67
+@{titleEn}=  MR.1234567890
+@{firstNameEnlast}=  Suraj32443
+@{firstNameEn1_lastnm}=  12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
