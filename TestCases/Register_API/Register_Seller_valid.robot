@@ -257,5 +257,59 @@ TC_51 RegisterNewSeller with Valid Gender
     ${TokenEscrow}=  GetToken Escrow
     ${MobNo}=  Randome_MobileNumber
     RegisterSeller with Genter  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  M  ${0}  000  Success
+TC_52 RegisterNewSeller with titleEn
+    [Documentation]  Valid: To Verify response if gender paramter is  entered valid and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller with titleEn  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  MR  ${0}  000  Success
+
+TC_53 RegisterNewSeller with Empty titleEn
+    [Documentation]  Valid: To Verify response if gender paramter is  entered valid and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller with Empty titleEn  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  ${None}  M  ${0}  000  Success
+
+TC_54 RegisterNewSeller with titleEn size 6
+    [Documentation]  Valid: To Verify response if gender paramter is  entered valid and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller with titleEn size 6  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  @{titleEn}[0]  ${0}  E11  Data length is over limit
+
+TC_55 RegisterNewSeller with firstNameEn
+    [Documentation]  Valid: To Verify response if gender paramter is  entered valid and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller with firstNameEn  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  ${firstNameEnlast}[0]  ${0}  000  Success
+
+TC_56 RegisterNewSeller with Empty firstNameEn
+    [Documentation]  Valid: To Verify response if gender paramter is  entered valid and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller with Empty firstNameEn   ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  ${None}  M  ${0}  000  Success
+
+TC_57 RegisterNewSeller with firstNameEn size 101
+    [Documentation]  Valid: To Verify response if gender paramter is  entered valid and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller with inavalid firstNameEn size 101  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  @{firstNameEn1_lastnm}[0]  ${0}  E11  Data length is over limit
+
+TC_58 RegisterNewSeller with lastNameEn
+    [Documentation]  Valid: To Verify response if gender paramter is  entered valid and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller with lastNameEgn  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  ${firstNameEnlast}[0]  ${0}  000  Success
+
+TC_59 RegisterNewSeller with Empty lastNameEn
+    [Documentation]  Valid: To Verify response if gender paramter is  entered valid and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller with Empty lastNameEn  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  ${None}  M  ${0}  000  Success
+TC_60 RegisterNewSeller with lastNameEn size 101
+    [Documentation]  Valid: To Verify response if gender paramter is  entered valid and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller with inavalid lastNameEn size 101  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  @{firstNameEn1_lastnm}[0]  ${0}  E11  Data length is over limit
+
+
 
 
