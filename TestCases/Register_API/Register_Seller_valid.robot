@@ -241,6 +241,12 @@ TC_46 RegisterNewSeller with Dublicate Email
     ${TokenEscrow}=  GetToken Escrow
     RegisterSeller with Email  ${TokenEscrow}  @{escrowCompId}  ${email}  ${0}  R03   Duplicate ID card, email or mobile no.
 
+TC_47 RegisterNewSeller with DuplicateEmail of Terminated Seller
+    [Documentation]  Valid : To check Email Address is entered duplicate (duplicate Email Address should belong to Seller status = terminated )and request is send with all mandatory fields
+
+TC_48 RegisterNewSeller with DuplicateMobileNumber of Ternimated Seller
+    [Documentation]  Valid : To check Mobile number is entered duplicate (duplicate mobile number should belong to Seller status = terminated ) and request is send with all mandatory fields
+
 TC_49 RegisterNewSeller with Empty Gender
     [Documentation]  Empty: To Verify response if gender paramter is not entered and request sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
@@ -257,5 +263,67 @@ TC_51 RegisterNewSeller with Valid Gender
     ${TokenEscrow}=  GetToken Escrow
     ${MobNo}=  Randome_MobileNumber
     RegisterSeller with Genter  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  M  ${0}  000  Success
+
+TC_61 RegisterNewSeller with Valid LocalTitle
+    [Documentation]  Valid: To Verify response if titleLocal is entered valid and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller with Title  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  นาย  ${0}  000  Success
+
+TC_62 RegisterNewSeller with Empty LocalTitle
+    [Documentation]  Empty: To Verify response if titleLocal paramter is not entered and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller with Title  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  ${None}  ${0}  000  Success
+
+TC_63 RegisterNewSeller with LocalTitle more than 50 char
+    [Documentation]  Invalid: To Verify response if titleLocal paramter is  entered more than size 50 and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller with Title  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  นายนายนายนายนายนายนายนายนายนายนายนายนายนายนายายนายนายนายนาย  ${0}  E11  Data length is over limit
+
+TC_64 RegisterNewSeller with valid LocalFirstName and Kyc=1
+    [Documentation]  Valid : To Verify response if we enter valid firstNameLocal and request is sent with all mandatory fields with KYCRequest=1
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller with FirstName  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  สมชาย  ${1}  000  Success
+
+TC_65 RegisterNewSeller with Valid LocalFirstName and kyc=0
+    [Documentation]  Valid : To Verify response if we enter valid firstNameLocal and request is sent with all mandatory fields with KYCRequest=0
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller with FirstName  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  สมชาย  ${0}  000  Success
+
+TC_66 RegisterNewSeller with Empty LocalFirstName and Kyc=1
+    [Documentation]  Empty: To Verify response if we NOT enter firstNameLocal and request is sent with all mandatory fields with KYCRequest=1
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller with FirstName  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  ${None}  ${1}  000  Success
+
+TC_67 RegisterNewSeller with Empty LocalFirstName for Kyc=0
+    [Documentation]  Empty: To Verify response if we NOT enter firstNameLocal and request is sent with all mandatory fields with KYCRequest=0
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller with FirstName  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  ${None}  ${0}  000  Success
+
+TC_68 RegisterNewSeller with LocalFirstName more than 50 char and Kyc=0
+    [Documentation]  Invalid: To Verify response if firstNameLocal paramter is  entered more than size 100 and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller with FirstName  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  สมชายสมชายสมชายสมชายสมชายสมชายสมชายสมชายสมชายสมชายสมชายสมชายสมชายสมชายสมชายสมชายสมชายสมชายสมชายสมชายสมชายสมชายสมชายสมชายสมชายสมชายสมชาย  ${0}  E11  Data length is over limit
+
+TC_69 RegisterNewSeller with Valid LocalLastName and Kyc=1
+    [Documentation]  Valid : To Verify response if we enter valid lastNameLocal and request is sent with all mandatory fields with KYCRequest=1
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller with LastName  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  กิจการ  ${1}  000  Success
+
+TC_70 RegisterNewSeller with Valid LocalLastname and Kyc=0
+    [Documentation]  Valid : To Verify response if we enter valid lastNameLocal and request is sent with all mandatory fields with KYCRequest=0
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller with LastName  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  กิจการ  ${0}  000  Success
+
+
 
 
