@@ -264,7 +264,7 @@ TC_50 RegisterNewSeller with Invalid Gender
     ${TokenEscrow}=  GetToken Escrow
     RegisterSeller with Genter  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${mobileNo}  X  ${0}  R01  Validation failed
 
-TC_50 RegisterNewSeller with Valid Gender
+TC_51 RegisterNewSeller with Valid Gender
     [Documentation]  Valid: To Verify response if gender paramter is  entered valid and request sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
     ${MobNo}=  Randome_MobileNumber
