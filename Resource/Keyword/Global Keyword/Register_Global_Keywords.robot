@@ -27,4 +27,9 @@ Randome_MobileNumber
     SET GLOBAL VARIABLE  ${mobileNo}  ${mobile}
     [Return]  ${mobileNo}
 
+Randome_IDNumber
+    ${Id}=  Generate Random String  14   [NUMBERS]
+    SET GLOBAL VARIABLE  ${IdNumber}  ${Id}
+    [Return]  ${IdNumber}
+
 

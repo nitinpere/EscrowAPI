@@ -256,6 +256,7 @@ TC_51 RegisterNewSeller with Valid Gender
     ${TokenEscrow}=  GetToken Escrow
     ${MobNo}=  Randome_MobileNumber
     RegisterSeller with Genter  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  M  ${0}  000  Success
+
 TC_52 RegisterNewSeller with titleEn
     [Documentation]  Valid: To Verify response if gender paramter is  entered valid and request sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
@@ -309,7 +310,6 @@ TC_60 RegisterNewSeller with lastNameEn size 101
     ${TokenEscrow}=  GetToken Escrow
     ${MobNo}=  Randome_MobileNumber
     RegisterSeller with inavalid lastNameEn size 101  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  @{firstNameEn1_lastnm}[0]  ${0}  E11  Data length is over limit
-
 
 TC_61 RegisterNewSeller with Valid LocalTitle
     [Documentation]  Valid: To Verify response if titleLocal is entered valid and request sent with all mandatory fields
@@ -449,8 +449,47 @@ TC_83 RegisterNewSeller nationalityId paramter length more than 3
     ${MobNo}=  Randome_MobileNumber
     RegisterSeller Invalid nationalityId kyc 0  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  @{nationalityId_more_3}[0]  ${0}  R01  Validation failed
 
-TC_84 RegisterNewSeller valid otherVerification and request Kyc=1
+
+TC_84 RegisterNewSeller with Valid OtherVerification and Kyc=1
     [Documentation]  Valid : To Verify response if we enter valid otherVerification and request is sent with all mandatory fields with KYCRequest=1
     ${TokenEscrow}=  GetToken Escrow
-    ${Id}=  Generate Random String  14   [NUMBERS]
-    RegisterSeller enter lastNameLocal  ${TokenEscrow}  @{not_lastnm_kyc1}[0]  @{not_lastnm_kyc1}[1]  @{not_lastnm_kyc1}[2]  @{not_lastnm_kyc1}[3]  @{not_lastnm_kyc1}[4]  ${Id}  ${1}  ${1}  000  Success
+    ${idNum}=  Randome_IDNumber
+    RegisterSeller with OtherVerification kyc1  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  ${1}  ${idNum}  @{IDno_enter_kyc_1}[1]  @{IDno_enter_kyc_1}[2]  @{IDno_enter_kyc_1}[3]  @{IDno_enter_kyc_1}[4]  ${1}  000  Success
+
+TC_85 RegisterNewSeller with Valid OtherVerification and Kyc=0
+    [Documentation]  Valid : To Verify response if we enter valid otherVerificationand request is sent with all mandatory fields with KYCRequest=0
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller with OtherVerification kyc0  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  @{IDno_enter_kyc_1}[4]  ${0}  000  Success
+
+TC_86 RegisterNewSeller with Empty OtherVerification and Kyc=1
+    [Documentation]  Empty: To Verify response if we NOT enter otherVerification and request is sent with all mandatory fields with KYCRequest=1
+    ${TokenEscrow}=  GetToken Escrow
+    ${idNum}=  Randome_IDNumber
+    RegisterSeller with OtherVerification kyc1  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  ${1}  ${idNum}  @{IDno_enter_kyc_1}[1]  @{IDno_enter_kyc_1}[2]  @{IDno_enter_kyc_1}[3]  ${None}  ${1}  E05  Missing mandatory field
+
+TC_87 RegisterNewSeller with Empty OtherVerification and Kyc=0
+    [Documentation]  Empty: To Verify response if we NOT enter otherVerification and request is sent with all mandatory fields with KYCRequest=0
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller with OtherVerification kyc0  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  @{IDno_enter_kyc_1}[4]  ${0}  000  Success
+
+TC_88 RegisterNewSeller with OtherVerification more then 15char and Kyc=0
+    [Documentation]  Invalid: To Verify response if otherVerification  paramter is  entered more than size 15 and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller with OtherVerification kyc0  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  SM88392083672835188  ${0}  E11  Data length is over limit
+
+TC_89 RegisterNewSeller with Valid Workplace
+    [Documentation]  Valid: To Verify response if workPlace is entered valid  and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${idNum}=  Randome_IDNumber
+    RegisterSeller with WorkPlace  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  ${idNum}  ${1}  PavanTest  ${0}  000  Success
+
+TC_90 RegisterNewSeller with Empty Workplace
+    [Documentation]  Empty: To Verify response if workPlace parameter is not entered and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${idNum}=  Randome_IDNumber
+    RegisterSeller with WorkPlace  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  ${idNum}  ${1}  ${None}  ${0}  000  Success
+
+
