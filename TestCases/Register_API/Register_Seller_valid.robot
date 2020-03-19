@@ -371,10 +371,86 @@ TC_70 RegisterNewSeller with Valid LocalLastname and Kyc=0
     ${MobNo}=  Randome_MobileNumber
     RegisterSeller with LastName  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  กิจการ  ${0}  000  Success
 
+TC_71 RegisterNewSeller NOT enter lastNameLocal and request Kyc=1
+    [Documentation]  Empty: To Verify response if we NOT enter lastNameLocal and request is sent with all mandatory fields with KYCRequest=1
+    ${TokenEscrow}=  GetToken Escrow
+    ${Id}=  Generate Random String  14   [NUMBERS]
+    RegisterSellerNOT enter lastNameLocal  ${TokenEscrow}  @{not_lastnm_kyc1}[0]  @{not_lastnm_kyc1}[1]  ${None}  @{not_lastnm_kyc1}[2]  @{not_lastnm_kyc1}[3]  ${Id}  ${1}  ${1}  E05  Missing mandatory field
 
+TC_72 RegisterNewSeller with Empty lastNameEn
+    [Documentation]  Empty: To Verify response if we NOT enter lastNameLocal and request is sent with all mandatory fields with KYCRequest=0
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller with Empty lastName  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  ${None}  ${0}  000  Success
 
+TC_73 RegisterNewSeller with lastNameEn size 150
+    [Documentation]  Invalid: To Verify response if lastNameLocal paramter is  entered more than size 150 and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller with inavalid lastNameEn size 101  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  @{firstNameEn1_lastnm}[0]  ${0}  E11  Data length is over limit
 
+TC_74 RegisterNewSeller valid dateOfBirth and request Kyc=1
+    [Documentation]  Valid : To Verify response if we enter valid dateOfBirth and request is sent with all mandatory fields with KYCRequest=1
+    ${TokenEscrow}=  GetToken Escrow
+    ${Id}=  Generate Random String  14   [NUMBERS]
+    RegisterSeller enter lastNameLocal  ${TokenEscrow}  @{not_lastnm_kyc1}[0]  @{not_lastnm_kyc1}[1]  @{not_lastnm_kyc1}[2]  @{not_lastnm_kyc1}[3]  @{not_lastnm_kyc1}[4]  ${Id}  ${1}  ${1}  000  Success
 
+TC_75 RegisterNewSeller with valid dateOfBirth KYCRequest=0
+    [Documentation]  Valid : To Verify response if we enter valid dateOfBirth and request is sent with all mandatory fields with KYCRequest=0
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller withvalid dateOfBirth  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  @{dateOfBirth}[0]  ${0}  000  Success
 
+TC_76 RegisterNewSeller Empty dateOfBirth and request Kyc=1
+    [Documentation]  Empty: To Verify response if we NOT enter dateOfBirth and request is sent with all mandatory fields with KYCRequest=1
+    ${TokenEscrow}=  GetToken Escrow
+    ${Id}=  Generate Random String  14   [NUMBERS]
+    RegisterSeller Empty dateOfBirth kyc 1  ${TokenEscrow}  @{not_lastnm_kyc1}[0]  @{not_lastnm_kyc1}[1]  @{not_lastnm_kyc1}[2]  ${None}  @{not_lastnm_kyc1}[4]  ${Id}  ${1}  ${1}  E05  Missing mandatory field
 
+TC_77 RegisterNewSeller with Empty dateOfBirth KYCRequest=0
+    [Documentation]  Empty: To Verify response if we NOT enter dateOfBirth and request is sent with all mandatory fields with KYCRequest=0
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller Empty dateOfBirth kyc 0  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  ${None}  @{not_lastnm_kyc1}[2]  ${0}  000  Success
 
+TC_78 RegisterNewSeller with Invalid dateOfBirth KYCRequest=0
+    [Documentation]  Invalid : To Verify response if we enter invalid dateOfBirth and request is sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller withvalid dateOfBirth  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  @{IN_dateOfBirth}[0]  ${0}  E11  Data length is over limit
+
+TC_79 RegisterNewSeller nationalityId paramter is not entered
+    [Documentation]  Empty: To Verify response if nationalityId paramter is not entered and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller Empty nationalityId kyc 0  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  @{not_lastnm_kyc1}[2]  ${None}  ${0}  000  Success
+
+TC_80 RegisterNewSeller Invalid nationalityId paramter
+    [Documentation]  Invalid: To Verify response if nationalityId paramter is  entered invalid and request sent with all mandatory fields(Use numeric code of ISO 3166)
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller Invalid nationalityId kyc 0  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  @{nationalityId}[0]  ${0}  R01  Validation failed
+
+TC_81 RegisterNewSeller valid nationalityId paramter
+    [Documentation]  Valid: To Verify response if nationalityId paramter is  entered valid and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller valid nationalityId kyc 0  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  @{v_nationalityId}[0]  ${0}  000  Success
+
+TC_82 RegisterNewSeller INvalid nationalityId paramter
+    [Documentation]  Invalid: To Verify response if nationalityId paramter is  entered  as Number value only and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller Invalid nationalityId kyc 0  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  @{nationalityId}[0]  ${0}  R01  Validation failed
+
+TC_83 RegisterNewSeller nationalityId paramter length more than 3
+    [Documentation]  Invalid: To Verify response if nationalityId paramter is  entered more than size 3 and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    RegisterSeller Invalid nationalityId kyc 0  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  @{nationalityId_more_3}[0]  ${0}  R01  Validation failed
+
+TC_84 RegisterNewSeller valid otherVerification and request Kyc=1
+    [Documentation]  Valid : To Verify response if we enter valid otherVerification and request is sent with all mandatory fields with KYCRequest=1
+    ${TokenEscrow}=  GetToken Escrow
+    ${Id}=  Generate Random String  14   [NUMBERS]
+    RegisterSeller enter lastNameLocal  ${TokenEscrow}  @{not_lastnm_kyc1}[0]  @{not_lastnm_kyc1}[1]  @{not_lastnm_kyc1}[2]  @{not_lastnm_kyc1}[3]  @{not_lastnm_kyc1}[4]  ${Id}  ${1}  ${1}  000  Success
