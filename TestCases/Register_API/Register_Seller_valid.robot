@@ -516,19 +516,19 @@ TC_92 RegisterNewSeller with Valid userDefine
     [Documentation]  Valid: To Verify response if userDefine1-5 parameter is entered valid  and request sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
     ${email}=  Randome_EmailId
-    RegisterSeller with userDefine  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  ${email}  @{userDefine}[0]  @{userDefine}[1]  @{userDefine}[2]  @{userDefine}[3]  @{userDefine}[4]  ${0}  000  Success
+    RegisterSeller with userdefine  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  ${email}  @{userDefine}[0]  @{userDefine}[1]  @{userDefine}[2]  @{userDefine}[3]  @{userDefine}[4]  ${0}  000  Success
 
 TC_93 RegisterNewSeller with Empty userDefine
     [Documentation]  Empty: To Verify response  if userDefine1-5 parameter is entered empty and request sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
     ${email1}=  Randome_EmailId
-    RegisterSeller with userDefine  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  ${email1}  ${None}  ${None}  ${None}  ${None}  ${None}  ${0}  000  Success
+    RegisterSeller with userdefine  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  ${email1}  ${None}  ${None}  ${None}  ${None}  ${None}  ${0}  000  Success
 
 TC_94 RegisterNewSeller with InValid userDefine
     [Documentation]  Invalid: To Verify response if  userDefine1-5 parameter is entered invalid (more than size 100)  and request sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
     ${email2}=  Randome_EmailId
-    RegisterSeller with userDefine  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  ${email2}  @{firstNameEn1_lastnm}[0]  @{firstNameEn1_lastnm}[0]  @{firstNameEn1_lastnm}[0]  @{firstNameEn1_lastnm}[0]  @{firstNameEn1_lastnm}[0]  ${0}  E11  Data length is over limit
+    RegisterSeller with userdefine  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  ${email2}  @{firstNameEn1_lastnm}[0]  @{firstNameEn1_lastnm}[0]  @{firstNameEn1_lastnm}[0]  @{firstNameEn1_lastnm}[0]  @{firstNameEn1_lastnm}[0]  ${0}  E11  Data length is over limit
 
 TC_95 RegisterSeller No KYC
     [Documentation]  Valid : To check idNumber is entered duplicate and request is send with all mandatory fields
@@ -541,3 +541,8 @@ TC_96 RegisterSeller Invalid KYC
     ${TokenEscrow}=  GetToken Escrow
     ${idNum}=  Randome_IDNumber
     RegisterSeller duplicateIdNumber @post  ${TokenEscrow}  @{escrowCompId}[0]  ${idNum}  ${1}  ${7}  E03  Invalid request
+TC_97 RegisterSeller Invalid KYC
+    [Documentation]  Invalid : To verify response when kycRequest parameter is entered invalid and request is sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${email2}=  Randome_EmailId
+    RegisterSeller with KYC MORE THAN 1  ${TokenEscrow}  @{escrowCompId}[0]  ${email2}  ${23}  E03  Invalid request

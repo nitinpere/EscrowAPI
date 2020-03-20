@@ -1000,11 +1000,11 @@ RegisterSeller with INvalid WorkPlace
     Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
     Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
 
-RegisterSeller with userDefine
-    [Arguments]  ${Token}  ${escrowCompanyID}  ${email}  ${userDefine1}  ${userDefine2}  ${userDefine3}  ${userDefine4}  ${userDefine5}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+RegisterSeller with KYC MORE THAN 1
+    [Arguments]  ${Token}  ${escrowCompanyID}  ${email}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterSeller  http://172.31.2.28/escrow_core/api/v1
     ${KeyReq}=  Convert To Integer  ${kycRequest}
-    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  email=${email}  userDefine1=${userDefine1}  userDefine2=${userDefine2}  userDefine3=${userDefine3}  userDefine4=${userDefine4}  userDefine5=${userDefine5}  kycRequest=${KeyReq}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  email=${email}  kycRequest=${KeyReq}
     ${AuthToken}=  Set Variable  bearer ${Token}
     ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
     ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}
@@ -1013,6 +1013,7 @@ RegisterSeller with userDefine
     Should Be Equal As Strings    ${response.status_code}    200
     Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
     Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
+
 
 RegisterSeller with userDefine
     [Arguments]  ${Token}  ${escrowCompanyID}  ${email}  ${userDefine1}  ${userDefine2}  ${userDefine3}  ${userDefine4}  ${userDefine5}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
