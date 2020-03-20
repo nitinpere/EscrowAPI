@@ -26,6 +26,19 @@ RandomeGenerateVaribales with Values
     ${emailid}=  SET VARIABLE  pavan${Emailnum}@2c2p.com
     SET GLOBAL VARIABLE  ${email}  ${emailid}
 
+TC_06 RegisterNewSeller Request with all data
+    [Documentation]  Valid: To Verify request parameters of Register Seller API
+    ${TokenEscrow}=  GetToken Escrow
+    ${idNum}=  Randome_IDNumber
+    ${MobNo}=  Randome_MobileNumber
+    ${emailid}=  Randome_EmailId
+    RegisterSeller with valid Data  ${TokenEscrow}  @{valid_mobile_country_code}[0]  ${idNum}  ${3}  @{valid_mobile_country_code}[1]  ${MobNo}  ${emailid}  M  @{RegisterSellerData}[0]  @{RegisterSellerData}[1]  @{RegisterSellerData}[2]  @{RegisterSellerData}[3]  @{RegisterSellerData}[4]  @{RegisterSellerData}[5]  @{RegisterSellerData}[6]  @{v_nationalityId}  @{RegisterSellerData}[7]  @{RegisterSellerData}[8]  @{RegisterSellerData}[9]  @{RegisterSellerData}[10]  @{RegisterSellerData}[11]  @{RegisterSellerData}[12]  @{RegisterSellerData}[13]  ${0}
+TC_07 RegisterNewSeller Response with Response Data
+    [Documentation]  Valid: To Verify response  parameter of Register Seller API
+    ${TokenEscrow}=  GetToken Escrow
+TC_08 RegsterNewSeller Request with Valid Parameter
+    [Documentation]  Valid: To Verify response when request is send with all valid parameters
+    ${TokenEscrow}=  GetToken Escrow
 
 TC_09 RegisterNewSeller Empty Mandatory Field
     [Documentation]  Empty : To verify Response when all request fields are entered empty without body
@@ -121,7 +134,7 @@ TC_25 RegisterSeller duplicate_ID_NO Belong to seller status @post
 TC_26 RegisterSeller duplicate_IDnumber @post
     [Documentation]  Valid : To check idNumber is entered duplicate and request is send with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
-    RegisterSeller duplicateIdNumber @post  ${TokenEscrow}      @{escrowCompId}[0]  ${IdNumber}  ${1}  ${0}    000
+    RegisterSeller duplicateIdNumber @post  ${TokenEscrow}      @{escrowCompId}[0]  ${IdNumber}  ${1}  ${0}    R03  Duplicate ID card, email or mobile no
 
 TC_27 RegisterNewSeller NotENTER TYPEOFID kyc is 1
     [Documentation]  Empty: To Verify response if we NOT enter typeOfId and request is sent with all mandatory fields with KYCRequest=1 and Valid IdNumber
@@ -150,15 +163,17 @@ TC_31 RegisterNewSeller TYPEOFID is equal_to passport kyc is 0
     [Documentation]  Valid: To Verify response when  typeOfId = Passport and request is sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
     ${Idno}=  Generate Random String  14   [NUMBERS]
-    ${mobile23}=   Generate Random String  10   [NUMBERS]
-    RegisterSeller valid TYPEOFID is equal_to passport kyc is 0 @post  ${TokenEscrow}  @{type_id_passport}[0]  @{type_id_passport}[1]  @{type_id_passport}[2]  pavan${enum}2c2p.com  @{type_id_passport}[4]  ${mobile23}  @{type_id_passport}[5]  @{type_id_passport}[6]    ${Idno}  ${2}  ${0}  000
+    ${mobile}=  Randome_MobileNumber
+    ${email}=  Randome_EmailId
+    RegisterSeller valid TYPEOFID is equal_to passport kyc is 0 @post  ${TokenEscrow}  @{type_id_passport}[0]  @{type_id_passport}[1]  @{type_id_passport}[2]  ${email}  @{type_id_passport}[4]  ${mobile}  @{type_id_passport}[5]  @{type_id_passport}[6]    ${Idno}  ${2}  ${0}  000
 
 TC_32 RegisterNewSeller TYPEOFID is equal_to others kyc is 0
     [Documentation]  Valid: To Verify response when  typeOfId = Others  and request is sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
     ${Idr}=  Generate Random String  14   [NUMBERS]
-    ${mobile24}=   Generate Random String  10   [NUMBERS]
-    RegisterSeller valid TYPEOFID is equal_to others kyc is 0 @post  ${TokenEscrow}  @{type_id_passport}[0]  @{type_id_passport}[1]  @{type_id_passport}[2]  pavan${enum}2c2p.com  @{type_id_passport}[4]  ${mobile24}  @{type_id_passport}[5]  @{type_id_passport}[6]    ${Idr}  ${3}  ${0}  000
+    ${mobile}=  Randome_MobileNumber
+    ${email}=  Randome_EmailId
+    RegisterSeller valid TYPEOFID is equal_to others kyc is 0 @post  ${TokenEscrow}  @{type_id_passport}[0]  @{type_id_passport}[1]  @{type_id_passport}[2]  ${email}  @{type_id_passport}[4]  ${mobile}  @{type_id_passport}[5]  @{type_id_passport}[6]    ${Idr}  ${3}  ${0}  000
 
 TC_33 RegisterNewSeller Invalid TYPEOFID kyc is 1
     [Documentation]  Invalid: To Verify response if we enter Invalid typeOfId and request is sent with all mandatory fields with KYCRequest=1 and valid IdNumber
@@ -170,20 +185,20 @@ TC_34 RegisterNewSeller Empty Mobilecountrycode kyc is 0
     [Documentation]  Invalid To Verify response if mobileCountryCode paramter is entered empty and request sent with all mandatory fields with Mobile number
     ${TokenEscrow}=  GetToken Escrow
     ${Idr}=  Generate Random String  14   [NUMBERS]
-    ${mobile2}=   Generate Random String  10   [NUMBERS]
-    RegisterSeller Empty mobileCountryCode kyc is 0 @post  ${TokenEscrow}  @{Empty_mobile_country_code}[0]  ${None}  ${mobile2}  ${0}  000
+    ${mobile}=  Randome_MobileNumber
+    RegisterSeller Empty mobileCountryCode kyc is 0 @post  ${TokenEscrow}  @{Empty_mobile_country_code}[0]  ${None}  ${mobile}  ${0}  000
 
 TC_35 RegisterNewSeller Invalid Mobilecountrycode kyc is 0
     [Documentation]  Invalid: To Verify response if mobileCountryCode paramter is  entered invalid(length is more than 10) and request sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
-    ${mobile2}=   Generate Random String  10   [NUMBERS]
-    RegisterSeller mobileCountryCode kyc is 0 @post  ${TokenEscrow}  @{Invalid_mobile_country_code}[0]  ${Invalid_mobile_country_code}[1]  ${mobile2}  ${0}  000
+    ${mobile}=  Randome_MobileNumber
+    RegisterSeller mobileCountryCode kyc is 0 @post  ${TokenEscrow}  @{Invalid_mobile_country_code}[0]  ${Invalid_mobile_country_code}[1]  ${mobile}  ${0}  000
 
 TC_36 RegisterNewSeller valid Mobilecountrycode kyc is 0
     [Documentation]  Valid: To Verify response if mobileCountryCode paramter is  entered valid and request sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
-    ${mobile2}=   Generate Random String  10   [NUMBERS]
-    RegisterSeller mobileCountryCode kyc is 0 @post  ${TokenEscrow}  @{valid_mobile_country_code}[0]  @{valid_mobile_country_code}[1]  ${mobile2}  ${0}  000
+    ${mobile}=  Randome_MobileNumber
+    RegisterSeller mobileCountryCode kyc is 0 @post  ${TokenEscrow}  @{valid_mobile_country_code}[0]  @{valid_mobile_country_code}[1]  ${mobile}  ${0}  000
 
 TC_37 RegisterNewSeller valid Mobilecountrycode kyc is 0
     [Documentation]  Empty: To Verify response if mobileNo paramter is not entered and request sent with all mandatory fields
@@ -193,27 +208,27 @@ TC_37 RegisterNewSeller valid Mobilecountrycode kyc is 0
 TC_38 RegisterNewSeller valid Mobilecountrycode kyc is 0
     [Documentation]  Empty: To Verify response if mobileNo paramter is entered and mobileCountryCode is NOT entered and request sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
-    ${mobile2}=   Generate Random String  10   [NUMBERS]
-    RegisterSeller Empty mobileCountryCode kyc is 0 @post  ${TokenEscrow}  @{valid_mobile_country_code}[0]  ${None}  ${mobile2}  ${0}  000
+    ${mobile}=  Randome_MobileNumber
+    RegisterSeller Empty mobileCountryCode kyc is 0 @post  ${TokenEscrow}  @{valid_mobile_country_code}[0]  ${None}  ${mobile}  ${0}  000
 
 TC_39 RegisterNewSeller mobileno length morethan 50 kyc is 0
     [Documentation]  Invalid: To Verify response if mobileNo paramter is  entered invalid (length is more than 50) and request sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
-    ${mobile2}=   Generate Random String  55   [NUMBERS]
-    RegisterSeller mobileno length morethan50 kyc is 0 @post  ${TokenEscrow}  @{valid_mobile_country_code}[0]  @{valid_mobile_country_code}[1]  ${mobile2}  ${0}  000
+    ${mobile}=  Randome_MobileNumber
+    RegisterSeller mobileno length morethan50 kyc is 0 @post  ${TokenEscrow}  @{valid_mobile_country_code}[0]  @{valid_mobile_country_code}[1]  ${mobile}  ${0}  000
 
 TC_40 RegisterNewSeller Valid MobileNo
     [Documentation]  Valid: To Verify response if mobileNo paramter is  entered valid and request sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
-    ${MobNo}=  Generate Random String  10   [NUMBERS]
-    RegisterSeller MobileNo   ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  ${0}  000  Success
+    ${mobile}=  Randome_MobileNumber
+    RegisterSeller MobileNo   ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${mobile}  ${0}  000  Success
 
 TC_41 RegisterNewSeller MobileNo without First 0
     [Documentation]  Valid: To Verify response if mobileNo paramter is  entered valid without first digit 0 and request sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
-    ${MobNo}=  Generate Random String  10   [NUMBERS]
-    SET GLOBAL VARIABLE  ${mobileNo}  ${MobNo}
-    RegisterSeller MobileNo   ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  ${0}  000  Success
+    ${mobile}=  Randome_MobileNumber
+    SET GLOBAL VARIABLE  ${mobileNo}  ${mobile}
+    RegisterSeller MobileNo   ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${mobile}  ${0}  000  Success
 
 TC_42 RegisterNewSeller Duplicate MobileNo
     [Documentation]  Duplicate: To Verify response if mobileNo paramter is entered which is already registered  and request sent with all mandatory fields
@@ -447,7 +462,7 @@ TC_83 RegisterNewSeller nationalityId paramter length more than 3
     [Documentation]  Invalid: To Verify response if nationalityId paramter is  entered more than size 3 and request sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
     ${MobNo}=  Randome_MobileNumber
-    RegisterSeller Invalid nationalityId kyc 0  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  @{nationalityId_more_3}[0]  ${0}  R01  Validation failed
+    RegisterSeller Invalid nationalityId kyc 0  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  @{nationalityId_more_3}[0]  ${0}  E11  Data length is over limit
 
 
 TC_84 RegisterNewSeller with Valid OtherVerification and Kyc=1
@@ -491,5 +506,38 @@ TC_90 RegisterNewSeller with Empty Workplace
     ${TokenEscrow}=  GetToken Escrow
     ${idNum}=  Randome_IDNumber
     RegisterSeller with WorkPlace  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  ${idNum}  ${1}  ${None}  ${0}  000  Success
+TC_91 RegisterNewSeller with InValid Workplace
+    [Documentation]  Invalid: To Verify response if workPlace paramter is  entered more than size 100 and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${idNum}=  Randome_IDNumber
+    RegisterSeller with INvalid WorkPlace  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  ${idNum}  ${1}  @{work_space}  pavan${enum}2c2p.com  ${0}  E11  Data length is over limit
 
+TC_92 RegisterNewSeller with Valid userDefine
+    [Documentation]  Valid: To Verify response if userDefine1-5 parameter is entered valid  and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${email}=  Randome_EmailId
+    RegisterSeller with userDefine  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  ${email}  @{userDefine}[0]  @{userDefine}[1]  @{userDefine}[2]  @{userDefine}[3]  @{userDefine}[4]  ${0}  000  Success
 
+TC_93 RegisterNewSeller with Empty userDefine
+    [Documentation]  Empty: To Verify response  if userDefine1-5 parameter is entered empty and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${email1}=  Randome_EmailId
+    RegisterSeller with userDefine  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  ${email1}  ${None}  ${None}  ${None}  ${None}  ${None}  ${0}  000  Success
+
+TC_94 RegisterNewSeller with InValid userDefine
+    [Documentation]  Invalid: To Verify response if  userDefine1-5 parameter is entered invalid (more than size 100)  and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${email2}=  Randome_EmailId
+    RegisterSeller with userDefine  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  ${email2}  @{firstNameEn1_lastnm}[0]  @{firstNameEn1_lastnm}[0]  @{firstNameEn1_lastnm}[0]  @{firstNameEn1_lastnm}[0]  @{firstNameEn1_lastnm}[0]  ${0}  E11  Data length is over limit
+
+TC_95 RegisterSeller No KYC
+    [Documentation]  Valid : To check idNumber is entered duplicate and request is send with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${idNum}=  Randome_IDNumber
+    RegisterSeller Empty Kyc  ${TokenEscrow}  @{escrowCompId}[0]  ${idNum}  ${1}  ${None}  E05  Missing mandatory field
+
+TC_96 RegisterSeller Invalid KYC
+    [Documentation]  Invalid : To verify response when kycRequest parameter is entered invalid and request is sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${idNum}=  Randome_IDNumber
+    RegisterSeller duplicateIdNumber @post  ${TokenEscrow}  @{escrowCompId}[0]  ${idNum}  ${1}  ${7}  E03  Invalid request
