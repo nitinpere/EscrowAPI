@@ -3,7 +3,7 @@ Library    RequestsLibrary
 Library    Collections
 Library    String
 #Resource    ../Variable/CompanyCode.robot
-#Resource    ../Variable/ErrorCode.resource
+#Resource    ../Keyword/Global Keyword/.resource
 Resource    Get Token.robot
 *** Keywords ***
 
@@ -1060,6 +1060,19 @@ RegisterSeller with valid Data
     Should Be Equal As Strings    ${response.status_code}    200
 #    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
 #    Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
+RegisterSeller with EMPTY ADDress
+    [Arguments]  ${Token}  ${escrowCompanyID}  ${email}  ${address}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    Create Session  RegisterSeller  http://172.31.2.28/escrow_core/api/v1
+    ${KeyReq}=  Convert To Integer  ${kycRequest}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  email=${email}  address=${address}  kycRequest=${KeyReq}
+    ${AuthToken}=  Set Variable  bearer ${Token}
+    ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
+    ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}
+    Log  ${response.text}    console=True
+    #log to console  ${response.content}
+    Should Be Equal As Strings    ${response.status_code}    200
+    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
 
 
 

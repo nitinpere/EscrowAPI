@@ -516,13 +516,13 @@ TC_92 RegisterNewSeller with Valid userDefine
     [Documentation]  Valid: To Verify response if userDefine1-5 parameter is entered valid  and request sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
     ${email}=  Randome_EmailId
-    RegisterSeller with userdefine  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  ${email}  @{userDefine}[0]  @{userDefine}[1]  @{userDefine}[2]  @{userDefine}[3]  @{userDefine}[4]  ${0}  000  Success
+    RegisterSeller with userdefine  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  ${email}  @{userDefine}[0]123  @{userDefine}[1]432  @{userDefine}[2]123  @{userDefine}[3]987  @{userDefine}[4]567  ${0}  000  Success
 
 TC_93 RegisterNewSeller with Empty userDefine
     [Documentation]  Empty: To Verify response  if userDefine1-5 parameter is entered empty and request sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
-    ${email1}=  Randome_EmailId
-    RegisterSeller with userdefine  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  ${email1}  ${None}  ${None}  ${None}  ${None}  ${None}  ${0}  000  Success
+    ${email}=  Randome_EmailId
+    RegisterSeller with userdefine  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  ${email}  ${None}  ${None}  ${None}  ${None}  ${None}  ${0}  000  Success
 
 TC_94 RegisterNewSeller with InValid userDefine
     [Documentation]  Invalid: To Verify response if  userDefine1-5 parameter is entered invalid (more than size 100)  and request sent with all mandatory fields
@@ -542,7 +542,12 @@ TC_96 RegisterSeller Invalid KYC
     ${idNum}=  Randome_IDNumber
     RegisterSeller duplicateIdNumber @post  ${TokenEscrow}  @{escrowCompId}[0]  ${idNum}  ${1}  ${7}  E03  Invalid request
 TC_97 RegisterSeller Invalid KYC
-    [Documentation]  Invalid : To verify response when kycRequest parameter is entered invalid and request is sent with all mandatory fields
+    [Documentation]  Invalid : To verify response when kycRequest parameter is entered more than size 1
     ${TokenEscrow}=  GetToken Escrow
     ${email2}=  Randome_EmailId
     RegisterSeller with KYC MORE THAN 1  ${TokenEscrow}  @{escrowCompId}[0]  ${email2}  ${23}  E03  Invalid request
+TC_98 RegisterSeller Empty Address
+    [Documentation]  Empty: To Verify response if All address{} parameter is entered Empty and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${enum}=  Randome_Number
+    RegisterSeller with EMPTY ADDress  ${TokenEscrow}  @{escrowCompId}[0]  pavan${enum}@2c2p.com  ${None}  ${0}  000   Success
