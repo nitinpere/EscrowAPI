@@ -4,6 +4,7 @@ Library    Collections
 Library    String
 #Resource    ../Variable/CompanyCode.robot
 #Resource    ../Keyword/Global Keyword/.resource
+Resource    ../../Resource/Variable/user data.robot
 Resource    Get Token.robot
 *** Keywords ***
 
@@ -1060,6 +1061,7 @@ RegisterSeller with valid Data
     Should Be Equal As Strings    ${response.status_code}    200
 #    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
 #    Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
+
 RegisterSeller with EMPTY ADDress
     [Arguments]  ${Token}  ${escrowCompanyID}  ${email}  ${address}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterSeller  http://172.31.2.28/escrow_core/api/v1
@@ -1074,6 +1076,20 @@ RegisterSeller with EMPTY ADDress
     Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
     Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
 
+RegisterSeller with Invalid IdNumber @kyc=1
+    [Arguments]  ${Token}  ${escrowCompanyID}  ${typeofID}  ${idNumber}  ${LocalFirstName}  ${LocalLastName}  ${DOB}  ${OtherVerification}   ${kycRequest}    ${ResponseCode}   ${ResponseDescription}
+    ${typeID}=  Convert To Integer  ${typeOfID}
+    ${KeyReq}=  Convert To Integer  ${kycRequest}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  typeOfId=${typeID}  idNumber=${idNumber}
+    Log to Console  ${body}
+    ${AuthToken}=  Set Variable  bearer ${Token}
+    ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
+    ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}
+    Log  ${response.text}    console=True
+    log to console  ${response.content}
+    Should Be Equal As Strings    ${response.status_code}    200
+#    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
+#    Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
 
 
 

@@ -551,3 +551,15 @@ TC_98 RegisterSeller Empty Address
     ${TokenEscrow}=  GetToken Escrow
     ${enum}=  Randome_Number
     RegisterSeller with EMPTY ADDress  ${TokenEscrow}  @{escrowCompId}[0]  pavan${enum}@2c2p.com  ${None}  ${0}  000   Success
+
+TC_105 RegisterSeller with Invalid IdNumber and Kyc=1
+    [Documentation]  Invalid: To check API reponse when IdNumber is enter invalid and request is sent with all mandatory fields (KycRequest=1)
+    ${TokenEscrow}=  GetToken Escrow
+    ${idNum}=  Randome_IDNumber
+    RegisterSeller with Invalid IdNumber @kyc=1  ${TokenEscrow}  @{escrowCompId}[0]  ${1}  ${idNum}  @{RegisterSellerData}[4]  @{RegisterSellerData}[5]  @{RegisterSellerData}[6]  @{RegisterSellerData}[7]  ${1}  R01  Validation failed
+
+
+
+
+
+

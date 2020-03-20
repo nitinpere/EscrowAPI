@@ -18,7 +18,8 @@ Randome_Number
     [Return]  ${enum}
 
 Randome_EmailId
-    ${emailid}=  SET VARIABLE  pavan${enum}@2c2p.com
+    ${num}=  Randome_Number
+    ${emailid}=  SET VARIABLE  pavan${num}@2c2p.com
     SET GLOBAL VARIABLE  ${email}  ${emailid}
     [Return]  ${email}
 
