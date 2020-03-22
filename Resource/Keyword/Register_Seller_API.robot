@@ -9,7 +9,7 @@ Resource    Get Token.robot
 *** Keywords ***
 
 RegisterSeller
-    [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}  ${ResponseCode}
+    [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -20,10 +20,10 @@ RegisterSeller
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
-    [Return]  ${response}
+
 RegisterSeller WITH invalidescrowCompanyID @post
     [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}  ${ResponseCode}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
