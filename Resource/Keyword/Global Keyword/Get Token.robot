@@ -7,7 +7,6 @@ Resource    ../../Variable/Client.robot
 
 
 *** Keyword ***
-
 GetToken Escrow
     Create Session  Session  ${URLEscrowAuthUAT}
     ${header}   Create Dictionary  Content-Type=application/x-www-form-urlencoded

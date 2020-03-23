@@ -1,5 +1,6 @@
 *** Variables ***
 @{escrowCompId}=  001
+@{escrowCompId_Invalid}=  YUT
 ${escrowCompanyID_exeed_length}=  YUP0111
 @{IDno_not_enter_kyc_1}=  001    ปฏิทัศน์    กิจการ     08/03/1992    AB12145178919
 @{IDno_not_enter_kyc_0}=  001    66    343920008475

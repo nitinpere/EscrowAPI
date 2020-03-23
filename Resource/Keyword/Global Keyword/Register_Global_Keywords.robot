@@ -6,8 +6,8 @@ ${enum}
 ${email}
 ${mobileNo}
 ${IdNumber}
+${IdNumber1}
 ${sellerid}
-${escrowCompId_Invalid}=  YUT
 ${escrowCompId_Length}=  YUT234
 ${IdNumber_more_than_30}
 ${mobile23}

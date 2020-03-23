@@ -2,6 +2,8 @@
 Library    RequestsLibrary
 Library    Collections
 Library    String
+Library    String
+Library    SeleniumLibrary
 #Resource    ../Variable/CompanyCode.robot
 #Resource    ../Keyword/Global Keyword/.resource
 Resource    ../../Resource/Variable/user data.robot
@@ -25,7 +27,7 @@ RegisterSeller
     Log    ${response.json()}
 
 RegisterSeller WITH invalidescrowCompanyID @post
-    [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}  ${ResponseCode}
+    [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -36,12 +38,12 @@ RegisterSeller WITH invalidescrowCompanyID @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['ResponseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
-    [Return]  ${response}
+
 RegisterSeller WITH Empty mandatoryfield @post
-    [Arguments]    ${Token}    ${None}    ${None}    ${None}    ${None}  ${ResponseCode}
+    [Arguments]    ${Token}    ${None}    ${None}    ${None}    ${None}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
 #    ${typeID}=  Convert To Integer  ${typeOfID}
 #    ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -52,13 +54,13 @@ RegisterSeller WITH Empty mandatoryfield @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['ResponseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
-    [Return]  ${response}
+
 
 RegisterSeller WITH Empty escrowCompanyId @post
-     [Arguments]    ${Token}    ${None}    ${idNumber}    ${typeOfID}    ${kycRequest}  ${ResponseCode}
+     [Arguments]    ${Token}    ${None}    ${idNumber}    ${typeOfID}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -69,13 +71,13 @@ RegisterSeller WITH Empty escrowCompanyId @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['ResponseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
     [Return]  ${response}
 
 RegisterSeller WITH Invalid escrowCompanyId @post
-     [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}  ${ResponseCode}
+     [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -86,13 +88,13 @@ RegisterSeller WITH Invalid escrowCompanyId @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['ResponseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
-    [Return]  ${response}
+
 
 RegisterSeller WITH extralength escrowCompanyId @post
-     [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}  ${ResponseCode}
+     [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -103,13 +105,13 @@ RegisterSeller WITH extralength escrowCompanyId @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['ResponseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
-    [Return]  ${response}
+
 
 RegisterSeller WITH extralength idNumber @post
-     [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}  ${ResponseCode}
+     [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -120,13 +122,13 @@ RegisterSeller WITH extralength idNumber @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['ResponseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
-    [Return]  ${response}
+
 
 RegisterSeller typeID NOT THERE @post
-    [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${None}    ${kycRequest}  ${ResponseCode}
+    [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${None}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
 #    ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -137,13 +139,13 @@ RegisterSeller typeID NOT THERE @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['ResponseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
-    [Return]  ${response}
+
 
 RegisterSeller IDnumber is not enter kyc is 1 @post
-    [Arguments]    ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${dateOfBirth}  ${otherVerification}    ${None}     ${typeOfID}    ${kycRequest}  ${ResponseCode}
+    [Arguments]    ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${dateOfBirth}  ${otherVerification}    ${None}     ${typeOfID}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -154,13 +156,12 @@ RegisterSeller IDnumber is not enter kyc is 1 @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['ResponseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
-    Log    ${response.json()}
-    [Return]  ${response}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
+
 
 RegisterSeller IDnumber is not enter kyc is 0 @post
-    [Arguments]    ${Token}    ${escrowCompanyID}  ${mobileCountryCode}  ${mobileNo}      ${kycRequest}  ${ResponseCode}
+    [Arguments]    ${Token}    ${escrowCompanyID}  ${mobileCountryCode}  ${mobileNo}      ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
 #    ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -171,13 +172,13 @@ RegisterSeller IDnumber is not enter kyc is 0 @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['ResponseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
-    [Return]  ${response}
+
 
 RegisterSeller IDnumber is valid kyc is 0 @post
-    [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}  ${ResponseCode}
+    [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -188,13 +189,12 @@ RegisterSeller IDnumber is valid kyc is 0 @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['ResponseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
-    [Return]  ${response}
 
 RegisterSeller ESCROWID less than 3 @post
-     [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}  ${ResponseCode}
+     [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -205,14 +205,13 @@ RegisterSeller ESCROWID less than 3 @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['ResponseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
 
-    [Return]  ${response}
 
 RegisterSeller typeID citizenID is valid kyc is 0 @post
-    [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}    ${ResponseCode}
+    [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}    ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -223,13 +222,12 @@ RegisterSeller typeID citizenID is valid kyc is 0 @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['ResponseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
-    [Return]  ${response}
 
 RegisterSeller typeOfId equalsto Passport is valid kyc is 0 @post
-    [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}    ${ResponseCode}
+    [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}    ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -240,13 +238,13 @@ RegisterSeller typeOfId equalsto Passport is valid kyc is 0 @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['ResponseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
-    [Return]  ${response}
+
 
 RegisterSeller typeOfId equalsto others is valid kyc is 0 @post
-    [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}    ${ResponseCode}
+    [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}    ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -257,13 +255,13 @@ RegisterSeller typeOfId equalsto others is valid kyc is 0 @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['ResponseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
-    [Return]  ${response}
+
 
 RegisterSeller duplicateIdNO Diff TYPEID kyc is 0 @post
-    [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}    ${ResponseCode}
+    [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}    ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -274,13 +272,13 @@ RegisterSeller duplicateIdNO Diff TYPEID kyc is 0 @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
-    [Return]  ${response}
+
 
 RegisterSeller IDnumber enter kyc is 1 @post
-    [Arguments]    ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${dateOfBirth}  ${otherVerification}    ${idNumber}     ${typeOfID}    ${kycRequest}  ${ResponseCode}
+    [Arguments]    ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${dateOfBirth}  ${otherVerification}    ${idNumber}     ${typeOfID}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -291,12 +289,12 @@ RegisterSeller IDnumber enter kyc is 1 @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
-    [Return]  ${response}
+
 RegisterSeller duplicateIdNO Belong to sellerID @post
-    [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}    ${ResponseCode}
+    [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}    ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -307,13 +305,13 @@ RegisterSeller duplicateIdNO Belong to sellerID @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
-    [Return]  ${response}
+
 
 RegisterSeller duplicateIdNO @post
-    [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}    ${ResponseCode}
+    [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}    ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -324,10 +322,10 @@ RegisterSeller duplicateIdNO @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
-    [Return]  ${response}
+
 
 RegisterSeller duplicateIdNumber @post
     [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}    ${ResponseCode}  ${ResponseDescription}
@@ -341,13 +339,13 @@ RegisterSeller duplicateIdNumber @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
-    Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
-    [Return]  ${response}
+
 
 RegisterSeller NotENTER TYPEOFID kyc is 1 @post
-    [Arguments]    ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${dateOfBirth}  ${otherVerification}    ${idNumber}     ${None}    ${kycRequest}  ${ResponseCode}
+    [Arguments]    ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${dateOfBirth}  ${otherVerification}    ${idNumber}     ${None}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
 #    ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -358,15 +356,15 @@ RegisterSeller NotENTER TYPEOFID kyc is 1 @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
-    [Return]  ${response}
+
 
 
 
 RegisterSeller TYPEOFID is enter IDNO not enter kyc is 1 @post
-    [Arguments]    ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${dateOfBirth}  ${otherVerification}    ${None}     ${typeOfId}    ${kycRequest}  ${ResponseCode}
+    [Arguments]    ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${dateOfBirth}  ${otherVerification}    ${None}     ${typeOfId}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
 #    ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -377,13 +375,12 @@ RegisterSeller TYPEOFID is enter IDNO not enter kyc is 1 @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
-    [Return]  ${response}
 
 RegisterSeller valid TYPEOFID,IDNO kyc is 1 @post
-    [Arguments]    ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${dateOfBirth}  ${otherVerification}    ${idNumber}     ${typeOfId}    ${kycRequest}  ${ResponseCode}
+    [Arguments]    ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${dateOfBirth}  ${otherVerification}    ${idNumber}     ${typeOfId}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
 #    ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -394,14 +391,14 @@ RegisterSeller valid TYPEOFID,IDNO kyc is 1 @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
-    [Return]  ${response}
+
 
 
 RegisterSeller valid TYPEOFID is equal two citizen kyc is 1 @post
-    [Arguments]    ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${dateOfBirth}  ${otherVerification}    ${idNumber}     ${typeOfId}    ${kycRequest}  ${ResponseCode}
+    [Arguments]    ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${dateOfBirth}  ${otherVerification}    ${idNumber}     ${typeOfId}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -412,14 +409,14 @@ RegisterSeller valid TYPEOFID is equal two citizen kyc is 1 @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
-    [Return]  ${response}
+
 
 
 RegisterSeller valid TYPEOFID is equal_to passport kyc is 0 @post
-    [Arguments]    ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${email}  ${mobileCountryCode}  ${mobileNo}  ${dateOfBirth}  ${otherVerification}    ${idNumber}     ${typeOfId}    ${kycRequest}  ${ResponseCode}
+    [Arguments]    ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${email}  ${mobileCountryCode}  ${mobileNo}  ${dateOfBirth}  ${otherVerification}    ${idNumber}     ${typeOfId}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -430,13 +427,13 @@ RegisterSeller valid TYPEOFID is equal_to passport kyc is 0 @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
-    [Return]  ${response}
+
 
 RegisterSeller valid TYPEOFID is equal_to others kyc is 0 @post
-    [Arguments]    ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${email}  ${mobileCountryCode}  ${mobileNo}  ${dateOfBirth}  ${otherVerification}    ${idNumber}     ${typeOfId}    ${kycRequest}  ${ResponseCode}
+    [Arguments]    ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${email}  ${mobileCountryCode}  ${mobileNo}  ${dateOfBirth}  ${otherVerification}    ${idNumber}     ${typeOfId}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -447,13 +444,13 @@ RegisterSeller valid TYPEOFID is equal_to others kyc is 0 @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
-    [Return]  ${response}
+
 
 RegisterSeller Invalid TYPEOFID kyc is 1 @post
-    [Arguments]    ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${dateOfBirth}  ${otherVerification}    ${idNumber}     ${typeOfId}    ${kycRequest}  ${ResponseCode}
+    [Arguments]    ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${dateOfBirth}  ${otherVerification}    ${idNumber}     ${typeOfId}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -464,12 +461,12 @@ RegisterSeller Invalid TYPEOFID kyc is 1 @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
-    [Return]  ${response}
+
 RegisterSeller Empty mobileCountryCode kyc is 0 @post
-    [Arguments]    ${Token}    ${escrowCompanyID}  ${None}  ${mobileNo}  ${kycRequest}  ${ResponseCode}
+    [Arguments]    ${Token}    ${escrowCompanyID}  ${None}  ${mobileNo}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
 #    ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -480,13 +477,13 @@ RegisterSeller Empty mobileCountryCode kyc is 0 @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
     [Return]  ${response}
 
 RegisterSeller mobileCountryCode kyc is 0 @post
-    [Arguments]    ${Token}    ${escrowCompanyID}  ${mobileCountryCode}  ${mobileNo}  ${kycRequest}  ${ResponseCode}
+    [Arguments]    ${Token}    ${escrowCompanyID}  ${mobileCountryCode}  ${mobileNo}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
 #    ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -497,13 +494,13 @@ RegisterSeller mobileCountryCode kyc is 0 @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
     [Return]  ${response}
 
 RegisterSeller Empty mobileno kyc is 0 @post
-    [Arguments]    ${Token}    ${escrowCompanyID}  ${mobileCountryCode}  ${None}  ${kycRequest}  ${ResponseCode}
+    [Arguments]    ${Token}    ${escrowCompanyID}  ${mobileCountryCode}  ${None}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
 #    ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -514,13 +511,13 @@ RegisterSeller Empty mobileno kyc is 0 @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
     [Return]  ${response}
 
 RegisterSeller mobileno length morethan50 kyc is 0 @post
-    [Arguments]    ${Token}    ${escrowCompanyID}  ${mobileCountryCode}  ${mobileNo}  ${kycRequest}  ${ResponseCode}
+    [Arguments]    ${Token}    ${escrowCompanyID}  ${mobileCountryCode}  ${mobileNo}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
 #    ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -531,8 +528,8 @@ RegisterSeller mobileno length morethan50 kyc is 0 @post
     Log  ${response.text}    console=True
     log to console  ${response.content}
     Should Be Equal As Strings    ${response.status_code}    200
-#    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
-#    Should be Equal as Strings    ${response.json()['ResDescription']}    ${${ResponseCode}}
+    Should be Equal as Strings    ${response.json()['responseCode']}   ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
     Log    ${response.json()}
     [Return]  ${response}
 
