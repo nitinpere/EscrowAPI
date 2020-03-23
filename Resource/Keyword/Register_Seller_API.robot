@@ -596,9 +596,6 @@ RegisterSeller with Genter
     Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
     Log    ${response.json()}
     [Return]  ${response}
-<<<<<<< HEAD
-
-=======
 
 RegisterSeller with titleEn
     [Arguments]  ${Token}  ${escrowCompanyID}  ${MobileCountryCode}  ${MobileNo}  ${titleEn}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
