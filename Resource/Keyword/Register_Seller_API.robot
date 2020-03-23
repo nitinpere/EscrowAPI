@@ -748,6 +748,22 @@ RegisterSeller with FirstName
     Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
     #Log    ${response.json()}
 
+RegisterSeller with Valid LastName @Kyc=1
+    [Arguments]  ${Token}  ${escrowCompanyID}  ${typeOfId}  ${idNumber}  ${firstNameLocal}  ${lastNameLocal}  ${dateOfBirth}  ${otherVerification}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
+    ${typeID}=  Convert To Integer  ${typeOfID}
+    ${KeyReq}=  Convert To Integer  ${kycRequest}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  firstNameLocal=${firstNameLocal}  lastNameLocal=${lastNameLocal}  dateOfBirth=${dateOfBirth}  otherVerification=${otherVerification}  idNumber=${idNumber}  typeOfId=${typeID}  kycRequest=${KeyReq}
+    ${AuthToken}=  Set Variable  bearer ${Token}
+    ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
+    ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}
+    Log  ${response.text}    console=True
+    #log to console  ${response.content}
+    Should Be Equal As Strings    ${response.status_code}    200
+    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
+    #Log    ${response.json()}
+
 RegisterSeller with LastName
     [Arguments]  ${Token}  ${escrowCompanyID}  ${MobileCountryCode}  ${MobileNo}  ${LastName}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
@@ -1029,7 +1045,6 @@ RegisterSeller with ADDress
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${KeyReq}=  Convert To Integer  ${kycRequest}
     ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  email=${email}  address=${address}  kycRequest=${KeyReq}
-    Log to Console  Body is : = ${body}
     ${AuthToken}=  Set Variable  bearer ${Token}
     ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
     ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}

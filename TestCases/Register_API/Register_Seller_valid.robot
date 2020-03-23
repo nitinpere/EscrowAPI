@@ -7,14 +7,6 @@ Resource    ../../Resource/Variable/user data.robot
 Register Seller Valid data
     ${TokenEscrow}=    GetToken Escrow
 
-RandomeGenerateVaribales with Values
-
-#    ${Id1}=  Generate Random String  35   [NUMBERS]
-#    SET GLOBAL VARIABLE  ${IdNumber_more_than_30}  ${Id1}
-#    ${Emailnum}=  Generate Random String  3  [NUMBERS]
-#    SET GLOBAL VARIABLE  ${enum}  ${Emailnum}
-#    ${emailid}=  SET VARIABLE  pavan${Emailnum}@2c2p.com
-#    SET GLOBAL VARIABLE  ${email}  ${emailid}
 
 TC_06 RegisterNewSeller Request with all data
     [Documentation]  Valid: To Verify request parameters of Register Seller API
@@ -78,6 +70,7 @@ TC_14 RegisterNewSeller valid data
 TC_15 RegisterNewSeller length more than 30 idNumber
     [Documentation]  Invalid: To Verify response if idNumber paramter is  entered more than size 30 and request is sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
+    ${IdNumber_more_than_30}=  Generate Random String  31   [NUMBERS]
     RegisterSeller WITH extralength idNumber @post   ${TokenEscrow}     ${escrowCompId_Length}   ${IdNumber_more_than_30}  ${1}  ${0}  E11  Data length is over limit
 
 TC_16 RegisterNewSeller typeID not enter
@@ -287,7 +280,7 @@ TC_52 RegisterNewSeller with titleEn
     [Documentation]  Valid: To Verify response if gender paramter is  entered valid and request sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
     ${MobNo}=  Randome_MobileNumber
-    ${TokenEscrow}  @{escrowCompId}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  MR  ${0}  000  Success
+    RegisterSeller with titleEn   ${TokenEscrow}  @{escrowCompId}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  MR  ${0}  000  Success
 
 TC_53 RegisterNewSeller with Empty titleEn
     [Documentation]  Valid: To Verify response if gender paramter is  entered valid and request sent with all mandatory fields
@@ -371,7 +364,7 @@ TC_66 RegisterNewSeller with Empty LocalFirstName and Kyc=1
     [Documentation]  Empty: To Verify response if we NOT enter firstNameLocal and request is sent with all mandatory fields with KYCRequest=1
     ${TokenEscrow}=  GetToken Escrow
     ${MobNo}=  Randome_MobileNumber
-    RegisterSeller with FirstName  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  ${None}  ${1}  000  Success
+    RegisterSeller with FirstName  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  ${None}  ${1}  E05  Missing mandatory field
 
 TC_67 RegisterNewSeller with Empty LocalFirstName for Kyc=0
     [Documentation]  Empty: To Verify response if we NOT enter firstNameLocal and request is sent with all mandatory fields with KYCRequest=0
@@ -388,8 +381,8 @@ TC_68 RegisterNewSeller with LocalFirstName more than 50 char and Kyc=0
 TC_69 RegisterNewSeller with Valid LocalLastName and Kyc=1
     [Documentation]  Valid : To Verify response if we enter valid lastNameLocal and request is sent with all mandatory fields with KYCRequest=1
     ${TokenEscrow}=  GetToken Escrow
-    ${MobNo}=  Randome_MobileNumber
-    RegisterSeller with LastName  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  กิจการ  ${1}  000  Success
+    ${Id}=  Randome_IDNumber
+    RegisterSeller with Valid LastName @Kyc=1  ${TokenEscrow}  @{type_id_others}[0]  ${1}  ${Id}  @{type_id_others}[1]  @{type_id_others}[2]  @{type_id_others}[3]  @{type_id_others}[4]  ${1}  R01  Validation failed
 
 TC_70 RegisterNewSeller with Valid LocalLastname and Kyc=0
     [Documentation]  Valid : To Verify response if we enter valid lastNameLocal and request is sent with all mandatory fields with KYCRequest=0
