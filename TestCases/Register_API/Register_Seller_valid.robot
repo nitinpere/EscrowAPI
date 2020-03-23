@@ -20,33 +20,24 @@ TC_06 RegisterNewSeller Request with all data
     [Documentation]  Valid: To Verify request parameters of Register Seller API
     ${TokenEscrow}=  GetToken Escrow
     ${idNum}=  Randome_IDNumber
-    log to console  ${idNum}
     ${MobNo}=  Randome_MobileNumber
-    log to console  ${MobNo}
     ${emailid}=  Randome_EmailId
-    log to console  ${emailid}
     RegisterSeller with valid Data  ${TokenEscrow}  @{valid_mobile_country_code}[0]  ${idNum}  ${3}  @{valid_mobile_country_code}[1]  ${MobNo}  ${emailid}  M  @{RegisterSellerData}[0]  @{RegisterSellerData}[1]  @{RegisterSellerData}[2]  @{RegisterSellerData}[3]  @{RegisterSellerData}[4]  @{RegisterSellerData}[5]  @{RegisterSellerData}[6]  @{v_nationalityId}  @{RegisterSellerData}[7]  @{RegisterSellerData}[8]  @{RegisterSellerData}[9]  @{RegisterSellerData}[10]  @{RegisterSellerData}[11]  @{RegisterSellerData}[12]  @{RegisterSellerData}[13]  ${0}  000  Success
 
 TC_07 RegisterNewSeller Response with Response Data
     [Documentation]  Valid: To Verify response  parameter of Register Seller API
     ${TokenEscrow}=  GetToken Escrow
     ${idNum}=  Randome_IDNumber
-    log to console  ${idNum}
     ${MobNo}=  Randome_MobileNumber
-    log to console  ${MobNo}
     ${emailid}=  Randome_EmailId
-    log to console  ${emailid}
     RegisterSeller with valid Data  ${TokenEscrow}  @{valid_mobile_country_code}[0]  ${idNum}  ${3}  @{valid_mobile_country_code}[1]  ${MobNo}  ${emailid}  M  @{RegisterSellerData}[0]  @{RegisterSellerData}[1]  @{RegisterSellerData}[2]  @{RegisterSellerData}[3]  @{RegisterSellerData}[4]  @{RegisterSellerData}[5]  @{RegisterSellerData}[6]  @{v_nationalityId}  @{RegisterSellerData}[7]  @{RegisterSellerData}[8]  @{RegisterSellerData}[9]  @{RegisterSellerData}[10]  @{RegisterSellerData}[11]  @{RegisterSellerData}[12]  @{RegisterSellerData}[13]  ${0}  000  Success
 
 TC_08 RegsterNewSeller Request with Valid Parameter
     [Documentation]  Valid: To Verify response when request is send with all valid parameters
     ${TokenEscrow}=  GetToken Escrow
     ${idNum}=  Randome_IDNumber
-    log to console  ${idNum}
     ${MobNo}=  Randome_MobileNumber
-    log to console  ${MobNo}
     ${emailid}=  Randome_EmailId
-    log to console  ${emailid}
     RegisterSeller with valid Data  ${TokenEscrow}  @{valid_mobile_country_code}[0]  ${idNum}  ${3}  @{valid_mobile_country_code}[1]  ${MobNo}  ${emailid}  M  @{RegisterSellerData}[0]  @{RegisterSellerData}[1]  @{RegisterSellerData}[2]  @{RegisterSellerData}[3]  @{RegisterSellerData}[4]  @{RegisterSellerData}[5]  @{RegisterSellerData}[6]  @{v_nationalityId}  @{RegisterSellerData}[7]  @{RegisterSellerData}[8]  @{RegisterSellerData}[9]  @{RegisterSellerData}[10]  @{RegisterSellerData}[11]  @{RegisterSellerData}[12]  @{RegisterSellerData}[13]  ${0}  000  Success
 
 TC_09 RegisterNewSeller Empty Mandatory Field
@@ -232,8 +223,8 @@ TC_38 RegisterNewSeller valid Mobilecountrycode kyc is 0
 TC_39 RegisterNewSeller mobileno length morethan 50 kyc is 0
     [Documentation]  Invalid: To Verify response if mobileNo paramter is  entered invalid (length is more than 50) and request sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
-    ${mobile}=  Randome_MobileNumber
-    RegisterSeller mobileno length morethan50 kyc is 0 @post  ${TokenEscrow}  @{valid_mobile_country_code}[0]  @{valid_mobile_country_code}[1]  ${mobile}  ${0}  E11  Data length is over limit
+    ${mobile50}=   Generate Random String  51   [NUMBERS]
+    RegisterSeller mobileno length morethan50 kyc is 0 @post  ${TokenEscrow}  @{valid_mobile_country_code}[0]  @{valid_mobile_country_code}[1]  ${mobile50}  ${0}  E11  Data length is over limit
 
 TC_40 RegisterNewSeller Valid MobileNo
     [Documentation]  Valid: To Verify response if mobileNo paramter is  entered valid and request sent with all mandatory fields
@@ -296,8 +287,7 @@ TC_52 RegisterNewSeller with titleEn
     [Documentation]  Valid: To Verify response if gender paramter is  entered valid and request sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
     ${MobNo}=  Randome_MobileNumber
-
-      ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  MR  ${0}  000  Success
+    ${TokenEscrow}  @{escrowCompId}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  MR  ${0}  000  Success
 
 TC_53 RegisterNewSeller with Empty titleEn
     [Documentation]  Valid: To Verify response if gender paramter is  entered valid and request sent with all mandatory fields

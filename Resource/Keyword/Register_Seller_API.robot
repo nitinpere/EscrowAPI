@@ -2,7 +2,6 @@
 Library    RequestsLibrary
 Library    Collections
 Library    String
-Library    String
 Library    SeleniumLibrary
 #Resource    ../Variable/CompanyCode.robot
 #Resource    ../Keyword/Global Keyword/.resource
