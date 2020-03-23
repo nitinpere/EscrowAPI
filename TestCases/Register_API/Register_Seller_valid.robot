@@ -49,13 +49,13 @@ TC_10 RegisterNewSeller Empty escrowCompanyId
     [Documentation]  Empty: To verify response when escrowCompanyId parameter is not entered and request is sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
     ${IdNumber}=  Randome_IDNumber
-    RegisterSeller   ${TokenEscrow}     ${None}   ${IdNumber}  ${1}  ${0}  E05  Missing mandatory field
+    RegisterSeller WITH Empty escrowCompanyId @post   ${TokenEscrow}    ${None}   ${IdNumber}  ${1}  ${0}  E05  Missing mandatory field
 
 TC_11 RegisterNewSeller invalid escrowCompanyId
     [Documentation]  Invalid : To verify response when escrowCompanyId parameter is entered invalid and request is sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
     ${IdNumber}=  Randome_IDNumber
-    RegisterSeller   ${TokenEscrow}    @{escrowCompId_Invalid}   ${IdNumber}  ${1}  ${0}  E03  Invalid request
+    RegisterSeller WITH Invalid escrowCompanyId @post   ${TokenEscrow}    @{escrowCompId_Invalid}   ${IdNumber}  ${1}  ${0}  E03  Invalid request
 
 TC_12 RegisterNewSeller length more than 3 escrowCompanyId
     [Documentation]  Invalid : To verify response when escrowCompanyId parameter is entered more than size 3
@@ -561,11 +561,31 @@ TC_97 RegisterSeller Invalid KYC
     ${email2}=  Randome_EmailId
     RegisterSeller with KYC MORE THAN 1  ${TokenEscrow}  @{escrowCompId}[0]  ${email2}  ${23}  E03  Invalid request
 
-TC_98 RegisterSeller Empty Address
+TC_98 RegisterSeller with Empty Address
     [Documentation]  Empty: To Verify response if All address{} parameter is entered Empty and request sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
     ${email}=  Randome_EmailId
     RegisterSeller with EMPTY ADDress  ${TokenEscrow}  @{escrowCompId}[0]  ${email}  ${None}  ${0}  000   Success
+
+TC_99 RegisterSeller with Valid Address
+    [Documentation]  Valid: To Verify response if All address{} parameter is entered valid  and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${email}=  Randome_EmailId
+    ${UserAddress}  Create Dictionary  homeAddress1=@{Address}[0]  homeAddress2=@{Address}[1]  countryId=@{Address}[2]  stateId=@{Address}[3]  state=@{Address}[4]  postalCode=@{Address}[5]  addressDefine1=@{Address}[6]  addressDefine2=@{Address}[7]  addressDefine3=@{Address}[8]  addressDefine4=@{Address}[9]
+    RegisterSeller with ADDress  ${TokenEscrow}  @{escrowCompId}[0]  ${email}  ${UserAddress}  ${0}  000   Success
+
+TC_100 RegisterSeller with Empty MailingAddress
+    [Documentation]  Empty: To Verify response if All mailingAddress{} parameter is entered Empty and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${email}=  Randome_EmailId
+    RegisterSeller with MailingAddress  ${TokenEscrow}  @{escrowCompId}[0]  ${email}  ${None}  ${0}  000   Success
+
+TC_101 RegisterSeller with valid MailingAddress
+    [Documentation]  Valid: To Verify response if All mailingAddress{} parameter is entered valid  and request sent with all mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${email}=  Randome_EmailId
+    ${MailAddress}  Create Dictionary  mailAddress1=@{MailingAddress}[0]  mailAddress2=@{MailingAddress}[1]  countryId=@{Address}[2]  stateId=@{MailingAddress}[2]  state=@{Address}[4]  postalCode=@{MailingAddress}[3]  addressDefine1=@{Address}[6]  addressDefine2=@{Address}[7]  addressDefine3=@{Address}[8]  addressDefine4=@{Address}[9]
+    RegisterSeller with MailingAddress  ${TokenEscrow}  @{escrowCompId}[0]  ${email}  ${MailAddress}  ${0}  000   Success
 
 TC_102 RegisterSeller verify response SellerId
     [Documentation]  Valid: To Verify format of sellerId in API response of Register Seller API
