@@ -14,12 +14,11 @@ RandomeGenerateVaribales with Values
 
     ${Id1}=  Generate Random String  35   [NUMBERS]
     SET GLOBAL VARIABLE  ${IdNumber_more_than_30}  ${Id1}
-#    ${mobile}=   Generate Random String  10   [NUMBERS]
-#    SET GLOBAL VARIABLE  ${mobileNo}  ${mobile}
     ${Emailnum}=  Generate Random String  3  [NUMBERS]
     SET GLOBAL VARIABLE  ${enum}  ${Emailnum}
-    ${emailid}=  SET VARIABLE  pavan${Emailnum}@2c2p.com
-    SET GLOBAL VARIABLE  ${email}  ${emailid}
+
+#    ${emailid}=  SET VARIABLE  pavan${Emailnum}@2c2p.com
+#    SET GLOBAL VARIABLE  ${email}  ${emailid}
 
 TC_06 RegisterNewSeller Request with all data
     [Documentation]  Valid: To Verify request parameters of Register Seller API
@@ -27,15 +26,23 @@ TC_06 RegisterNewSeller Request with all data
     ${idNum}=  Randome_IDNumber
     ${MobNo}=  Randome_MobileNumber
     ${emailid}=  Randome_EmailId
-    RegisterSeller with valid Data  ${TokenEscrow}  @{valid_mobile_country_code}[0]  ${idNum}  ${3}  @{valid_mobile_country_code}[1]  ${MobNo}  ${emailid}  M  @{RegisterSellerData}[0]  @{RegisterSellerData}[1]  @{RegisterSellerData}[2]  @{RegisterSellerData}[3]  @{RegisterSellerData}[4]  @{RegisterSellerData}[5]  @{RegisterSellerData}[6]  @{v_nationalityId}  @{RegisterSellerData}[7]  @{RegisterSellerData}[8]  @{RegisterSellerData}[9]  @{RegisterSellerData}[10]  @{RegisterSellerData}[11]  @{RegisterSellerData}[12]  @{RegisterSellerData}[13]  ${0}
+    RegisterSeller with valid Data  ${TokenEscrow}  @{valid_mobile_country_code}[0]  ${idNum}  ${3}  @{valid_mobile_country_code}[1]  ${MobNo}  ${emailid}  M  @{RegisterSellerData}[0]  @{RegisterSellerData}[1]  @{RegisterSellerData}[2]  @{RegisterSellerData}[3]  @{RegisterSellerData}[4]  @{RegisterSellerData}[5]  @{RegisterSellerData}[6]  @{v_nationalityId}  @{RegisterSellerData}[7]  @{RegisterSellerData}[8]  @{RegisterSellerData}[9]  @{RegisterSellerData}[10]  @{RegisterSellerData}[11]  @{RegisterSellerData}[12]  @{RegisterSellerData}[13]  ${0}  000  Success
 
 TC_07 RegisterNewSeller Response with Response Data
     [Documentation]  Valid: To Verify response  parameter of Register Seller API
     ${TokenEscrow}=  GetToken Escrow
+    ${idNum}=  Randome_IDNumber
+    ${MobNo}=  Randome_MobileNumber
+    ${emailid}=  Randome_EmailId
+    RegisterSeller with valid Data  ${TokenEscrow}  @{valid_mobile_country_code}[0]  ${idNum}  ${3}  @{valid_mobile_country_code}[1]  ${MobNo}  ${emailid}  M  @{RegisterSellerData}[0]  @{RegisterSellerData}[1]  @{RegisterSellerData}[2]  @{RegisterSellerData}[3]  @{RegisterSellerData}[4]  @{RegisterSellerData}[5]  @{RegisterSellerData}[6]  @{v_nationalityId}  @{RegisterSellerData}[7]  @{RegisterSellerData}[8]  @{RegisterSellerData}[9]  @{RegisterSellerData}[10]  @{RegisterSellerData}[11]  @{RegisterSellerData}[12]  @{RegisterSellerData}[13]  ${0}  000  Success
 
 TC_08 RegsterNewSeller Request with Valid Parameter
     [Documentation]  Valid: To Verify response when request is send with all valid parameters
     ${TokenEscrow}=  GetToken Escrow
+    ${idNum}=  Randome_IDNumber
+    ${MobNo}=  Randome_MobileNumber
+    ${emailid}=  Randome_EmailId
+    RegisterSeller with valid Data  ${TokenEscrow}  @{valid_mobile_country_code}[0]  ${idNum}  ${3}  @{valid_mobile_country_code}[1]  ${MobNo}  ${emailid}  M  @{RegisterSellerData}[0]  @{RegisterSellerData}[1]  @{RegisterSellerData}[2]  @{RegisterSellerData}[3]  @{RegisterSellerData}[4]  @{RegisterSellerData}[5]  @{RegisterSellerData}[6]  @{v_nationalityId}  @{RegisterSellerData}[7]  @{RegisterSellerData}[8]  @{RegisterSellerData}[9]  @{RegisterSellerData}[10]  @{RegisterSellerData}[11]  @{RegisterSellerData}[12]  @{RegisterSellerData}[13]  ${0}  000  Success
 
 TC_09 RegisterNewSeller Empty Mandatory Field
     [Documentation]  Empty : To verify Response when all request fields are entered empty without body
@@ -562,6 +569,24 @@ TC_98 RegisterSeller Empty Address
     ${TokenEscrow}=  GetToken Escrow
     ${email}=  Randome_EmailId
     RegisterSeller with EMPTY ADDress  ${TokenEscrow}  @{escrowCompId}[0]  ${email}  ${None}  ${0}  000   Success
+
+TC_102 RegisterSeller verify response SellerId
+    [Documentation]  Valid: To Verify format of sellerId in API response of Register Seller API
+    ${TokenEscrow}=  GetToken Escrow
+    ${email}=  Randome_EmailId
+    RegisterSeller Verify SellerId  ${TokenEscrow}  @{escrowCompId}[0]  ${email}  ${0}  000   Success
+
+TC_103 RegisterSeller IdNumber without checksum and Kyc=1
+    [Documentation]  InValid: To verify response If idNumber is entered invalid( with out check sum validation) and request sent with all mandatory fields (KycRequest=1)
+    ${TokenEscrow}=  GetToken Escrow
+    ${idNum}=  Randome_IDNumber
+    RegisterSeller with Invalid IdNumber @kyc=1  ${TokenEscrow}  @{escrowCompId}[0]  ${1}  ${idNum}  @{RegisterSellerData}[4]  @{RegisterSellerData}[5]  @{RegisterSellerData}[6]  @{RegisterSellerData}[7]  ${1}  R01  Validation failed
+
+TC_104 RegisterSeller with Invalid OtherVerification and kyc=1
+    [Documentation]  InValid: To verify response If otherVerification is entered invalid and request sent with all mandatory fields (KycRequest=1)
+    ${TokenEscrow}=  GetToken Escrow
+    ${idNum}=  Randome_IDNumber
+    RegisterSeller with Invalid OtherVerification @kyc=1  ${TokenEscrow}  @{escrowCompId}[0]  ${1}  ${idNum}  @{RegisterSellerData}[4]  @{RegisterSellerData}[5]  @{RegisterSellerData}[6]  @{RegisterSellerData}[7]  ${1}  R01  Validation failed
 
 TC_105 RegisterSeller with Invalid IdNumber and Kyc=1
     [Documentation]  Invalid: To check API reponse when IdNumber is enter invalid and request is sent with all mandatory fields (KycRequest=1)
