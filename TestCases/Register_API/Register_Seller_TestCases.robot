@@ -7,7 +7,6 @@ Resource    ../../Resource/Variable/user data.robot
 Register Seller Valid data
     ${TokenEscrow}=    GetToken Escrow
 
-
 TC_06 RegisterNewSeller Request with all data
     [Documentation]  Valid: To Verify request parameters of Register Seller API
     ${TokenEscrow}=  GetToken Escrow
