@@ -6,21 +6,76 @@ Resource    ../../Resource/Variable/user data.robot
 Resource    ../../Resource/Keyword/Global Keyword/Register_Global_Keywords.robot
 *** Test Cases ***
 TC_06
-    [Documentation]  Valid: To Verify request parameters of Register Seller API
-    ${SellerId}=  Get_SellerId
+    [Documentation]  Valid: To Verify request parameter of Update Seller Status API
     ${TokenEscrow}=  GetToken Escrow
-    UpdateSeller with valid Data  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${1}  000  Success
+    ${SellerId}=  Get_SellerId
+    UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${1}  000  Success
 TC_07
+    [Documentation]  Valid: To Verify response  parameter of Update Seller Status API
+    ${TokenEscrow}=  GetToken Escrow
     ${SellerId}=  Get_SellerId
-    Log to Console  Seller id is : ${SellerId}
-
+    UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${1}  000  Success
 TC_08
+    [Documentation]  Empty : To check API response when escrowCompanyID parameter is entered empty and request is sent with mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
     ${SellerId}=  Get_SellerId
-    Log to Console  Seller id is : ${SellerId}
+    UpdateSeller  ${TokenEscrow}  ${None}  ${SellerId}  ${1}  E05  Missing mandatory field
 
 TC_09
+   [Documentation]  Valid: To check API response when escrowCompanyID parameter is entered Valid and request is sent with mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
     ${SellerId}=  Get_SellerId
-    Log to Console  Seller id is : ${SellerId}
+    UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${2}  000  Success
+TC_10
+   [Documentation]  Invalid: To check API response when escrowCompanyID parameter is entered Invalid and request is sent with mandatory fields(Except Company Id - 001 of company Kaidee.com)
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}=  Get_SellerId
+    UpdateSeller  ${TokenEscrow}  @{Invalid_Update}[0]  ${SellerId}  ${2}  E03  Invalid request
+TC_11
+   [Documentation]  Invalid : To verify response when escrowCompanyId parameter is entered more than size 3
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}=  Get_SellerId
+    UpdateSeller  ${TokenEscrow}  @{Invalid_Update}[1]  ${SellerId}  ${2}  E03  Invalid request
+TC_12
+   [Documentation]  Invalid : To verify response when escrowCompanyId parameter is entered less than size 3
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}=  Get_SellerId
+    UpdateSeller  ${TokenEscrow}  @{Invalid_Update}[2]  ${SellerId}  ${2}  E03  Invalid request
+TC_13
+   [Documentation]  Empty : To check API response when sellerId parameter is entered empty and request is sent with mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${None}  ${2}  E05  Missing mandatory field
+TC_14
+   [Documentation]  Invalid: To check API response when sellerId parameter is entered Invalid and request is sent with mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}=  Get_SellerId
+    UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  @{Invalid_SellerID}[0]  ${1}  E08  Data not found
+TC_15
+   [Documentation]  Invalid: To check API response when sellerId parameter is entered more than Size 36 and request is sent with mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}=  Get_SellerId
+    ${num}=  Generate Random String  3  [NUMBERS]
+    UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}${num}  ${4}  E08  Data not found
+TC_16
+   [Documentation]  Invalid: To check API response when sellerId parameter is entered less than Size 36 and request is sent with mandatory fields
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}=  Get_SellerId
+    UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  @{Invalid_SellerID}[0]  ${4}  E08  Data not found
+TC_17
+   [Documentation]  Valid: To check API response when sellerId parameter is entered Valid which is active and request is sent for status Locked
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}=  Get_SellerId
+    UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${2}  000  Success
+TC_18
+   [Documentation]  Valid: To check API response when sellerId parameter is entered Valid which is active and request is sent for status Suspended
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}=  Get_SellerId
+    UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${3}  000  Success
+TC_19
+   [Documentation]  Valid: To check API response when sellerId parameter is entered Valid which is active and request is sent for status Terminated
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}=  Get_SellerId
+    UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${4}  000  Success
 
 
 

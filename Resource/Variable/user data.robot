@@ -29,5 +29,8 @@ ${escrowCompanyID_exeed_length}=  YUP0111
 @{MailingAddress}=  mailaddr1  mailaddr2  002  11100
 @{work_space}=  fgsgfhdsgfhdsgfhdsfgbdsfgbhdsgbfhdsghfgdhgfhdgfhdgffggdshgfhdsgfhgdhfgdhsgfhdsgfhdgfgfhdgfgfdfgdhfghdgfdsfdfgdgddg
 @{userDefine}=  UserDefine011  UserDefine922  UserDefine233  UserDefine4444  UserDefine155
+# UPdate seller status
+@{Invalid_Update}=  002  0010  01
+@{Invalid_SellerID}=  aaaaaaaaaaaaaa  f7fbf240-c190-43ae-8cd5-4a6ee58f632d123  f7fbf240-c190-43ae-8cd5-4a6ee58f63
 
 

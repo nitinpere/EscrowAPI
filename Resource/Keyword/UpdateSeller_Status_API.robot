@@ -6,7 +6,7 @@ Library    SeleniumLibrary
 Resource    ../../Resource/Variable/user data.robot
 Resource    Global Keyword/Get Token.robot
 *** Keywords ***
-UpdateSeller with valid Data
+UpdateSeller
     [Arguments]  ${Token}  ${escrowCompanyID}  ${SELLERId}  ${STATUS}  ${ResponseCode}  ${ResponseDescription}
     Create Session  UpdateSeller   http://172.31.2.28/escrow_core/api/v1
     ${STATUS}=  Convert To Integer  ${STATUS}
