@@ -52,6 +52,7 @@ RegisterSeller with valid Data
     Should Be Equal As Strings    ${response.status_code}    200
     Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
     Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
+    [Return]  ${response.json()['sellerId']}
 
 RegisterSeller WITH Empty mandatoryfield @post
     [Arguments]    ${Token}    ${None}    ${None}    ${None}    ${None}  ${ResponseCode}  ${ResponseDescription}
