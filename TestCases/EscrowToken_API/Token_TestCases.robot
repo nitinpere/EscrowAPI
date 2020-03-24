@@ -4,10 +4,10 @@ Library    SeleniumLibrary
 Resource    ../../Resource/Keyword/Global Keyword/Register_Global_Keywords.robot
 Resource    ../../Resource/Keyword/Global Keyword/Get Token.robot
 Resource    ../../Resource/Keyword/Register_Seller_API.robot
+Resource    ../../Resource/Keyword/UpdateSeller_Status_API.robot
 Resource    ../../Resource/Variable/user data.robot
 
 *** Test Cases ***
-
 
 TC_01 RegisterNewSeller with Empty JWT Token
     [Documentation]  Empty : To verify response for Empty JWT token.
@@ -38,4 +38,6 @@ TC_03 RegisterNewSeller with Expired JWT Token
     ${IdNumber}=  Randome_IDNumber
     Sleep  7 minutes
     RegisterSeller  ${TokenEscrow}  @{escrowCompId}  ${IdNumber}  ${1}  ${0}  A02  Access token expired
+
+
 

@@ -47,7 +47,8 @@ TC_11 RegisterNewSeller invalid escrowCompanyId
     [Documentation]  Invalid : To verify response when escrowCompanyId parameter is entered invalid and request is sent with all mandatory fields
     ${TokenEscrow}=  GetToken Escrow
     ${IdNumber}=  Randome_IDNumber
-    RegisterSeller WITH Invalid escrowCompanyId @post   ${TokenEscrow}    @{escrowCompId_Invalid}   ${IdNumber}  ${1}  ${0}  E03  Invalid request
+    RegisterSeller WITH Invalid escrowCompanyId  ${TokenEscrow}    @{escrowCompId_Invalid}   ${IdNumber}  ${1}  ${0}  E03  Invalid request
+
 
 TC_12 RegisterNewSeller length more than 3 escrowCompanyId
     [Documentation]  Invalid : To verify response when escrowCompanyId parameter is entered more than size 3
@@ -181,7 +182,7 @@ TC_33 RegisterNewSeller Invalid TYPEOFID kyc is 1
     [Documentation]  Invalid: To Verify response if we enter Invalid typeOfId and request is sent with all mandatory fields with KYCRequest=1 and valid IdNumber
     ${TokenEscrow}=  GetToken Escrow
     ${Idr}=  Randome_IDNumber
-    RegisterSeller Invalid TYPEOFID kyc is 1 @post  ${TokenEscrow}  @{type_id_passport}[0]  @{type_id_passport}[1]  @{type_id_passport}[2]  @{type_id_passport}[3]  @{type_id_passport}[4]  ${Idr}  ${33}  ${1}  R01  Validation failed
+    RegisterSeller Invalid TYPEOFID kyc is 1 @post  ${TokenEscrow}  @{type_id_passport}[0]  @{type_id_passport}[1]  @{type_id_passport}[2]  @{type_id_passport}[5]  @{type_id_passport}[6]  ${Idr}  ${33}  ${1}  R01  Validation failed
 
 TC_34 RegisterNewSeller Empty Mobilecountrycode kyc is 0
     [Documentation]  Invalid To Verify response if mobileCountryCode paramter is entered empty and request sent with all mandatory fields with Mobile number
@@ -351,8 +352,8 @@ TC_63 RegisterNewSeller with LocalTitle more than 50 char
 TC_64 RegisterNewSeller with valid LocalFirstName and Kyc=1
     [Documentation]  Valid : To Verify response if we enter valid firstNameLocal and request is sent with all mandatory fields with KYCRequest=1
     ${TokenEscrow}=  GetToken Escrow
-    ${MobNo}=  Randome_MobileNumber
-    RegisterSeller with FirstName  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  สมชาย  ${1}  000  Success
+    ${IdNumber}=  Randome_IDNumber
+    RegisterSeller with FirstName @kyc=1  ${TokenEscrow}  @{escrowCompId}  ${1}  ${IdNumber}  @{RegisterSellerData}[4]  @{RegisterSellerData}[5]  @{RegisterSellerData}[6]  @{RegisterSellerData}[7]  ${1}  000  Success
 
 TC_65 RegisterNewSeller with Valid LocalFirstName and kyc=0
     [Documentation]  Valid : To Verify response if we enter valid firstNameLocal and request is sent with all mandatory fields with KYCRequest=0

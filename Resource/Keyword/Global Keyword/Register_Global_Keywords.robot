@@ -11,9 +11,10 @@ ${sellerid}
 ${escrowCompId_Length}=  YUT234
 ${IdNumber_more_than_30}
 ${mobile23}
+
 *** Keywords ***
 Randome_Number
-    ${Emailnum}=  Generate Random String  3  [NUMBERS]
+    ${Emailnum}=  Generate Random String  5  [NUMBERS]
     SET GLOBAL VARIABLE  ${enum}  ${Emailnum}
     [Return]  ${enum}
 
