@@ -90,7 +90,7 @@ TC_19 SellerId Active to Terminated Status
     ${SellerId}=  Get_SellerId
     UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${4}  000  Success
 
-TC_20 SellerId Locked to Active Status nit
+TC_20 SellerId Locked to Active Status
     [Documentation]  Valid: To check API response when sellerId parameter is entered Valid which is Locked and request is sent for status Active
 
 
