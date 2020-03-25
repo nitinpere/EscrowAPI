@@ -129,13 +129,80 @@ TC_24 SellerId Suspended to Activeed
     UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${3}  000  Success
     UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${1}  000  Success
 
-TC_25 SellerId Suspended to Terminated
-    [Documentation]  Valid: To check API response when sellerId parameter is entered Valid which is suspended and request is sent for status Terminated
-    [Tags]  thisone
+TC_25 SellerId Terminated to Active Status
+    [Documentation]  Valid: To check API response when sellerId parameter is entered Valid which is Locked and request is sent for status Active
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}=  Get_SellerId
-    UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${3}  000  Success
+    UpdateSeller to convert   ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${3}
     UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${4}  000  Success
+
+TC_26 SellerId Terminated to Locked Status
+    [Tags]    smokie
+    [Documentation]  Valid: To check API response when sellerId parameter is entered Valid which is Locked and request is sent for status Active
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}=  Get_SellerId
+    UpdateSeller to convert   ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${4}
+    UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${2}  E03  Invalid request
+
+
+TC_27 SellerId Terminated to Active Status
+    [Documentation]  Valid: To check API response when sellerId parameter is entered Valid which is Locked and request is sent for status Active
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}=  Get_SellerId
+    UpdateSeller to convert   ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${4}
+    UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${1}  E03  Invalid request
+
+TC_28 SellerId Terminated to Terminated Status
+    [Documentation]  Valid: To check API response when sellerId parameter is entered Valid which is Locked and request is sent for status Active
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}=  Get_SellerId
+    UpdateSeller to convert   ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${4}
+    UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${3}  E03  Invalid request
+
+TC_29 SellerId Terminated to Terminated Status
+    [Documentation]  Valid: To check API response when sellerId parameter is entered Valid which is Locked and request is sent for status Active
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}=  Get_SellerId
+    UpdateSeller to convert   ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${4}
+    UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${4}  E03  Invalid request
+
+TC_30 SellerId Invalid Status
+    [Documentation]  Valid: To check API response when sellerId parameter is entered Valid which is Locked and request is sent for status Active
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}=  Get_SellerId
+    UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${6}  E03  Invalid request
+
+TC_31 SellerId Status more than 1
+    [Documentation]  Valid: To check API response when sellerId parameter is entered Valid which is Locked and request is sent for status Active
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}=  Get_SellerId
+    UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${16}  E03  Invalid request
+
+TC_32 SellerId Empty Status
+    [Documentation]  Valid: To check API response when sellerId parameter is entered Valid which is Locked and request is sent for status Active
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}=  Get_SellerId
+    UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${None}  E05  Missing mandatory field
+
+TC_33 SellerId Active to Active Status
+    [Documentation]  Valid: To check API response when sellerId parameter is entered Valid which is Locked and request is sent for status Active
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}=  Get_SellerId
+    UpdateSeller to convert   ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${1}
+    UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${1}  000  Success
+TC_34 SellerId Suspended to Suspended Status
+    [Documentation]  Valid: To check API response when sellerId parameter is entered Valid which is Locked and request is sent for status Active
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}=  Get_SellerId
+    UpdateSeller to convert   ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${3}
+    UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${3}  000  Success
+
+TC_35 SellerId Locked to Locked Status
+    [Documentation]  Valid: To check API response when sellerId parameter is entered Valid which is Locked and request is sent for status Active
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}=  Get_SellerId
+    UpdateSeller to convert   ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${2}
+    UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${2}  000  Success
 
 
 
