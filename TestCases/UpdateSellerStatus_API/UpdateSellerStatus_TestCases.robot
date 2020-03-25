@@ -121,7 +121,7 @@ TC_23 SellerId Suspended to Locked
     UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${3}  000  Success
     UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${2}  000  Success
 
-TC_24 SellerId Suspended to Active
+TC_24 SellerId Suspended to Activeed
     [Documentation]  Valid: To check API response when sellerId parameter is entered Valid which is suspended and request is sent for status Active
     [Tags]  thisone
     ${TokenEscrow}=  GetToken Escrow
@@ -203,5 +203,7 @@ TC_35 SellerId Locked to Locked Status
     ${SellerId}=  Get_SellerId
     UpdateSeller to convert   ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${2}
     UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${2}  000  Success
+
+
 
 
