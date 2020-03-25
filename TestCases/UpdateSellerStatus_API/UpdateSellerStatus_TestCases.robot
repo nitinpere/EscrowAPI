@@ -107,7 +107,7 @@ TC_21 SellerId Locked to Terminated
 
 TC_22 SellerId Locked to Suspended
     [Documentation]  Valid: To check API response when sellerId parameter is entered Valid which is Locked and request is sent for status Suspended
-    [Tags]  thisone
+    [Tags]  RunThisOneToCheckMerging
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}=  Get_SellerId
     UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${2}  000  Success
@@ -115,7 +115,6 @@ TC_22 SellerId Locked to Suspended
 
 TC_23 SellerId Suspended to Locked
     [Documentation]  Valid: To check API response when sellerId parameter is entered Valid which is suspended and request is sent for status Locked
-    [Tags]  thisone
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}=  Get_SellerId
     UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${3}  000  Success
@@ -123,7 +122,6 @@ TC_23 SellerId Suspended to Locked
 
 TC_24 SellerId Suspended to Activeed
     [Documentation]  Valid: To check API response when sellerId parameter is entered Valid which is suspended and request is sent for status Active
-    [Tags]  thisone
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}=  Get_SellerId
     UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${3}  000  Success
@@ -131,7 +129,6 @@ TC_24 SellerId Suspended to Activeed
 
 TC_25 SellerId Suspended to Terminated
     [Documentation]  Valid: To check API response when sellerId parameter is entered Valid which is suspended and request is sent for status Terminated
-    [Tags]  thisone
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}=  Get_SellerId
     UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${3}  000  Success
