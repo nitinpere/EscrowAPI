@@ -99,7 +99,6 @@ TC_20 SellerId Locked to Active Status
 
 TC_21 SellerId Locked to Terminated
     [Documentation]  Valid: To check API response when sellerId parameter is entered Valid which is Locked and request is sent for status Terminated
-    [Tags]  thisone
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}=  Get_SellerId
     UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${2}  000  Success
@@ -107,7 +106,6 @@ TC_21 SellerId Locked to Terminated
 
 TC_22 SellerId Locked to Suspended
     [Documentation]  Valid: To check API response when sellerId parameter is entered Valid which is Locked and request is sent for status Suspended
-    [Tags]  thisone
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}=  Get_SellerId
     UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${2}  000  Success
@@ -115,7 +113,6 @@ TC_22 SellerId Locked to Suspended
 
 TC_23 SellerId Suspended to Locked
     [Documentation]  Valid: To check API response when sellerId parameter is entered Valid which is suspended and request is sent for status Locked
-    [Tags]  thisone
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}=  Get_SellerId
     UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${3}  000  Success
@@ -123,7 +120,6 @@ TC_23 SellerId Suspended to Locked
 
 TC_24 SellerId Suspended to Active
     [Documentation]  Valid: To check API response when sellerId parameter is entered Valid which is suspended and request is sent for status Active
-    [Tags]  thisone
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}=  Get_SellerId
     UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${3}  000  Success
@@ -137,7 +133,6 @@ TC_25 SellerId Terminated to Active Status
     UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${4}  000  Success
 
 TC_26 SellerId Terminated to Locked Status
-    [Tags]    smokie
     [Documentation]  Valid: To check API response when sellerId parameter is entered Valid which is Locked and request is sent for status Active
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}=  Get_SellerId
