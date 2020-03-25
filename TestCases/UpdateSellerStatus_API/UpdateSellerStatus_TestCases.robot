@@ -18,8 +18,9 @@ TC_07 response Update Seller Status API
 TC_08 Empty escrowCompanyID
     [Documentation]  Empty : To check API response when escrowCompanyID parameter is entered empty and request is sent with mandatory fields
     ${TokenEscrow}=  GetToken Escrow
-    ${SellerId}=  Get_SellerId
-    UpdateSeller  ${TokenEscrow}  ${None}  ${SellerId}  ${1}  E05  Missing mandatory field
+     set global variable ${SellerId_locked}=  Get_SellerId
+    ${UpdateSeller}=  UpdateSeller  ${TokenEscrow}  ${None}  ${SellerId}  ${1}  E05  Missing mandatory field
+    log to console  ${UpdateSeller}
 
 TC_09 escrowCompanyID parameter is entered Valid
    [Documentation]  Valid: To check API response when escrowCompanyID parameter is entered Valid and request is sent with mandatory fields
@@ -42,7 +43,7 @@ TC_12 escrowCompanyId less than size 3
     ${SellerId}=  Get_SellerId
     UpdateSeller  ${TokenEscrow}  @{Invalid_Update}[2]  ${SellerId}  ${2}  E03  Invalid request
 TC_13 Empty sellerId
-   [Documentation]  Empty : To check API response when sellerId parameter is entered empty and request is sent with mandatory fields
+    [Documentation]  Empty : To check API response when sellerId parameter is entered empty and request is sent with mandatory fields
     ${TokenEscrow}=  GetToken Escrow
     UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${None}  ${2}  E05  Missing mandatory field
 TC_14 sellerId entered Invalid
