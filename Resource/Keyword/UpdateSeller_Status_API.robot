@@ -10,8 +10,8 @@ Resource    Global Keyword/Get Token.robot
 UpdateSeller
     [Arguments]  ${Token}  ${escrowCompanyID}  ${SELLERId}  ${STATUS}  ${ResponseCode}  ${ResponseDescription}
     Create Session  UpdateSeller   http://172.31.2.28/escrow_core/api/v1
-    ${STATUS}=  Convert To Integer  ${STATUS}
-    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  SELLERId=${SELLERId}  STATUS=${STATUS}
+    ${STATUS1}=  Convert To Integer  ${STATUS}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  SELLERId=${SELLERId}  STATUS=${STATUS1}
     ${AuthToken}=  Set Variable  bearer ${Token}
     ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
     ${response}=  POST request  UpdateSeller  /seller/updatestatus  data=${body}  headers=${header}
