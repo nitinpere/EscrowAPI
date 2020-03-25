@@ -20,7 +20,7 @@ TC_07 Response Update Seller Status API
 TC_08 Empty EscrowCompanyID
     [Documentation]  Empty : To check API response when escrowCompanyID parameter is entered empty and request is sent with mandatory fields
     ${TokenEscrow}=  GetToken Escrow
-     set global variable ${SellerId_locked}=  Get_SellerId
+    ${SellerId}=  Get_SellerId
     ${UpdateSeller}=  UpdateSeller  ${TokenEscrow}  ${None}  ${SellerId}  ${1}  E05  Missing mandatory field
     log to console  ${UpdateSeller}
 
@@ -203,6 +203,11 @@ TC_35 SellerId Locked to Locked Status
     ${SellerId}=  Get_SellerId
     UpdateSeller to convert   ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${2}
     UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${2}  000  Success
+
+
+
+
+  000  Success
 
 
 
