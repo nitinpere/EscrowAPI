@@ -36,7 +36,7 @@ RegisterSeller WITH invalidescrowCompanyID @post
     Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
 
 
-RegisterSeller with valid Datacd..
+RegisterSeller with valid Data
 
     [Arguments]  ${Token}  ${escrowCompanyID}  ${idNumber}  ${typeofID}  ${MobCountryCode}  ${MobNo}  ${emailid}  ${gender}  ${EnTitle}  ${EnFirstName}  ${EnLastName}  ${LocalTitle}  ${LocalFistName}  ${LocalLastName}  ${dob}  ${Nationality}  ${Verification}  ${WorkPlace}  ${UserDef1}  ${UserDef2}  ${UserDef3}  ${UserDef4}  ${UserDef5}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1

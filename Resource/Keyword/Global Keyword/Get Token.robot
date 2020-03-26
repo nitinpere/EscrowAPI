@@ -9,7 +9,7 @@ Resource    ../../Variable/Client.robot
 *** Keyword ***
 GetToken Escrow
     Create Session  Session  ${URLEscrowAuthUAT}
-    ${header}   Create Dictionary  Content-Type=application/x-www-form-urlencoded
+    ${header}   Create Dictionary  Content-Type=application/x-www-form-urlencodezd
     Set To Dictionary  ${header}  Authorization  Basic ${Client_authKey}
     ${Body}=  Create Dictionary  grant_type=client_credentials
     ${response}=  POST Request  Session  /token  data=${Body}  headers=${header}
