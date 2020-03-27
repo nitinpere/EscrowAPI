@@ -62,3 +62,69 @@ UpdateSeller with valid Data
     Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
     Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
 
+UpdateSellerDetails IDNUMBER KYC 1
+    [Arguments]  ${Token}  ${escrowCompanyID}  ${SELLERId}  ${idNumber}  ${firstNameLocal}  ${lastNameLocal}  ${dateOfBirth}  ${otherVerification}  ${typeOfID}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    Create Session  UpdateSeller   http://172.31.2.28/escrow_core/api/v1
+    ${typeID}=  Convert To Integer  ${typeOfID}
+    ${KeyReq}=  Convert To Integer  ${kycRequest}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  SELLERId=${SELLERId}  idNumber=${idNumber}  firstNameLocal=${firstNameLocal}  lastNameLocal=${lastNameLocal}  dateOfBirth=${dateOfBirth}  otherVerification=${otherVerification}  typeOfID=${typeID}  kycRequest=${KeyReq}
+    ${AuthToken}=  Set Variable  bearer ${Token}
+    ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
+    ${response}=  POST request  UpdateSeller  /seller/updatedetail  data=${body}  headers=${header}
+    Log  ${response.text}    console=True
+    Should Be Equal As Strings    ${response.status_code}    200
+    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
+
+UpdateSellerDetails KYC 0
+    [Arguments]  ${Token}  ${escrowCompanyID}  ${SELLERId}  ${idNumber}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    Create Session  UpdateSeller   http://172.31.2.28/escrow_core/api/v1
+    ${KeyReq}=  Convert To Integer  ${kycRequest}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  SELLERId=${SELLERId}  idNumber=${idNumber}  kycRequest=${KeyReq}
+    ${AuthToken}=  Set Variable  bearer ${Token}
+    ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
+    ${response}=  POST request  UpdateSeller  /seller/updatedetail  data=${body}  headers=${header}
+    Log  ${response.text}    console=True
+    Should Be Equal As Strings    ${response.status_code}    200
+    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
+
+UpdateSellerDetails typeOfId equal to others
+    [Arguments]  ${Token}  ${escrowCompanyID}  ${SELLERId}  ${idNumber}  ${firstNameLocal}  ${lastNameLocal}  ${dateOfBirth}  ${otherVerification}  ${typeOfID}  ${kycRequest}  ${email}  ${ResponseCode}  ${ResponseDescription}
+    Create Session  UpdateSeller   http://172.31.2.28/escrow_core/api/v1
+    ${typeID}=  Convert To Integer  ${typeOfID}
+    ${KeyReq}=  Convert To Integer  ${kycRequest}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  SELLERId=${SELLERId}  idNumber=${idNumber}  firstNameLocal=${firstNameLocal}  lastNameLocal=${lastNameLocal}  dateOfBirth=${dateOfBirth}  otherVerification=${otherVerification}  typeOfID=${typeID}  kycRequest=${KeyReq}  email=${email}
+    ${AuthToken}=  Set Variable  bearer ${Token}
+    ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
+    ${response}=  POST request  UpdateSeller  /seller/updatedetail  data=${body}  headers=${header}
+    Log  ${response.text}    console=True
+    Should Be Equal As Strings    ${response.status_code}    200
+    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
+
+UpdateSellerDetails Empty MobileCountryCode
+    [Arguments]  ${Token}  ${escrowCompanyID}  ${MobCountryCode}  ${SELLERId}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    Create Session  UpdateSeller   http://172.31.2.28/escrow_core/api/v1
+    ${KeyReq}=  Convert To Integer  ${kycRequest}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  MobCountryCode=${MobCountryCode}  SELLERId=${SELLERId}  kycRequest=${KeyReq}
+    ${AuthToken}=  Set Variable  bearer ${Token}
+    ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
+    ${response}=  POST request  UpdateSeller  /seller/updatedetail  data=${body}  headers=${header}
+    Log  ${response.text}    console=True
+    Should Be Equal As Strings    ${response.status_code}    200
+    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
+
+UpdateSellerDetails MobileCountrycode mobile
+    [Arguments]  ${Token}  ${escrowCompanyID}  ${MobCountryCode}  ${MobNo}  ${SELLERId}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    Create Session  UpdateSeller   http://172.31.2.28/escrow_core/api/v1
+    ${KeyReq}=  Convert To Integer  ${kycRequest}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  MobCountryCode=${MobCountryCode}  MobNo=${MobNo}  SELLERId=${SELLERId}  kycRequest=${KeyReq}
+    ${AuthToken}=  Set Variable  bearer ${Token}
+    ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
+    ${response}=  POST request  UpdateSeller  /seller/updatedetail  data=${body}  headers=${header}
+    Log  ${response.text}    console=True
+    Should Be Equal As Strings    ${response.status_code}    200
+    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}

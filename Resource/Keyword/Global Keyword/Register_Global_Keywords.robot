@@ -36,7 +36,7 @@ Randome_IDNumber
     SET GLOBAL VARIABLE  ${IdNumber}  ${Id}
     [Return]  ${IdNumber}
 
-Get_SellerId
+RegisterSellerID
     ${TokenEscrow}=  GetToken Escrow
     ${idNum}=  Randome_IDNumber
     ${MobNo}=  Randome_MobileNumber

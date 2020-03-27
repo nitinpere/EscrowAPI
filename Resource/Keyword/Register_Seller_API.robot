@@ -66,9 +66,9 @@ RegisterSeller with valid Data
     [Return]  ${response.json()['sellerId']}
 
 RegisterSeller WITH Empty mandatoryfield @post
-    [Arguments]    ${Token}    ${None}    ${None}    ${None}    ${None}  ${ResponseCode}  ${ResponseDescription}
+    [Arguments]    ${Token}    ${EMPTY}    ${EMPTY}    ${EMPTY}    ${EMPTY}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
-    ${body}  Create Dictionary  escrowCompanyId=${None}  idNumber=${None}  typeOfId=${None}  kycRequest=${None}
+    ${body}  Create Dictionary  escrowCompanyId=${EMPTY}  idNumber=${EMPTY}  typeOfId=${EMPTY}  kycRequest=${EMPTY}
     ${AuthToken}=  Set Variable  bearer ${Token}
     ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
     ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}
@@ -79,11 +79,11 @@ RegisterSeller WITH Empty mandatoryfield @post
 
 
 RegisterSeller WITH Empty escrowCompanyId @post
-    [Arguments]    ${Token}    ${None}    ${idNumber}    ${typeOfID}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    [Arguments]    ${Token}    ${EMPTY}    ${idNumber}    ${typeOfID}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
-    ${body}  Create Dictionary  escrowCompanyId=${None}  idNumber=${idNumber}  typeOfId=${typeID}  kycRequest=${KeyReq}
+    ${body}  Create Dictionary  escrowCompanyId=${EMPTY}  idNumber=${idNumber}  typeOfId=${typeID}  kycRequest=${KeyReq}
     ${AuthToken}=  Set Variable  bearer ${Token}
     ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
     ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}
@@ -139,10 +139,10 @@ RegisterSeller WITH extralength idNumber @post
 
 
 RegisterSeller typeID NOT THERE @post
-    [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${None}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${EMPTY}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${KeyReq}=  Convert To Integer  ${kycRequest}
-    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  idNumber=${idNumber}  typeOfId=${None}  kycRequest=${KeyReq}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  idNumber=${idNumber}  typeOfId=${EMPTY}  kycRequest=${KeyReq}
     ${AuthToken}=  Set Variable  bearer ${Token}
     ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
     ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}
@@ -153,7 +153,7 @@ RegisterSeller typeID NOT THERE @post
 
 
 RegisterSeller IDnumber is not enter kyc is 1 @post
-    [Arguments]    ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${dateOfBirth}  ${otherVerification}    ${None}     ${typeOfID}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    [Arguments]    ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${dateOfBirth}  ${otherVerification}    ${EMPTY}     ${typeOfID}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
@@ -329,10 +329,10 @@ RegisterSeller duplicateIdNumber @post
     Should be Equal as Strings    ${response.json()['resDescription']}   ${ResponseDescription}
 
 RegisterSeller NotENTER TYPEOFID kyc is 1 @post
-    [Arguments]    ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${dateOfBirth}  ${otherVerification}    ${idNumber}     ${None}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    [Arguments]    ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${dateOfBirth}  ${otherVerification}    ${idNumber}     ${EMPTY}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${KeyReq}=  Convert To Integer  ${kycRequest}
-    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  firstNameLocal=${firstNameLocal}  lastNameLocal=${lastNameLocal}  dateOfBirth=${dateOfBirth}  otherVerification=${otherVerification}  idNumber=${idNumber}  typeOfId=${None}  kycRequest=${KeyReq}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  firstNameLocal=${firstNameLocal}  lastNameLocal=${lastNameLocal}  dateOfBirth=${dateOfBirth}  otherVerification=${otherVerification}  idNumber=${idNumber}  typeOfId=${EMPTY}  kycRequest=${KeyReq}
     ${AuthToken}=  Set Variable  bearer ${Token}
     ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
     ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}
@@ -343,10 +343,10 @@ RegisterSeller NotENTER TYPEOFID kyc is 1 @post
 
 
 RegisterSeller TYPEOFID is enter IDNO not enter kyc is 1 @post
-    [Arguments]    ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${dateOfBirth}  ${otherVerification}    ${None}     ${typeOfId}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    [Arguments]    ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${dateOfBirth}  ${otherVerification}    ${EMPTY}     ${typeOfId}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${KeyReq}=  Convert To Integer  ${kycRequest}
-    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  firstNameLocal=${firstNameLocal}  lastNameLocal=${lastNameLocal}  dateOfBirth=${dateOfBirth}  otherVerification=${otherVerification}  idNumber=${None}  typeOfId=${typeOfId}  kycRequest=${KeyReq}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  firstNameLocal=${firstNameLocal}  lastNameLocal=${lastNameLocal}  dateOfBirth=${dateOfBirth}  otherVerification=${otherVerification}  idNumber=${EMPTY}  typeOfId=${typeOfId}  kycRequest=${KeyReq}
     ${AuthToken}=  Set Variable  bearer ${Token}
     ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
     ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}
@@ -433,10 +433,10 @@ RegisterSeller Invalid TYPEOFID kyc is 1 @post
 
 
 RegisterSeller Empty mobileCountryCode kyc is 0 @post
-    [Arguments]    ${Token}    ${escrowCompanyID}  ${None}  ${mobileNo}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    [Arguments]    ${Token}    ${escrowCompanyID}  ${EMPTY}  ${mobileNo}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${KeyReq}=  Convert To Integer  ${kycRequest}
-    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  mobileCountryCode=${None}  mobileNo=${mobileNo}  kycRequest=${KeyReq}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  mobileCountryCode=${EMPTY}  mobileNo=${mobileNo}  kycRequest=${KeyReq}
     ${AuthToken}=  Set Variable  bearer ${Token}
     ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
     ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}
@@ -461,10 +461,10 @@ RegisterSeller mobileCountryCode kyc is 0 @post
 
 
 RegisterSeller Empty mobileno kyc is 0 @post
-    [Arguments]    ${Token}    ${escrowCompanyID}  ${mobileCountryCode}  ${None}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    [Arguments]    ${Token}    ${escrowCompanyID}  ${mobileCountryCode}  ${EMPTY}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${KeyReq}=  Convert To Integer  ${kycRequest}
-    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  mobileCountryCode=${mobileCountryCode}  mobileNo=${None}  kycRequest=${KeyReq}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  mobileCountryCode=${mobileCountryCode}  mobileNo=${EMPTY}  kycRequest=${KeyReq}
     ${AuthToken}=  Set Variable  bearer ${Token}
     ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
     ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}
@@ -559,10 +559,10 @@ RegisterSeller with titleEn
 
 
 RegisterSeller with Empty titleEn
-    [Arguments]  ${Token}  ${escrowCompanyID}  ${MobileCountryCode}  ${MobileNo}  ${None}  ${gender}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    [Arguments]  ${Token}  ${escrowCompanyID}  ${MobileCountryCode}  ${MobileNo}  ${EMPTY}  ${gender}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${KeyReq}=  Convert To Integer  ${kycRequest}
-    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  mobileCountryCode=${MobileCountryCode}  mobileNo=${MobileNo}  titleEn=${None}  gender=${gender}  kycRequest=${KeyReq}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  mobileCountryCode=${MobileCountryCode}  mobileNo=${MobileNo}  titleEn=${EMPTY}  gender=${gender}  kycRequest=${KeyReq}
     ${AuthToken}=  Set Variable  bearer ${Token}
     ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
     ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}
@@ -601,10 +601,10 @@ RegisterSeller with firstNameEn
 
 
 RegisterSeller with Empty firstNameEn
-    [Arguments]  ${Token}  ${escrowCompanyID}  ${MobileCountryCode}  ${MobileNo}  ${None}  ${gender}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    [Arguments]  ${Token}  ${escrowCompanyID}  ${MobileCountryCode}  ${MobileNo}  ${EMPTY}  ${gender}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${KeyReq}=  Convert To Integer  ${kycRequest}
-    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  mobileCountryCode=${MobileCountryCode}  mobileNo=${MobileNo}  firstNameEn =${None}  gender=${gender}  kycRequest=${KeyReq}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  mobileCountryCode=${MobileCountryCode}  mobileNo=${MobileNo}  firstNameEn =${EMPTY}  gender=${gender}  kycRequest=${KeyReq}
     ${AuthToken}=  Set Variable  bearer ${Token}
     ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
     ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}
@@ -643,10 +643,10 @@ RegisterSeller with lastNameEgn
 
 
 RegisterSeller with Empty lastNameEn
-    [Arguments]  ${Token}  ${escrowCompanyID}  ${MobileCountryCode}  ${MobileNo}  ${None}  ${gender}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    [Arguments]  ${Token}  ${escrowCompanyID}  ${MobileCountryCode}  ${MobileNo}  ${EMPTY}  ${gender}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${KeyReq}=  Convert To Integer  ${kycRequest}
-    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  mobileCountryCode=${MobileCountryCode}  mobileNo=${MobileNo}  lastNameEn =${None}  gender=${gender}  kycRequest=${KeyReq}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  mobileCountryCode=${MobileCountryCode}  mobileNo=${MobileNo}  lastNameEn =${EMPTY}  gender=${gender}  kycRequest=${KeyReq}
     ${AuthToken}=  Set Variable  bearer ${Token}
     ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
     ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}
@@ -739,11 +739,11 @@ RegisterSeller with LastName
     Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
 
 RegisterSellerNOT enter lastNameLocal
-    [Arguments]  ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${None}  ${dateOfBirth}  ${otherVerification}    ${idNumber}  ${typeOfId}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    [Arguments]  ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${EMPTY}  ${dateOfBirth}  ${otherVerification}    ${idNumber}  ${typeOfId}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
-    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  firstNameLocal=${firstNameLocal}  lastNameLocal=${None}  dateOfBirth=${dateOfBirth}  otherVerification=${otherVerification}  idNumber=${idNumber}  typeOfId=${typeID}  kycRequest=${KeyReq}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  firstNameLocal=${firstNameLocal}  lastNameLocal=${EMPTY}  dateOfBirth=${dateOfBirth}  otherVerification=${otherVerification}  idNumber=${idNumber}  typeOfId=${typeID}  kycRequest=${KeyReq}
     ${AuthToken}=  Set Variable  bearer ${Token}
     ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
     ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}
@@ -753,10 +753,10 @@ RegisterSellerNOT enter lastNameLocal
     Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
 
 RegisterSeller with Empty lastName
-    [Arguments]  ${Token}  ${escrowCompanyID}  ${MobileCountryCode}  ${MobileNo}  ${None}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    [Arguments]  ${Token}  ${escrowCompanyID}  ${MobileCountryCode}  ${MobileNo}  ${EMPTY}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${KeyReq}=  Convert To Integer  ${kycRequest}
-    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  mobileCountryCode=${MobileCountryCode}  mobileNo=${MobileNo}  lastNameEn =${None}  kycRequest=${KeyReq}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  mobileCountryCode=${MobileCountryCode}  mobileNo=${MobileNo}  lastNameEn =${EMPTY}  kycRequest=${KeyReq}
     ${AuthToken}=  Set Variable  bearer ${Token}
     ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
     ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}
@@ -793,11 +793,11 @@ RegisterSeller withvalid dateOfBirth
     Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
 
 RegisterSeller Empty dateOfBirth kyc 1
-    [Arguments]  ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${None}  ${otherVerification}    ${idNumber}  ${typeOfId}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    [Arguments]  ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${EMPTY}  ${otherVerification}    ${idNumber}  ${typeOfId}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
-    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  firstNameLocal=${firstNameLocal}  lastNameLocal=${lastNameLocal}  dateOfBirth=${None}  otherVerification=${otherVerification}  idNumber=${idNumber}  typeOfId=${typeID}  kycRequest=${KeyReq}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  firstNameLocal=${firstNameLocal}  lastNameLocal=${lastNameLocal}  dateOfBirth=${EMPTY}  otherVerification=${otherVerification}  idNumber=${idNumber}  typeOfId=${typeID}  kycRequest=${KeyReq}
     ${AuthToken}=  Set Variable  bearer ${Token}
     ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
     ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}
@@ -810,7 +810,7 @@ RegisterSeller Empty dateOfBirth kyc 0
     [Arguments]  ${Token}  ${escrowCompanyID}  ${MobileCountryCode}  ${MobileNo}  ${lastNameLocal}  ${dateOfBirth}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${KeyReq}=  Convert To Integer  ${kycRequest}
-    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  MobileCountryCode=${MobileCountryCode}  MobileNo=${MobileNo} lastNameLocal=${lastNameLocal}  dateOfBirth=${None}  kycRequest=${KeyReq}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  MobileCountryCode=${MobileCountryCode}  MobileNo=${MobileNo} lastNameLocal=${lastNameLocal}  dateOfBirth=${EMPTY}  kycRequest=${KeyReq}
     ${AuthToken}=  Set Variable  bearer ${Token}
     ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
     ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}
@@ -834,10 +834,10 @@ RegisterSeller Invalid dateOfBirth kyc 0
     Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
 
 RegisterSeller Empty nationalityId kyc 0
-    [Arguments]  ${Token}  ${escrowCompanyID}  ${MobileCountryCode}  ${MobileNo}  ${lastNameLocal}  ${None}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    [Arguments]  ${Token}  ${escrowCompanyID}  ${MobileCountryCode}  ${MobileNo}  ${lastNameLocal}  ${EMPTY}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${KeyReq}=  Convert To Integer  ${kycRequest}
-    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  MobileCountryCode=${MobileCountryCode}  MobileNo=${MobileNo} lastNameLocal=${lastNameLocal}  nationalityId=${None}  kycRequest=${KeyReq}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  MobileCountryCode=${MobileCountryCode}  MobileNo=${MobileNo} lastNameLocal=${lastNameLocal}  nationalityId=${EMPTY}  kycRequest=${KeyReq}
     ${AuthToken}=  Set Variable  bearer ${Token}
     ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
     ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}
