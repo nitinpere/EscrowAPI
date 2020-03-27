@@ -96,7 +96,7 @@ TC_01 UpdateSellerDetails with Empty JWT Token
     UpdateSellerDetails   ${EMPTY}  @{escrowCompId}  ${SellerId}  ${idNum}  ${1}  ${0}  A01  Invalid access token
 
 TC_02 UpdateSellerDetails with Invalid JWT Token
-    [Documentation]  Empty : To verify response for Empty JWT token
+    [Documentation]  Invalid : To verify response for Invalid JWT token
     [Tags]  A01
     ${TokenEscrow}=  GetToken Escrow
     ${idNum}=  Randome_IDNumber
@@ -104,7 +104,7 @@ TC_02 UpdateSellerDetails with Invalid JWT Token
     UpdateSellerDetails   ${TokenEscrow}2c2p  @{escrowCompId}  ${SellerId}  ${idNum}  ${1}  ${0}  A01  Invalid access token
 
 TC_03 UpdateSellerDetails with Expired JWT Token
-    [Documentation]  Empty : To verify response for Empty JWT token
+    [Documentation]  Invalid : To verify response for Expired JWT token
     [Tags]  A02
     ${TokenEscrow}=  GetToken Escrow
     ${idNum}=  Randome_IDNumber
@@ -113,7 +113,7 @@ TC_03 UpdateSellerDetails with Expired JWT Token
     UpdateSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  ${idNum}  ${1}  ${0}  A02  Access token expired
 
 TC_04 UpdateSellerDetails with other company JWT token.
-    [Documentation]  Empty : To verify response for Empty JWT token
+    [Documentation]  Invalid: To check API response with other company JWT token.
     [Tags]  A01
     ${TokenEscrow}=  GetToken BIGC
     ${idNum}=  Randome_IDNumber
@@ -121,9 +121,9 @@ TC_04 UpdateSellerDetails with other company JWT token.
     UpdateSellerDetails   ${TokenEscrow}  @{escrowCompId}  ${SellerId}  ${idNum}  ${1}  ${0}  A01  Invalid access token
 
 TC_05 UpdateSellerDetails with valid JWT Token
-    [Documentation]  Empty : To verify response for Empty JWT token
-    [Tags]  A01
-    ${TokenEscrow}=  GetToken BIGC
-    ${idNum}=  Randome_IDNumber
-    ${SellerId}=  Get_SellerId
-    UpdateSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  ${idNum}  ${1}  ${0}  A01  Invalid access token
+    [Documentation]  Valid: To check API response with valid JWT token.
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idNum}=  Get_SellerId
+    UpdateSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  ${idNum}  ${1}  ${0}  000  Success
+
