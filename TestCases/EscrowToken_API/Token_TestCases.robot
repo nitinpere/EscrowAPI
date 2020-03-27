@@ -14,17 +14,20 @@ Resource    ../../Resource/Variable/user data.robot
 
 TC_01 RegisterNewSeller with Empty JWT Token
     [Documentation]  Empty : To verify response for Empty JWT token.
+    [Tags]  A01
     ${IdNumber}=  Randome_IDNumber
-    RegisterSeller  ${None}  @{escrowCompId}  ${IdNumber}  ${1}  ${0}  A01  Invalid access token
+    RegisterSeller  ${EMPTY}  @{escrowCompId}  ${IdNumber}  ${1}  ${0}  A01  Invalid access token
 
 TC_02 RegisterNewSeller with Invalid JWT Token
     [Documentation]  Invalid : To verify response for Invalid JWT token.
+    [Tags]  A01
     ${TokenEscrow}=  GetToken Escrow
     ${IdNumber}=  Randome_IDNumber
     RegisterSeller  ${TokenEscrow}1a2b3  @{escrowCompId}  ${IdNumber}  ${1}  ${0}  A01  Invalid access token
 
 TC_03 RegisterNewSeller with Expired JWT Token
     [Documentation]  Invalid : To verify response for Expired JWT token.
+    [Tags]  A02
     ${TokenEscrow}=  GetToken Escrow
     ${IdNumber}=  Randome_IDNumber
     Sleep  7 minutes
@@ -32,37 +35,37 @@ TC_03 RegisterNewSeller with Expired JWT Token
 
 TC_04 RegisterNewSeller with Other Company JWT Token
     [Documentation]  Invalid: To check API response with other company JWT token.
+    [Tags]  A01
     ${TokenEscrow}=  GetToken BIGC
     ${IdNumber}=  Randome_IDNumber
     RegisterSeller  ${TokenEscrow}  @{escrowCompId}  ${IdNumber}  ${1}  ${0}  A01  Invalid access token
 
 TC_05 RegisterNewSeller with Valid JWT Token
     [Documentation]  Valid: To check API response with valid JWT token.
+    [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${IdNumber}=  Randome_IDNumber
     RegisterSeller  ${TokenEscrow}  @{escrowCompId}  ${IdNumber}  ${1}  ${0}  000  Success
-
-
 
 
 #  Update Seller Status Token Test Cases
 
 TC_01 UpdateSellerStatus with Empty JWT Token
     [Documentation]  Empty : To verify response for Empty JWT token
-    [Tags]  thisone
+    [Tags]  A01
     ${SellerId}=  Get_SellerId
-    UpdateSeller  ${None}  @{escrowCompId}  ${SellerId}  ${4}  A01  Invalid access token
+    UpdateSeller  ${EMPTY}  @{escrowCompId}  ${SellerId}  ${4}  A01  Invalid access token
 
 TC_02 UpdateSellerStatus with Invalid JWT Token
     [Documentation]  Invalid : To verify response for Invalid JWT token
-    [Tags]  thisone
+    [Tags]  A01
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}=  Get_SellerId
     UpdateSeller  ${TokenEscrow}2c2p  @{escrowCompId}  ${SellerId}  ${4}  A01  Invalid access token
 
 TC_03 UpdateSellerStatus with Expired JWT Token
     [Documentation]  Invalid : To verify response for Expired JWT token
-    [Tags]  thisone
+    [Tags]  A02
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}=  Get_SellerId
     Sleep  7 minutes
@@ -70,32 +73,31 @@ TC_03 UpdateSellerStatus with Expired JWT Token
 
 TC_04 UpdateSellerStatus with Other Company JWT Token
     [Documentation]  Invalid: To check API response with other company JWT token.
-    [Tags]  thisone
+    [Tags]  A01
     ${TokenEscrow}=  GetToken BIGC
     ${SellerId}=  Get_SellerId
     UpdateSeller  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  ${4}  A01  Invalid access token
 
 TC_05 UpdateSellerStatus with Valid JWT Token
     [Documentation]  Valid: To check API response with valid JWT token.
-    [Tags]  thisone
+    [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}=  Get_SellerId
     UpdateSeller   ${TokenEscrow}  @{escrowCompId}  ${SellerId}  ${1}  000  Success
-
 
 
 # Update Seller Details Token Test Cases
 
 TC_01 UpdateSellerDetails with Empty JWT Token
     [Documentation]  Empty : To verify response for Empty JWT token
-    [Tags]  thisoneq
+    [Tags]  A01
     ${idNum}=  Randome_IDNumber
     ${SellerId}=  Get_SellerId
-    UpdateSellerDetails   ${None}  @{escrowCompId}  ${SellerId}  ${idNum}  ${1}  ${0}  A01  Invalid access token
+    UpdateSellerDetails   ${EMPTY}  @{escrowCompId}  ${SellerId}  ${idNum}  ${1}  ${0}  A01  Invalid access token
 
 TC_02 UpdateSellerDetails with Invalid JWT Token
     [Documentation]  Empty : To verify response for Empty JWT token
-    [Tags]  thisoneq
+    [Tags]  A01
     ${TokenEscrow}=  GetToken Escrow
     ${idNum}=  Randome_IDNumber
     ${SellerId}=  Get_SellerId
@@ -103,7 +105,7 @@ TC_02 UpdateSellerDetails with Invalid JWT Token
 
 TC_03 UpdateSellerDetails with Expired JWT Token
     [Documentation]  Empty : To verify response for Empty JWT token
-    [Tags]  thisoneq
+    [Tags]  A02
     ${TokenEscrow}=  GetToken Escrow
     ${idNum}=  Randome_IDNumber
     ${SellerId}=  Get_SellerId
@@ -112,7 +114,7 @@ TC_03 UpdateSellerDetails with Expired JWT Token
 
 TC_04 UpdateSellerDetails with other company JWT token.
     [Documentation]  Empty : To verify response for Empty JWT token
-    [Tags]  thisoneq
+    [Tags]  A01
     ${TokenEscrow}=  GetToken BIGC
     ${idNum}=  Randome_IDNumber
     ${SellerId}=  Get_SellerId
@@ -120,10 +122,8 @@ TC_04 UpdateSellerDetails with other company JWT token.
 
 TC_05 UpdateSellerDetails with valid JWT Token
     [Documentation]  Empty : To verify response for Empty JWT token
-    [Tags]  thisoneq
+    [Tags]  A01
     ${TokenEscrow}=  GetToken BIGC
     ${idNum}=  Randome_IDNumber
     ${SellerId}=  Get_SellerId
     UpdateSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  ${idNum}  ${1}  ${0}  A01  Invalid access token
-
-
