@@ -22,6 +22,13 @@ TC_02 RegisterNewSeller with Invalid JWT Token
     ${IdNumber}=  Randome_IDNumber
     RegisterSeller  ${TokenEscrow}1a2b3  @{escrowCompId}  ${IdNumber}  ${1}  ${0}  A01  Invalid access token
 
+TC_03 RegisterNewSeller with Expired JWT Token
+    [Documentation]  Invalid : To verify response for Expired JWT token.
+    ${TokenEscrow}=  GetToken Escrow
+    ${IdNumber}=  Randome_IDNumber
+    Sleep  7 minutes
+    RegisterSeller  ${TokenEscrow}  @{escrowCompId}  ${IdNumber}  ${1}  ${0}  A02  Access token expired
+
 TC_04 RegisterNewSeller with Other Company JWT Token
     [Documentation]  Invalid: To check API response with other company JWT token.
     ${TokenEscrow}=  GetToken BIGC
@@ -34,12 +41,7 @@ TC_05 RegisterNewSeller with Valid JWT Token
     ${IdNumber}=  Randome_IDNumber
     RegisterSeller  ${TokenEscrow}  @{escrowCompId}  ${IdNumber}  ${1}  ${0}  000  Success
 
-TC_03 RegisterNewSeller with Expired JWT Token
-    [Documentation]  Invalid : To verify response for Expired JWT token.
-    ${TokenEscrow}=  GetToken Escrow
-    ${IdNumber}=  Randome_IDNumber
-    Sleep  7 minutes
-    RegisterSeller  ${TokenEscrow}  @{escrowCompId}  ${IdNumber}  ${1}  ${0}  A02  Access token expired
+
 
 
 #  Update Seller Status Token Test Cases

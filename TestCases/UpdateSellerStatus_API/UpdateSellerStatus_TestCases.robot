@@ -8,7 +8,7 @@ Resource    ../../Resource/Keyword/Global Keyword/Register_Global_Keywords.robot
 TC_06 Request Update Seller Status API
     [Documentation]  Valid: To Verify request parameter of Update Seller Status API
     ${TokenEscrow}=  GetToken Escrow
-    ${SellerId}=  Get_SellerId
+    ${SellerId}=  Get_SellerId  #RegisterSellerID
     UpdateSeller  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${1}  000  Success
 
 TC_07 Response Update Seller Status API
