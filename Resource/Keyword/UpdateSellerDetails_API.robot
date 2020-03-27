@@ -34,6 +34,18 @@ UpdateSellerDetails_kyc
     Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
     Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
 
+UpdateSellerDetails_Empty_kyc
+    [Arguments]  ${Token}  ${escrowCompanyID}  ${SELLERId}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    Create Session  UpdateSeller   http://172.31.2.28/escrow_core/api/v1
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  SELLERId=${SELLERId}  kycRequest=${kycRequest}
+    ${AuthToken}=  Set Variable  bearer ${Token}
+    ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
+    ${response}=  POST request  UpdateSeller  /seller/updatedetail  data=${body}  headers=${header}
+    Log  ${response.text}    console=True
+    Should Be Equal As Strings    ${response.status_code}    200
+    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
+
 UpdateSeller with valid Data
     [Arguments]  ${Token}  ${escrowCompanyID}  ${SELLERId}  ${idNumber}  ${typeofID}  ${MobCountryCode}  ${MobNo}  ${emailid}  ${gender}  ${EnTitle}  ${EnFirstName}  ${EnLastName}  ${LocalTitle}  ${LocalFistName}  ${LocalLastName}  ${dob}  ${Nationality}  ${Verification}  ${WorkPlace}  ${UserDef1}  ${UserDef2}  ${UserDef3}  ${UserDef4}  ${UserDef5}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1

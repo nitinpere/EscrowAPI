@@ -6,6 +6,16 @@ Resource    ../../Resource/Keyword/UpdateSeller_Status_API.robot
 Resource    ../../Resource/Variable/user data.robot
 
 *** Test Cases ***
+TC_06 UpdateSellerDetails request parameter of Update
+    [Documentation]  Valid: To Verify request parameters of Register Seller API
+    [Tags]  thisoneqq
+    ${TokenEscrow}=  GetToken Escrow
+    ${idNum}=  Randome_IDNumber
+    ${MobNo}=  Randome_MobileNumber
+    ${emailid}=  Randome_EmailId
+    ${SellerId}=  Get_SellerId
+    UpdateSeller with valid Data  ${TokenEscrow}  @{valid_mobile_country_code}[0]  ${SellerId}  ${idNum}  ${3}  @{valid_mobile_country_code}[1]  ${MobNo}  ${emailid}  M  @{RegisterSellerData}[0]  @{RegisterSellerData}[1]  @{RegisterSellerData}[2]  @{RegisterSellerData}[3]  @{RegisterSellerData}[4]  @{RegisterSellerData}[5]  @{RegisterSellerData}[6]  @{v_nationalityId}  @{RegisterSellerData}[7]  @{RegisterSellerData}[8]  @{RegisterSellerData}[9]  @{RegisterSellerData}[10]  @{RegisterSellerData}[11]  @{RegisterSellerData}[12]  @{RegisterSellerData}[13]  ${0}  000  Success
+
 TC_07 Request Update Seller Details API
     [Documentation]  Valid: To Verify response  parameter of Update Seller Detail API
     ${TokenEscrow}=  GetToken Escrow

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 3.1.2 (Python 3.8.1 on win32)" generated="20200327 11:06:43.815" rpa="false">
+<robot generator="Robot 3.1.2 (Python 3.8.1 on win32)" generated="20200327 13:08:23.437" rpa="false">
 <suite id="s1" name="UpdateSellerDetails Testcases" source="C:\Users\perennial\PycharmProjects\EscrowAPI\TestCases\UpdateSellerStatus_API\UpdateSellerDetails_Testcases.robot">
 <test id="s1-t1" name="TC_08 Empty body">
 <kw name="GetToken Escrow" library="Get Token">
@@ -12,8 +12,8 @@
 <arg>Session</arg>
 <arg>${URLEscrowAuthUAT}</arg>
 </arguments>
-<msg timestamp="20200327 11:06:44.495" level="INFO">Creating Session using : alias=Session, url=http://172.31.2.28/escrow_core/api/v1/Authentication/oauth2, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" starttime="20200327 11:06:44.494" endtime="20200327 11:06:44.495"></status>
+<msg timestamp="20200327 13:08:24.131" level="INFO">Creating Session using : alias=Session, url=http://172.31.2.28/escrow_core/api/v1/Authentication/oauth2, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20200327 13:08:24.131" endtime="20200327 13:08:24.131"></status>
 </kw>
 <kw name="Create Dictionary" library="BuiltIn">
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
@@ -23,8 +23,8 @@
 <assign>
 <var>${header}</var>
 </assign>
-<msg timestamp="20200327 11:06:44.496" level="INFO">${header} = {'Content-Type': 'application/x-www-form-urlencoded'}</msg>
-<status status="PASS" starttime="20200327 11:06:44.496" endtime="20200327 11:06:44.496"></status>
+<msg timestamp="20200327 13:08:24.132" level="INFO">${header} = {'Content-Type': 'application/x-www-form-urlencoded'}</msg>
+<status status="PASS" starttime="20200327 13:08:24.132" endtime="20200327 13:08:24.132"></status>
 </kw>
 <kw name="Set To Dictionary" library="Collections">
 <doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
@@ -33,7 +33,7 @@
 <arg>Authorization</arg>
 <arg>Basic ${Client_authKey}</arg>
 </arguments>
-<status status="PASS" starttime="20200327 11:06:44.496" endtime="20200327 11:06:44.497"></status>
+<status status="PASS" starttime="20200327 13:08:24.132" endtime="20200327 13:08:24.133"></status>
 </kw>
 <kw name="Create Dictionary" library="BuiltIn">
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
@@ -43,8 +43,8 @@
 <assign>
 <var>${Body}</var>
 </assign>
-<msg timestamp="20200327 11:06:44.497" level="INFO">${Body} = {'grant_type': 'client_credentials'}</msg>
-<status status="PASS" starttime="20200327 11:06:44.497" endtime="20200327 11:06:44.498"></status>
+<msg timestamp="20200327 13:08:24.133" level="INFO">${Body} = {'grant_type': 'client_credentials'}</msg>
+<status status="PASS" starttime="20200327 13:08:24.133" endtime="20200327 13:08:24.133"></status>
 </kw>
 <kw name="Post Request" library="RequestsLibrary">
 <doc>Send a POST request on the session object found using the
@@ -58,12 +58,12 @@ given `alias`</doc>
 <assign>
 <var>${response}</var>
 </assign>
-<msg timestamp="20200327 11:06:44.499" level="INFO">POST Request using : uri=/token, params=None, files=None, allow_redirects=True, timeout=None
+<msg timestamp="20200327 13:08:24.134" level="INFO">POST Request using : uri=/token, params=None, files=None, allow_redirects=True, timeout=None
 headers={'User-Agent': 'python-requests/2.23.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic MDAxOmthaWRlZVNlY3JldEtleVRlc3Q='} 
 data=grant_type=client_credentials 
 json=None</msg>
-<msg timestamp="20200327 11:06:44.981" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20200327 11:06:44.498" endtime="20200327 11:06:44.982"></status>
+<msg timestamp="20200327 13:08:28.051" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20200327 13:08:24.133" endtime="20200327 13:08:28.051"></status>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to strings.</doc>
@@ -71,41 +71,43 @@ json=None</msg>
 <arg>${response.status_code}</arg>
 <arg>200</arg>
 </arguments>
-<msg timestamp="20200327 11:06:44.983" level="INFO">Argument types are:
+<msg timestamp="20200327 13:08:28.052" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20200327 11:06:44.982" endtime="20200327 11:06:44.983"></status>
+<status status="PASS" starttime="20200327 13:08:28.052" endtime="20200327 13:08:28.052"></status>
 </kw>
 <kw name="Log" library="BuiltIn">
 <doc>Logs the given message with the given level.</doc>
 <arguments>
 <arg>${response.json()['accessToken']}</arg>
 </arguments>
-<msg timestamp="20200327 11:06:44.984" level="INFO">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QNi9Rc3pHcGlzQS9ubGV0YlBqV2ExcWdwS2FjblNTZWZsNnEyNUF3OXFGMmhtR0hWaWozYko1cDc3dVUvU3RqL1JOanRUeFkrQU5wRzVkRnNLNjcvWk09IiwibmJmIjoxNTg1Mjg3NDA1LCJleHAiOjE1ODUyODc0NjUsImlhdCI6MTU4NTI4NzQwNSwiaXNzIjoiZXNjcm93LWNvcmUtYXBpIiwiYXVkIjoiZXNjcm93LWNvcmUtY2xpZW50In0.w7bw-ojLS4QUUrMx54G5aOqQWrR5vz4ncQc59iHd86Y</msg>
-<status status="PASS" starttime="20200327 11:06:44.983" endtime="20200327 11:06:44.984"></status>
+<msg timestamp="20200327 13:08:28.053" level="INFO">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QOTJUN1ViaTJDZ1NkZmhFemVHNndxU2M5UU1LVlJySXFVakY2bXl4T0ViWkE3OG8wanRxRHJJa2JoSVFPT0lLdWxzWnNzQWhCYVZBK1lEYjZyN1N0SDg9IiwibmJmIjoxNTg1Mjk0NzA4LCJleHAiOjE1ODUyOTQ3NjgsImlhdCI6MTU4NTI5NDcwOCwiaXNzIjoiZXNjcm93LWNvcmUtYXBpIiwiYXVkIjoiZXNjcm93LWNvcmUtY2xpZW50In0.2Y-tCcg2CUfQUcrlOoSj0q4TyK7kQQq0rUIDNM8708A</msg>
+<status status="PASS" starttime="20200327 13:08:28.052" endtime="20200327 13:08:28.054"></status>
 </kw>
-<msg timestamp="20200327 11:06:44.984" level="INFO">${TokenEscrow} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QNi9Rc3pHcGlzQS9ubGV0YlBqV2ExcWdwS2FjblNTZWZ...</msg>
-<status status="PASS" starttime="20200327 11:06:44.494" endtime="20200327 11:06:44.985"></status>
+<msg timestamp="20200327 13:08:28.054" level="INFO">${TokenEscrow} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QOTJUN1ViaTJDZ1NkZmhFemVHNndxU2M5UU1LVlJySXF...</msg>
+<status status="PASS" starttime="20200327 13:08:24.130" endtime="20200327 13:08:28.054"></status>
 </kw>
-<kw name="UpdateSellerDetails_kyc" library="UpdateSellerDetails_API">
+<kw name="UpdateSellerDetails_Empty_kyc">
 <arguments>
+<arg>${TokenEscrow}</arg>
 <arg>${None}</arg>
 <arg>${None}</arg>
 <arg>${None}</arg>
-<arg>${}</arg>
 <arg>E05</arg>
 <arg>Missing mandatory field</arg>
 </arguments>
-<msg timestamp="20200327 11:06:44.987" level="FAIL">Invalid variable name '${}'.</msg>
-<status status="FAIL" starttime="20200327 11:06:44.986" endtime="20200327 11:06:44.987"></status>
+<msg timestamp="20200327 13:08:28.065" level="FAIL">No keyword with name 'UpdateSellerDetails_Empty_kyc' found. Did you mean:
+    UpdateSellerDetails_API.UpdateSellerDetails Kyc</msg>
+<status status="FAIL" starttime="20200327 13:08:28.065" endtime="20200327 13:08:28.065"></status>
 </kw>
 <doc>Empty : To verify Response when all request fields are entered empty without body</doc>
 <tags>
 <tag>E05</tag>
 </tags>
-<status status="FAIL" starttime="20200327 11:06:44.493" endtime="20200327 11:06:44.987" critical="yes">Invalid variable name '${}'.</status>
+<status status="FAIL" starttime="20200327 13:08:24.129" endtime="20200327 13:08:28.066" critical="yes">No keyword with name 'UpdateSellerDetails_Empty_kyc' found. Did you mean:
+    UpdateSellerDetails_API.UpdateSellerDetails Kyc</status>
 </test>
-<status status="FAIL" starttime="20200327 11:06:43.820" endtime="20200327 11:06:44.989"></status>
+<status status="FAIL" starttime="20200327 13:08:23.440" endtime="20200327 13:08:28.068"></status>
 </suite>
 <statistics>
 <total>
