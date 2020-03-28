@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 3.1.2 (Python 3.8.1 on win32)" generated="20200327 18:51:55.160" rpa="false">
+<robot generator="Robot 3.1.2 (Python 3.8.1 on win32)" generated="20200329 01:34:49.905" rpa="false">
 <suite id="s1" name="Token TestCases" source="C:\Users\perennial\PycharmProjects\EscrowAPI\TestCases\EscrowToken_API\Token_TestCases.robot">
-<test id="s1-t1" name="TC_05 RegisterNewSeller with Valid JWT Token">
+<test id="s1-t1" name="TC_05 GetSellerDetails with Valid JWT Token">
 <kw name="GetToken Escrow" library="Get Token">
 <assign>
 <var>${TokenEscrow}</var>
@@ -12,8 +12,8 @@
 <arg>Session</arg>
 <arg>${URLEscrowAuthUAT}</arg>
 </arguments>
-<msg timestamp="20200327 18:51:55.652" level="INFO">Creating Session using : alias=Session, url=http://172.31.2.28/escrow_core/api/v1/Authentication/oauth2, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" starttime="20200327 18:51:55.652" endtime="20200327 18:51:55.653"></status>
+<msg timestamp="20200329 01:34:50.425" level="INFO">Creating Session using : alias=Session, url=http://172.31.2.28/escrow_core/api/v1/Authentication/oauth2, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20200329 01:34:50.425" endtime="20200329 01:34:50.426"></status>
 </kw>
 <kw name="Create Dictionary" library="BuiltIn">
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
@@ -23,8 +23,8 @@
 <assign>
 <var>${header}</var>
 </assign>
-<msg timestamp="20200327 18:51:55.653" level="INFO">${header} = {'Content-Type': 'application/x-www-form-urlencoded'}</msg>
-<status status="PASS" starttime="20200327 18:51:55.653" endtime="20200327 18:51:55.653"></status>
+<msg timestamp="20200329 01:34:50.426" level="INFO">${header} = {'Content-Type': 'application/x-www-form-urlencoded'}</msg>
+<status status="PASS" starttime="20200329 01:34:50.426" endtime="20200329 01:34:50.426"></status>
 </kw>
 <kw name="Set To Dictionary" library="Collections">
 <doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
@@ -33,7 +33,7 @@
 <arg>Authorization</arg>
 <arg>Basic ${Client_authKey}</arg>
 </arguments>
-<status status="PASS" starttime="20200327 18:51:55.653" endtime="20200327 18:51:55.654"></status>
+<status status="PASS" starttime="20200329 01:34:50.427" endtime="20200329 01:34:50.427"></status>
 </kw>
 <kw name="Create Dictionary" library="BuiltIn">
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
@@ -43,8 +43,8 @@
 <assign>
 <var>${Body}</var>
 </assign>
-<msg timestamp="20200327 18:51:55.654" level="INFO">${Body} = {'grant_type': 'client_credentials'}</msg>
-<status status="PASS" starttime="20200327 18:51:55.654" endtime="20200327 18:51:55.654"></status>
+<msg timestamp="20200329 01:34:50.427" level="INFO">${Body} = {'grant_type': 'client_credentials'}</msg>
+<status status="PASS" starttime="20200329 01:34:50.427" endtime="20200329 01:34:50.427"></status>
 </kw>
 <kw name="Post Request" library="RequestsLibrary">
 <doc>Send a POST request on the session object found using the
@@ -58,14 +58,12 @@ given `alias`</doc>
 <assign>
 <var>${response}</var>
 </assign>
-<msg timestamp="20200327 18:51:55.655" level="INFO">POST Request using : uri=/token, params=None, files=None, allow_redirects=True, timeout=None
+<msg timestamp="20200329 01:34:50.429" level="INFO">POST Request using : uri=/token, params=None, files=None, allow_redirects=True, timeout=None
 headers={'User-Agent': 'python-requests/2.23.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic MDAxOmthaWRlZVNlY3JldEtleVRlc3Q='} 
 data=grant_type=client_credentials 
 json=None</msg>
-<msg timestamp="20200327 18:52:16.661" level="WARN">Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x04961F40&gt;: Failed to establish a new connection: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond')': /escrow_core/api/v1/Authentication/oauth2/token</msg>
-<msg timestamp="20200327 18:52:37.869" level="WARN">Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0499D0A0&gt;: Failed to establish a new connection: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond')': /escrow_core/api/v1/Authentication/oauth2/token</msg>
-<msg timestamp="20200327 18:52:53.362" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20200327 18:51:55.655" endtime="20200327 18:52:53.362"></status>
+<msg timestamp="20200329 01:34:50.608" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20200329 01:34:50.428" endtime="20200329 01:34:50.608"></status>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to strings.</doc>
@@ -73,192 +71,27 @@ json=None</msg>
 <arg>${response.status_code}</arg>
 <arg>200</arg>
 </arguments>
-<msg timestamp="20200327 18:52:53.363" level="INFO">Argument types are:
+<msg timestamp="20200329 01:34:50.609" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20200327 18:52:53.362" endtime="20200327 18:52:53.363"></status>
+<status status="PASS" starttime="20200329 01:34:50.609" endtime="20200329 01:34:50.609"></status>
 </kw>
 <kw name="Log" library="BuiltIn">
 <doc>Logs the given message with the given level.</doc>
 <arguments>
 <arg>${response.json()['accessToken']}</arg>
 </arguments>
-<msg timestamp="20200327 18:52:53.364" level="INFO">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QMlIvUnZId0lBa29YSy9Oc0FKU0JQQ1M1SFNqZHRxaXlpdllIUnhMSzRVT09FakVZTE1LR1YwZzMwbGRGa3VyZ3I2d3VwRzFiUHR3dk5ET0gxTXIxTzQ9IiwibmJmIjoxNTg1MzE1MzcyLCJleHAiOjE1ODUzMTU0MzIsImlhdCI6MTU4NTMxNTM3MiwiaXNzIjoiZXNjcm93LWNvcmUtYXBpIiwiYXVkIjoiZXNjcm93LWNvcmUtY2xpZW50In0.SPAeMxmoKBajhyZDEowxsA0fLd8RBJM2enz-FM5BsPM</msg>
-<status status="PASS" starttime="20200327 18:52:53.363" endtime="20200327 18:52:53.364"></status>
+<msg timestamp="20200329 01:34:50.610" level="INFO">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QOUNTZGVVUnZCTUkxaFdCZTdpUFRIVjI0QlpVREhMRUlvMTZ2RWR1YytKUmQzcGJUQnpnOTF0TkJlcEFqTk42MFRRaENWcnNtMGFEZzF6T0syOXF1Mm89IiwibmJmIjoxNTg1NDI1ODkwLCJleHAiOjE1ODU0MjU5NTAsImlhdCI6MTU4NTQyNTg5MCwiaXNzIjoiZXNjcm93LWNvcmUtYXBpIiwiYXVkIjoiZXNjcm93LWNvcmUtY2xpZW50In0.R1Kp9IsSMk_Zo9aKXBYOcZHcT9n8kWPCGq2Gm-tMP9Y</msg>
+<status status="PASS" starttime="20200329 01:34:50.609" endtime="20200329 01:34:50.610"></status>
 </kw>
-<msg timestamp="20200327 18:52:53.364" level="INFO">${TokenEscrow} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QMlIvUnZId0lBa29YSy9Oc0FKU0JQQ1M1SFNqZHRxaXl...</msg>
-<status status="PASS" starttime="20200327 18:51:55.652" endtime="20200327 18:52:53.364"></status>
+<msg timestamp="20200329 01:34:50.611" level="INFO">${TokenEscrow} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QOUNTZGVVUnZCTUkxaFdCZTdpUFRIVjI0QlpVREhMRUl...</msg>
+<status status="PASS" starttime="20200329 01:34:50.425" endtime="20200329 01:34:50.611"></status>
 </kw>
-<kw name="Randome_IDNumber" library="Register_Global_Keywords">
+<kw name="RegisterSellerID" library="Register_Global_Keywords">
 <assign>
+<var>${SellerId}</var>
 <var>${IdNumber}</var>
 </assign>
-<kw name="Generate Random String" library="String">
-<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
-<arguments>
-<arg>14</arg>
-<arg>[NUMBERS]</arg>
-</arguments>
-<assign>
-<var>${Id}</var>
-</assign>
-<msg timestamp="20200327 18:52:53.366" level="INFO">${Id} = 34552095286855</msg>
-<status status="PASS" starttime="20200327 18:52:53.365" endtime="20200327 18:52:53.366"></status>
-</kw>
-<kw name="Set Global Variable" library="BuiltIn">
-<doc>Makes a variable available globally in all tests and suites.</doc>
-<arguments>
-<arg>${IdNumber}</arg>
-<arg>${Id}</arg>
-</arguments>
-<msg timestamp="20200327 18:52:53.367" level="INFO">${IdNumber} = 34552095286855</msg>
-<status status="PASS" starttime="20200327 18:52:53.366" endtime="20200327 18:52:53.367"></status>
-</kw>
-<msg timestamp="20200327 18:52:53.367" level="INFO">${IdNumber} = 34552095286855</msg>
-<status status="PASS" starttime="20200327 18:52:53.365" endtime="20200327 18:52:53.367"></status>
-</kw>
-<kw name="RegisterSeller" library="Register_Seller_API">
-<arguments>
-<arg>${TokenEscrow}</arg>
-<arg>@{escrowCompId}</arg>
-<arg>${IdNumber}</arg>
-<arg>${1}</arg>
-<arg>${0}</arg>
-<arg>000</arg>
-<arg>Success</arg>
-</arguments>
-<kw name="Create Session" library="RequestsLibrary">
-<doc>Create Session: create a HTTP session to a server</doc>
-<arguments>
-<arg>RegisterNewSeller</arg>
-<arg>http://172.31.2.28/escrow_core/api/v1</arg>
-</arguments>
-<msg timestamp="20200327 18:52:53.369" level="INFO">Creating Session using : alias=RegisterNewSeller, url=http://172.31.2.28/escrow_core/api/v1, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" starttime="20200327 18:52:53.369" endtime="20200327 18:52:53.369"></status>
-</kw>
-<kw name="Convert To Integer" library="BuiltIn">
-<doc>Converts the given item to an integer number.</doc>
-<arguments>
-<arg>${typeOfID}</arg>
-</arguments>
-<assign>
-<var>${typeID}</var>
-</assign>
-<msg timestamp="20200327 18:52:53.370" level="INFO">${typeID} = 1</msg>
-<status status="PASS" starttime="20200327 18:52:53.369" endtime="20200327 18:52:53.370"></status>
-</kw>
-<kw name="Convert To Integer" library="BuiltIn">
-<doc>Converts the given item to an integer number.</doc>
-<arguments>
-<arg>${kycRequest}</arg>
-</arguments>
-<assign>
-<var>${KeyReq}</var>
-</assign>
-<msg timestamp="20200327 18:52:53.371" level="INFO">${KeyReq} = 0</msg>
-<status status="PASS" starttime="20200327 18:52:53.370" endtime="20200327 18:52:53.371"></status>
-</kw>
-<kw name="Create Dictionary" library="BuiltIn">
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<arguments>
-<arg>escrowCompanyId=${escrowCompanyID}</arg>
-<arg>idNumber=${idNumber}</arg>
-<arg>typeOfId=${typeID}</arg>
-<arg>kycRequest=${KeyReq}</arg>
-</arguments>
-<assign>
-<var>${body}</var>
-</assign>
-<msg timestamp="20200327 18:52:53.372" level="INFO">${body} = {'escrowCompanyId': '001', 'idNumber': '34552095286855', 'typeOfId': 1, 'kycRequest': 0}</msg>
-<status status="PASS" starttime="20200327 18:52:53.371" endtime="20200327 18:52:53.372"></status>
-</kw>
-<kw name="Set Variable" library="BuiltIn">
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<arguments>
-<arg>bearer ${Token}</arg>
-</arguments>
-<assign>
-<var>${AuthToken}</var>
-</assign>
-<msg timestamp="20200327 18:52:53.372" level="INFO">${AuthToken} = bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QMlIvUnZId0lBa29YSy9Oc0FKU0JQQ1M1SFNq...</msg>
-<status status="PASS" starttime="20200327 18:52:53.372" endtime="20200327 18:52:53.372"></status>
-</kw>
-<kw name="Create Dictionary" library="BuiltIn">
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<arguments>
-<arg>Content-Type=application/json</arg>
-<arg>Authorization=${AuthToken}</arg>
-</arguments>
-<assign>
-<var>${header}</var>
-</assign>
-<msg timestamp="20200327 18:52:53.373" level="INFO">${header} = {'Content-Type': 'application/json', 'Authorization': 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srb...</msg>
-<status status="PASS" starttime="20200327 18:52:53.373" endtime="20200327 18:52:53.373"></status>
-</kw>
-<kw name="Post Request" library="RequestsLibrary">
-<doc>Send a POST request on the session object found using the
-given `alias`</doc>
-<arguments>
-<arg>RegisterNewSeller</arg>
-<arg>/seller/register</arg>
-<arg>data=${body}</arg>
-<arg>headers=${header}</arg>
-</arguments>
-<assign>
-<var>${response}</var>
-</assign>
-<msg timestamp="20200327 18:52:53.374" level="INFO">POST Request using : uri=/seller/register, params=None, files=None, allow_redirects=True, timeout=None
-headers={'User-Agent': 'python-requests/2.23.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Authorization': 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QMlIvUnZId0lBa29YSy9Oc0FKU0JQQ1M1SFNqZHRxaXlpdllIUnhMSzRVT09FakVZTE1LR1YwZzMwbGRGa3VyZ3I2d3VwRzFiUHR3dk5ET0gxTXIxTzQ9IiwibmJmIjoxNTg1MzE1MzcyLCJleHAiOjE1ODUzMTU0MzIsImlhdCI6MTU4NTMxNTM3MiwiaXNzIjoiZXNjcm93LWNvcmUtYXBpIiwiYXVkIjoiZXNjcm93LWNvcmUtY2xpZW50In0.SPAeMxmoKBajhyZDEowxsA0fLd8RBJM2enz-FM5BsPM'} 
-data={"escrowCompanyId": "001", "idNumber": "34552095286855", "typeOfId": 1, "kycRequest": 0} 
-json=None</msg>
-<msg timestamp="20200327 18:52:53.943" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20200327 18:52:53.373" endtime="20200327 18:52:53.943"></status>
-</kw>
-<kw name="Log" library="BuiltIn">
-<doc>Logs the given message with the given level.</doc>
-<arguments>
-<arg>${response.text}</arg>
-<arg>console=True</arg>
-</arguments>
-<msg timestamp="20200327 18:52:53.945" level="INFO">{"sellerId":"20745190-6cbf-4fe2-a9c5-fd386ae8d8f4","responseCode":"000","resDescription":"Success"}</msg>
-<status status="PASS" starttime="20200327 18:52:53.944" endtime="20200327 18:52:53.948"></status>
-</kw>
-<kw name="Should Be Equal As Strings" library="BuiltIn">
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<arguments>
-<arg>${response.status_code}</arg>
-<arg>200</arg>
-</arguments>
-<msg timestamp="20200327 18:52:53.950" level="INFO">Argument types are:
-&lt;class 'int'&gt;
-&lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20200327 18:52:53.948" endtime="20200327 18:52:53.950"></status>
-</kw>
-<kw name="Should Be Equal As Strings" library="BuiltIn">
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<arguments>
-<arg>${response.json()['responseCode']}</arg>
-<arg>${ResponseCode}</arg>
-</arguments>
-<status status="PASS" starttime="20200327 18:52:53.951" endtime="20200327 18:52:53.952"></status>
-</kw>
-<kw name="Should Be Equal As Strings" library="BuiltIn">
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<arguments>
-<arg>${response.json()['resDescription']}</arg>
-<arg>${ResponseDescription}</arg>
-</arguments>
-<status status="PASS" starttime="20200327 18:52:53.952" endtime="20200327 18:52:53.955"></status>
-</kw>
-<status status="PASS" starttime="20200327 18:52:53.368" endtime="20200327 18:52:53.955"></status>
-</kw>
-<doc>Valid: To check API response with valid JWT token.</doc>
-<tags>
-<tag>000</tag>
-</tags>
-<status status="PASS" starttime="20200327 18:51:55.650" endtime="20200327 18:52:53.956" critical="yes"></status>
-</test>
-<test id="s1-t2" name="TC_05 UpdateSellerStatus with Valid JWT Token">
 <kw name="GetToken Escrow" library="Get Token">
 <assign>
 <var>${TokenEscrow}</var>
@@ -269,8 +102,8 @@ json=None</msg>
 <arg>Session</arg>
 <arg>${URLEscrowAuthUAT}</arg>
 </arguments>
-<msg timestamp="20200327 18:52:53.960" level="INFO">Creating Session using : alias=Session, url=http://172.31.2.28/escrow_core/api/v1/Authentication/oauth2, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" starttime="20200327 18:52:53.960" endtime="20200327 18:52:53.961"></status>
+<msg timestamp="20200329 01:34:50.612" level="INFO">Creating Session using : alias=Session, url=http://172.31.2.28/escrow_core/api/v1/Authentication/oauth2, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20200329 01:34:50.612" endtime="20200329 01:34:50.613"></status>
 </kw>
 <kw name="Create Dictionary" library="BuiltIn">
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
@@ -280,8 +113,8 @@ json=None</msg>
 <assign>
 <var>${header}</var>
 </assign>
-<msg timestamp="20200327 18:52:53.962" level="INFO">${header} = {'Content-Type': 'application/x-www-form-urlencoded'}</msg>
-<status status="PASS" starttime="20200327 18:52:53.961" endtime="20200327 18:52:53.962"></status>
+<msg timestamp="20200329 01:34:50.613" level="INFO">${header} = {'Content-Type': 'application/x-www-form-urlencoded'}</msg>
+<status status="PASS" starttime="20200329 01:34:50.613" endtime="20200329 01:34:50.613"></status>
 </kw>
 <kw name="Set To Dictionary" library="Collections">
 <doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
@@ -290,7 +123,7 @@ json=None</msg>
 <arg>Authorization</arg>
 <arg>Basic ${Client_authKey}</arg>
 </arguments>
-<status status="PASS" starttime="20200327 18:52:53.963" endtime="20200327 18:52:53.963"></status>
+<status status="PASS" starttime="20200329 01:34:50.614" endtime="20200329 01:34:50.614"></status>
 </kw>
 <kw name="Create Dictionary" library="BuiltIn">
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
@@ -300,8 +133,8 @@ json=None</msg>
 <assign>
 <var>${Body}</var>
 </assign>
-<msg timestamp="20200327 18:52:53.964" level="INFO">${Body} = {'grant_type': 'client_credentials'}</msg>
-<status status="PASS" starttime="20200327 18:52:53.963" endtime="20200327 18:52:53.964"></status>
+<msg timestamp="20200329 01:34:50.615" level="INFO">${Body} = {'grant_type': 'client_credentials'}</msg>
+<status status="PASS" starttime="20200329 01:34:50.614" endtime="20200329 01:34:50.615"></status>
 </kw>
 <kw name="Post Request" library="RequestsLibrary">
 <doc>Send a POST request on the session object found using the
@@ -315,12 +148,12 @@ given `alias`</doc>
 <assign>
 <var>${response}</var>
 </assign>
-<msg timestamp="20200327 18:52:53.965" level="INFO">POST Request using : uri=/token, params=None, files=None, allow_redirects=True, timeout=None
+<msg timestamp="20200329 01:34:50.616" level="INFO">POST Request using : uri=/token, params=None, files=None, allow_redirects=True, timeout=None
 headers={'User-Agent': 'python-requests/2.23.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic MDAxOmthaWRlZVNlY3JldEtleVRlc3Q='} 
 data=grant_type=client_credentials 
 json=None</msg>
-<msg timestamp="20200327 18:52:54.503" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20200327 18:52:53.965" endtime="20200327 18:52:54.503"></status>
+<msg timestamp="20200329 01:34:51.105" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20200329 01:34:50.615" endtime="20200329 01:34:51.105"></status>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to strings.</doc>
@@ -328,110 +161,21 @@ json=None</msg>
 <arg>${response.status_code}</arg>
 <arg>200</arg>
 </arguments>
-<msg timestamp="20200327 18:52:54.504" level="INFO">Argument types are:
+<msg timestamp="20200329 01:34:51.105" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20200327 18:52:54.503" endtime="20200327 18:52:54.504"></status>
+<status status="PASS" starttime="20200329 01:34:51.105" endtime="20200329 01:34:51.106"></status>
 </kw>
 <kw name="Log" library="BuiltIn">
 <doc>Logs the given message with the given level.</doc>
 <arguments>
 <arg>${response.json()['accessToken']}</arg>
 </arguments>
-<msg timestamp="20200327 18:52:54.505" level="INFO">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QL2lPSTVFUkxJT2x4YldYS2dMd05PTGxnejBTL3pnNzhJeFJUcDViSHNKRUtkQUtsT0lTYWtQTVJwMzJyS2VwQ2lvRWlEelFuVXFKaDNqelIyeEtjZDA9IiwibmJmIjoxNTg1MzE1MzczLCJleHAiOjE1ODUzMTU0MzMsImlhdCI6MTU4NTMxNTM3MywiaXNzIjoiZXNjcm93LWNvcmUtYXBpIiwiYXVkIjoiZXNjcm93LWNvcmUtY2xpZW50In0._YsOxVkzSpxB8Mz9haTKVzylPLTU_r3fWubfHcbKNFY</msg>
-<status status="PASS" starttime="20200327 18:52:54.504" endtime="20200327 18:52:54.505"></status>
+<msg timestamp="20200329 01:34:51.106" level="INFO">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QM0Q5RmNsU3ByaDRjTk9zOHZWUDdXK3FmQU03TWZlUTJ6MkY5dnRycFZvaHA1SjJrYlVmc1loR2lyZGNpR1V2WDV1M2ZtOWhiSWFQaWhCY3dqUk5Kc0U9IiwibmJmIjoxNTg1NDI1ODkwLCJleHAiOjE1ODU0MjU5NTAsImlhdCI6MTU4NTQyNTg5MCwiaXNzIjoiZXNjcm93LWNvcmUtYXBpIiwiYXVkIjoiZXNjcm93LWNvcmUtY2xpZW50In0.yVDEHI1q7Dq4JR2J9Ixg7EJ6ionC0RdzR81GmZouzCM</msg>
+<status status="PASS" starttime="20200329 01:34:51.106" endtime="20200329 01:34:51.106"></status>
 </kw>
-<msg timestamp="20200327 18:52:54.505" level="INFO">${TokenEscrow} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QL2lPSTVFUkxJT2x4YldYS2dMd05PTGxnejBTL3pnNzh...</msg>
-<status status="PASS" starttime="20200327 18:52:53.959" endtime="20200327 18:52:54.505"></status>
-</kw>
-<kw name="RegisterSellerID" library="Register_Global_Keywords">
-<assign>
-<var>${SellerId}</var>
-</assign>
-<kw name="GetToken Escrow" library="Get Token">
-<assign>
-<var>${TokenEscrow}</var>
-</assign>
-<kw name="Create Session" library="RequestsLibrary">
-<doc>Create Session: create a HTTP session to a server</doc>
-<arguments>
-<arg>Session</arg>
-<arg>${URLEscrowAuthUAT}</arg>
-</arguments>
-<msg timestamp="20200327 18:52:54.507" level="INFO">Creating Session using : alias=Session, url=http://172.31.2.28/escrow_core/api/v1/Authentication/oauth2, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" starttime="20200327 18:52:54.507" endtime="20200327 18:52:54.507"></status>
-</kw>
-<kw name="Create Dictionary" library="BuiltIn">
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<arguments>
-<arg>Content-Type=application/x-www-form-urlencoded</arg>
-</arguments>
-<assign>
-<var>${header}</var>
-</assign>
-<msg timestamp="20200327 18:52:54.508" level="INFO">${header} = {'Content-Type': 'application/x-www-form-urlencoded'}</msg>
-<status status="PASS" starttime="20200327 18:52:54.508" endtime="20200327 18:52:54.508"></status>
-</kw>
-<kw name="Set To Dictionary" library="Collections">
-<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
-<arguments>
-<arg>${header}</arg>
-<arg>Authorization</arg>
-<arg>Basic ${Client_authKey}</arg>
-</arguments>
-<status status="PASS" starttime="20200327 18:52:54.508" endtime="20200327 18:52:54.508"></status>
-</kw>
-<kw name="Create Dictionary" library="BuiltIn">
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<arguments>
-<arg>grant_type=client_credentials</arg>
-</arguments>
-<assign>
-<var>${Body}</var>
-</assign>
-<msg timestamp="20200327 18:52:54.509" level="INFO">${Body} = {'grant_type': 'client_credentials'}</msg>
-<status status="PASS" starttime="20200327 18:52:54.509" endtime="20200327 18:52:54.509"></status>
-</kw>
-<kw name="Post Request" library="RequestsLibrary">
-<doc>Send a POST request on the session object found using the
-given `alias`</doc>
-<arguments>
-<arg>Session</arg>
-<arg>/token</arg>
-<arg>data=${Body}</arg>
-<arg>headers=${header}</arg>
-</arguments>
-<assign>
-<var>${response}</var>
-</assign>
-<msg timestamp="20200327 18:52:54.510" level="INFO">POST Request using : uri=/token, params=None, files=None, allow_redirects=True, timeout=None
-headers={'User-Agent': 'python-requests/2.23.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic MDAxOmthaWRlZVNlY3JldEtleVRlc3Q='} 
-data=grant_type=client_credentials 
-json=None</msg>
-<msg timestamp="20200327 18:52:54.754" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20200327 18:52:54.510" endtime="20200327 18:52:54.754"></status>
-</kw>
-<kw name="Should Be Equal As Strings" library="BuiltIn">
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<arguments>
-<arg>${response.status_code}</arg>
-<arg>200</arg>
-</arguments>
-<msg timestamp="20200327 18:52:54.755" level="INFO">Argument types are:
-&lt;class 'int'&gt;
-&lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20200327 18:52:54.755" endtime="20200327 18:52:54.756"></status>
-</kw>
-<kw name="Log" library="BuiltIn">
-<doc>Logs the given message with the given level.</doc>
-<arguments>
-<arg>${response.json()['accessToken']}</arg>
-</arguments>
-<msg timestamp="20200327 18:52:54.757" level="INFO">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QL3J6YVJyRFE1aEtpK0VIcWZrTjFrcWpKVWZNMm1hOUtCcjd1NGVvYlJwYWJGN0l6akhRZmtEVXhQSXRVVnA4MDg2SGdGU0sxZmkwK3BHSHVFVit5Ym89IiwibmJmIjoxNTg1MzE1Mzc0LCJleHAiOjE1ODUzMTU0MzQsImlhdCI6MTU4NTMxNTM3NCwiaXNzIjoiZXNjcm93LWNvcmUtYXBpIiwiYXVkIjoiZXNjcm93LWNvcmUtY2xpZW50In0.InCfD4utac_YJVkjWfJjZ9Qt8L9Sb_8U7IWMhtEQUuc</msg>
-<status status="PASS" starttime="20200327 18:52:54.756" endtime="20200327 18:52:54.757"></status>
-</kw>
-<msg timestamp="20200327 18:52:54.758" level="INFO">${TokenEscrow} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QL3J6YVJyRFE1aEtpK0VIcWZrTjFrcWpKVWZNMm1hOUt...</msg>
-<status status="PASS" starttime="20200327 18:52:54.506" endtime="20200327 18:52:54.758"></status>
+<msg timestamp="20200329 01:34:51.107" level="INFO">${TokenEscrow} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QM0Q5RmNsU3ByaDRjTk9zOHZWUDdXK3FmQU03TWZlUTJ...</msg>
+<status status="PASS" starttime="20200329 01:34:50.612" endtime="20200329 01:34:51.107"></status>
 </kw>
 <kw name="Randome_IDNumber" library="Register_Global_Keywords">
 <assign>
@@ -446,8 +190,8 @@ json=None</msg>
 <assign>
 <var>${Id}</var>
 </assign>
-<msg timestamp="20200327 18:52:54.761" level="INFO">${Id} = 77301475934586</msg>
-<status status="PASS" starttime="20200327 18:52:54.760" endtime="20200327 18:52:54.761"></status>
+<msg timestamp="20200329 01:34:51.108" level="INFO">${Id} = 16343339982233</msg>
+<status status="PASS" starttime="20200329 01:34:51.107" endtime="20200329 01:34:51.108"></status>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <doc>Makes a variable available globally in all tests and suites.</doc>
@@ -455,11 +199,11 @@ json=None</msg>
 <arg>${IdNumber}</arg>
 <arg>${Id}</arg>
 </arguments>
-<msg timestamp="20200327 18:52:54.762" level="INFO">${IdNumber} = 77301475934586</msg>
-<status status="PASS" starttime="20200327 18:52:54.762" endtime="20200327 18:52:54.762"></status>
+<msg timestamp="20200329 01:34:51.108" level="INFO">${IdNumber} = 16343339982233</msg>
+<status status="PASS" starttime="20200329 01:34:51.108" endtime="20200329 01:34:51.108"></status>
 </kw>
-<msg timestamp="20200327 18:52:54.762" level="INFO">${idNum} = 77301475934586</msg>
-<status status="PASS" starttime="20200327 18:52:54.758" endtime="20200327 18:52:54.762"></status>
+<msg timestamp="20200329 01:34:51.109" level="INFO">${idNum} = 16343339982233</msg>
+<status status="PASS" starttime="20200329 01:34:51.107" endtime="20200329 01:34:51.109"></status>
 </kw>
 <kw name="Randome_MobileNumber" library="Register_Global_Keywords">
 <assign>
@@ -474,8 +218,8 @@ json=None</msg>
 <assign>
 <var>${mobile}</var>
 </assign>
-<msg timestamp="20200327 18:52:54.763" level="INFO">${mobile} = 8468732936</msg>
-<status status="PASS" starttime="20200327 18:52:54.763" endtime="20200327 18:52:54.763"></status>
+<msg timestamp="20200329 01:34:51.110" level="INFO">${mobile} = 7405117294</msg>
+<status status="PASS" starttime="20200329 01:34:51.109" endtime="20200329 01:34:51.110"></status>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <doc>Makes a variable available globally in all tests and suites.</doc>
@@ -483,11 +227,11 @@ json=None</msg>
 <arg>${mobileNo}</arg>
 <arg>${mobile}</arg>
 </arguments>
-<msg timestamp="20200327 18:52:54.764" level="INFO">${mobileNo} = 8468732936</msg>
-<status status="PASS" starttime="20200327 18:52:54.764" endtime="20200327 18:52:54.764"></status>
+<msg timestamp="20200329 01:34:51.110" level="INFO">${mobileNo} = 7405117294</msg>
+<status status="PASS" starttime="20200329 01:34:51.110" endtime="20200329 01:34:51.110"></status>
 </kw>
-<msg timestamp="20200327 18:52:54.765" level="INFO">${MobNo} = 8468732936</msg>
-<status status="PASS" starttime="20200327 18:52:54.762" endtime="20200327 18:52:54.765"></status>
+<msg timestamp="20200329 01:34:51.110" level="INFO">${MobNo} = 7405117294</msg>
+<status status="PASS" starttime="20200329 01:34:51.109" endtime="20200329 01:34:51.110"></status>
 </kw>
 <kw name="Randome_EmailId" library="Register_Global_Keywords">
 <assign>
@@ -506,8 +250,8 @@ json=None</msg>
 <assign>
 <var>${Emailnum}</var>
 </assign>
-<msg timestamp="20200327 18:52:54.766" level="INFO">${Emailnum} = 22547</msg>
-<status status="PASS" starttime="20200327 18:52:54.766" endtime="20200327 18:52:54.766"></status>
+<msg timestamp="20200329 01:34:51.112" level="INFO">${Emailnum} = 15510</msg>
+<status status="PASS" starttime="20200329 01:34:51.111" endtime="20200329 01:34:51.112"></status>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <doc>Makes a variable available globally in all tests and suites.</doc>
@@ -515,11 +259,11 @@ json=None</msg>
 <arg>${enum}</arg>
 <arg>${Emailnum}</arg>
 </arguments>
-<msg timestamp="20200327 18:52:54.767" level="INFO">${enum} = 22547</msg>
-<status status="PASS" starttime="20200327 18:52:54.767" endtime="20200327 18:52:54.768"></status>
+<msg timestamp="20200329 01:34:51.112" level="INFO">${enum} = 15510</msg>
+<status status="PASS" starttime="20200329 01:34:51.112" endtime="20200329 01:34:51.112"></status>
 </kw>
-<msg timestamp="20200327 18:52:54.768" level="INFO">${num} = 22547</msg>
-<status status="PASS" starttime="20200327 18:52:54.765" endtime="20200327 18:52:54.768"></status>
+<msg timestamp="20200329 01:34:51.112" level="INFO">${num} = 15510</msg>
+<status status="PASS" starttime="20200329 01:34:51.111" endtime="20200329 01:34:51.113"></status>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <doc>Returns the given values which can then be assigned to a variables.</doc>
@@ -529,8 +273,8 @@ json=None</msg>
 <assign>
 <var>${emailid}</var>
 </assign>
-<msg timestamp="20200327 18:52:54.770" level="INFO">${emailid} = pavan22547@2c2p.com</msg>
-<status status="PASS" starttime="20200327 18:52:54.769" endtime="20200327 18:52:54.770"></status>
+<msg timestamp="20200329 01:34:51.113" level="INFO">${emailid} = pavan15510@2c2p.com</msg>
+<status status="PASS" starttime="20200329 01:34:51.113" endtime="20200329 01:34:51.113"></status>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <doc>Makes a variable available globally in all tests and suites.</doc>
@@ -538,11 +282,11 @@ json=None</msg>
 <arg>${email}</arg>
 <arg>${emailid}</arg>
 </arguments>
-<msg timestamp="20200327 18:52:54.771" level="INFO">${email} = pavan22547@2c2p.com</msg>
-<status status="PASS" starttime="20200327 18:52:54.770" endtime="20200327 18:52:54.771"></status>
+<msg timestamp="20200329 01:34:51.114" level="INFO">${email} = pavan15510@2c2p.com</msg>
+<status status="PASS" starttime="20200329 01:34:51.113" endtime="20200329 01:34:51.114"></status>
 </kw>
-<msg timestamp="20200327 18:52:54.771" level="INFO">${emailid} = pavan22547@2c2p.com</msg>
-<status status="PASS" starttime="20200327 18:52:54.765" endtime="20200327 18:52:54.772"></status>
+<msg timestamp="20200329 01:34:51.114" level="INFO">${emailid} = pavan15510@2c2p.com</msg>
+<status status="PASS" starttime="20200329 01:34:51.111" endtime="20200329 01:34:51.114"></status>
 </kw>
 <kw name="RegisterSeller with valid Data" library="Register_Seller_API">
 <arguments>
@@ -582,8 +326,8 @@ json=None</msg>
 <arg>RegisterNewSeller</arg>
 <arg>http://172.31.2.28/escrow_core/api/v1</arg>
 </arguments>
-<msg timestamp="20200327 18:52:54.776" level="INFO">Creating Session using : alias=RegisterNewSeller, url=http://172.31.2.28/escrow_core/api/v1, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" starttime="20200327 18:52:54.776" endtime="20200327 18:52:54.777"></status>
+<msg timestamp="20200329 01:34:51.116" level="INFO">Creating Session using : alias=RegisterNewSeller, url=http://172.31.2.28/escrow_core/api/v1, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20200329 01:34:51.116" endtime="20200329 01:34:51.117"></status>
 </kw>
 <kw name="Convert To Integer" library="BuiltIn">
 <doc>Converts the given item to an integer number.</doc>
@@ -593,8 +337,8 @@ json=None</msg>
 <assign>
 <var>${typeID}</var>
 </assign>
-<msg timestamp="20200327 18:52:54.778" level="INFO">${typeID} = 3</msg>
-<status status="PASS" starttime="20200327 18:52:54.777" endtime="20200327 18:52:54.778"></status>
+<msg timestamp="20200329 01:34:51.117" level="INFO">${typeID} = 3</msg>
+<status status="PASS" starttime="20200329 01:34:51.117" endtime="20200329 01:34:51.117"></status>
 </kw>
 <kw name="Convert To Integer" library="BuiltIn">
 <doc>Converts the given item to an integer number.</doc>
@@ -604,8 +348,8 @@ json=None</msg>
 <assign>
 <var>${KeyReq}</var>
 </assign>
-<msg timestamp="20200327 18:52:54.778" level="INFO">${KeyReq} = 0</msg>
-<status status="PASS" starttime="20200327 18:52:54.778" endtime="20200327 18:52:54.778"></status>
+<msg timestamp="20200329 01:34:51.118" level="INFO">${KeyReq} = 0</msg>
+<status status="PASS" starttime="20200329 01:34:51.118" endtime="20200329 01:34:51.118"></status>
 </kw>
 <kw name="Create Dictionary" library="BuiltIn">
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
@@ -624,8 +368,8 @@ json=None</msg>
 <assign>
 <var>${UserAddress}</var>
 </assign>
-<msg timestamp="20200327 18:52:54.780" level="INFO">${UserAddress} = {'homeAddress1': 'homeaddr1', 'homeAddress2': 'homeaddr2', 'countryId': '764', 'stateId': '001', 'state': 'Bangkok', 'postalCode': '10100', 'addressDefine1': 'addrdef1', 'addressDefine2': 'addrdef2', ...</msg>
-<status status="PASS" starttime="20200327 18:52:54.779" endtime="20200327 18:52:54.780"></status>
+<msg timestamp="20200329 01:34:51.119" level="INFO">${UserAddress} = {'homeAddress1': 'homeaddr1', 'homeAddress2': 'homeaddr2', 'countryId': '764', 'stateId': '001', 'state': 'Bangkok', 'postalCode': '10100', 'addressDefine1': 'addrdef1', 'addressDefine2': 'addrdef2', ...</msg>
+<status status="PASS" starttime="20200329 01:34:51.118" endtime="20200329 01:34:51.120"></status>
 </kw>
 <kw name="Create Dictionary" library="BuiltIn">
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
@@ -644,8 +388,8 @@ json=None</msg>
 <assign>
 <var>${MailAddress}</var>
 </assign>
-<msg timestamp="20200327 18:52:54.782" level="INFO">${MailAddress} = {'mailAddress1': 'mailaddr1', 'mailAddress2': 'mailaddr2', 'countryId': '764', 'stateId': '002', 'state': 'Bangkok', 'postalCode': '11100', 'addressDefine1': 'addrdef1', 'addressDefine2': 'addrdef2', ...</msg>
-<status status="PASS" starttime="20200327 18:52:54.781" endtime="20200327 18:52:54.782"></status>
+<msg timestamp="20200329 01:34:51.121" level="INFO">${MailAddress} = {'mailAddress1': 'mailaddr1', 'mailAddress2': 'mailaddr2', 'countryId': '764', 'stateId': '002', 'state': 'Bangkok', 'postalCode': '11100', 'addressDefine1': 'addrdef1', 'addressDefine2': 'addrdef2', ...</msg>
+<status status="PASS" starttime="20200329 01:34:51.120" endtime="20200329 01:34:51.121"></status>
 </kw>
 <kw name="Create Dictionary" library="BuiltIn">
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
@@ -679,8 +423,8 @@ json=None</msg>
 <assign>
 <var>${body}</var>
 </assign>
-<msg timestamp="20200327 18:52:54.803" level="INFO">${body} = {'escrowCompanyId': '001', 'idNumber': '77301475934586', 'typeOfId': 3, 'mobileCountryCode': '67', 'mobileNo': '8468732936', 'email': 'pavan22547@2c2p.com', 'gender': 'M', 'titleEn': 'MR.', 'firstName...</msg>
-<status status="PASS" starttime="20200327 18:52:54.782" endtime="20200327 18:52:54.804"></status>
+<msg timestamp="20200329 01:34:51.124" level="INFO">${body} = {'escrowCompanyId': '001', 'idNumber': '16343339982233', 'typeOfId': 3, 'mobileCountryCode': '67', 'mobileNo': '7405117294', 'email': 'pavan15510@2c2p.com', 'gender': 'M', 'titleEn': 'MR.', 'firstName...</msg>
+<status status="PASS" starttime="20200329 01:34:51.121" endtime="20200329 01:34:51.124"></status>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <doc>Returns the given values which can then be assigned to a variables.</doc>
@@ -690,8 +434,8 @@ json=None</msg>
 <assign>
 <var>${AuthToken}</var>
 </assign>
-<msg timestamp="20200327 18:52:54.805" level="INFO">${AuthToken} = bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QL3J6YVJyRFE1aEtpK0VIcWZrTjFrcWpKVWZN...</msg>
-<status status="PASS" starttime="20200327 18:52:54.804" endtime="20200327 18:52:54.805"></status>
+<msg timestamp="20200329 01:34:51.124" level="INFO">${AuthToken} = bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QM0Q5RmNsU3ByaDRjTk9zOHZWUDdXK3FmQU03...</msg>
+<status status="PASS" starttime="20200329 01:34:51.124" endtime="20200329 01:34:51.124"></status>
 </kw>
 <kw name="Create Dictionary" library="BuiltIn">
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
@@ -702,8 +446,8 @@ json=None</msg>
 <assign>
 <var>${header}</var>
 </assign>
-<msg timestamp="20200327 18:52:54.806" level="INFO">${header} = {'Content-Type': 'application/json', 'Authorization': 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srb...</msg>
-<status status="PASS" starttime="20200327 18:52:54.805" endtime="20200327 18:52:54.806"></status>
+<msg timestamp="20200329 01:34:51.125" level="INFO">${header} = {'Content-Type': 'application/json', 'Authorization': 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srb...</msg>
+<status status="PASS" starttime="20200329 01:34:51.124" endtime="20200329 01:34:51.125"></status>
 </kw>
 <kw name="Post Request" library="RequestsLibrary">
 <doc>Send a POST request on the session object found using the
@@ -717,12 +461,12 @@ given `alias`</doc>
 <assign>
 <var>${response}</var>
 </assign>
-<msg timestamp="20200327 18:52:54.807" level="INFO">POST Request using : uri=/seller/register, params=None, files=None, allow_redirects=True, timeout=None
-headers={'User-Agent': 'python-requests/2.23.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Authorization': 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QL3J6YVJyRFE1aEtpK0VIcWZrTjFrcWpKVWZNMm1hOUtCcjd1NGVvYlJwYWJGN0l6akhRZmtEVXhQSXRVVnA4MDg2SGdGU0sxZmkwK3BHSHVFVit5Ym89IiwibmJmIjoxNTg1MzE1Mzc0LCJleHAiOjE1ODUzMTU0MzQsImlhdCI6MTU4NTMxNTM3NCwiaXNzIjoiZXNjcm93LWNvcmUtYXBpIiwiYXVkIjoiZXNjcm93LWNvcmUtY2xpZW50In0.InCfD4utac_YJVkjWfJjZ9Qt8L9Sb_8U7IWMhtEQUuc'} 
-data={"escrowCompanyId": "001", "idNumber": "77301475934586", "typeOfId": 3, "mobileCountryCode": "67", "mobileNo": "8468732936", "email": "pavan22547@2c2p.com", "gender": "M", "titleEn": "MR.", "firstNameEn": "Pavan", "lastNameEn": "Powar", "titleLocal": "\u0e19\u0e32\u0e22", "firstNameLocal": "\u0e2a\u0e21\u0e0a\u0e32\u0e22", "lastNameLocal": "\u0e02\u0e32\u0e22\u0e14\u0e35", "dateOfBirth": "20/02/1991", "nationalityId": "764", "otherVerification": "SM0928716357", "workPlace": "pavantest", "userDefine1": "UserDef1", "userDefine2": "UserDef2", "userDefine3": "UserDef3", "userDefine4": "UserDef4", "userDefine5": "UserDef5", "kycRequest": 0, "address": {"homeAddress1": "homeaddr1", "homeAddress2": "homeaddr2", "countryId": "764", "stateId": "001", "state": "Bangkok", "postalCode": "10100", "addressDefine1": "addrdef1", "addressDefine2": "addrdef2", "addressDefine3": "addrdef3", "addressDefine4": "addrdef4"}, "mailingAddress": {"mailAddress1": "mailaddr1", "mailAddress2": "mailaddr2", "countryId": "764", "stateId": "002", "state": "Bangkok", "postalCode": "11100", "addressDefine1": "addrdef1", "addressDefine2": "addrdef2", "addressDefine3": "addrdef3", "addressDefine4": "addrdef4"}} 
+<msg timestamp="20200329 01:34:51.126" level="INFO">POST Request using : uri=/seller/register, params=None, files=None, allow_redirects=True, timeout=None
+headers={'User-Agent': 'python-requests/2.23.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Authorization': 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QM0Q5RmNsU3ByaDRjTk9zOHZWUDdXK3FmQU03TWZlUTJ6MkY5dnRycFZvaHA1SjJrYlVmc1loR2lyZGNpR1V2WDV1M2ZtOWhiSWFQaWhCY3dqUk5Kc0U9IiwibmJmIjoxNTg1NDI1ODkwLCJleHAiOjE1ODU0MjU5NTAsImlhdCI6MTU4NTQyNTg5MCwiaXNzIjoiZXNjcm93LWNvcmUtYXBpIiwiYXVkIjoiZXNjcm93LWNvcmUtY2xpZW50In0.yVDEHI1q7Dq4JR2J9Ixg7EJ6ionC0RdzR81GmZouzCM'} 
+data={"escrowCompanyId": "001", "idNumber": "16343339982233", "typeOfId": 3, "mobileCountryCode": "67", "mobileNo": "7405117294", "email": "pavan15510@2c2p.com", "gender": "M", "titleEn": "MR.", "firstNameEn": "Pavan", "lastNameEn": "Powar", "titleLocal": "\u0e19\u0e32\u0e22", "firstNameLocal": "\u0e2a\u0e21\u0e0a\u0e32\u0e22", "lastNameLocal": "\u0e02\u0e32\u0e22\u0e14\u0e35", "dateOfBirth": "20/02/1991", "nationalityId": "764", "otherVerification": "SM0928716357", "workPlace": "pavantest", "userDefine1": "UserDef1", "userDefine2": "UserDef2", "userDefine3": "UserDef3", "userDefine4": "UserDef4", "userDefine5": "UserDef5", "kycRequest": 0, "address": {"homeAddress1": "homeaddr1", "homeAddress2": "homeaddr2", "countryId": "764", "stateId": "001", "state": "Bangkok", "postalCode": "10100", "addressDefine1": "addrdef1", "addressDefine2": "addrdef2", "addressDefine3": "addrdef3", "addressDefine4": "addrdef4"}, "mailingAddress": {"mailAddress1": "mailaddr1", "mailAddress2": "mailaddr2", "countryId": "764", "stateId": "002", "state": "Bangkok", "postalCode": "11100", "addressDefine1": "addrdef1", "addressDefine2": "addrdef2", "addressDefine3": "addrdef3", "addressDefine4": "addrdef4"}} 
 json=None</msg>
-<msg timestamp="20200327 18:52:55.084" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20200327 18:52:54.806" endtime="20200327 18:52:55.085"></status>
+<msg timestamp="20200329 01:34:51.363" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20200329 01:34:51.125" endtime="20200329 01:34:51.363"></status>
 </kw>
 <kw name="Log" library="BuiltIn">
 <doc>Logs the given message with the given level.</doc>
@@ -730,8 +474,8 @@ json=None</msg>
 <arg>${response.text}</arg>
 <arg>console=True</arg>
 </arguments>
-<msg timestamp="20200327 18:52:55.086" level="INFO">{"sellerId":"b95db709-5e9e-410f-ae8f-3d2d6ee831f4","responseCode":"000","resDescription":"Success"}</msg>
-<status status="PASS" starttime="20200327 18:52:55.085" endtime="20200327 18:52:55.087"></status>
+<msg timestamp="20200329 01:34:51.364" level="INFO">{"sellerId":"92476460-70a0-45fe-9bcf-606b4087e8bb","responseCode":"000","resDescription":"Success"}</msg>
+<status status="PASS" starttime="20200329 01:34:51.364" endtime="20200329 01:34:51.365"></status>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to strings.</doc>
@@ -739,10 +483,10 @@ json=None</msg>
 <arg>${response.status_code}</arg>
 <arg>200</arg>
 </arguments>
-<msg timestamp="20200327 18:52:55.088" level="INFO">Argument types are:
+<msg timestamp="20200329 01:34:51.365" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20200327 18:52:55.088" endtime="20200327 18:52:55.089"></status>
+<status status="PASS" starttime="20200329 01:34:51.365" endtime="20200329 01:34:51.365"></status>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to strings.</doc>
@@ -750,7 +494,7 @@ json=None</msg>
 <arg>${response.json()['responseCode']}</arg>
 <arg>${ResponseCode}</arg>
 </arguments>
-<status status="PASS" starttime="20200327 18:52:55.089" endtime="20200327 18:52:55.090"></status>
+<status status="PASS" starttime="20200329 01:34:51.366" endtime="20200329 01:34:51.366"></status>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to strings.</doc>
@@ -758,55 +502,43 @@ json=None</msg>
 <arg>${response.json()['resDescription']}</arg>
 <arg>${ResponseDescription}</arg>
 </arguments>
-<status status="PASS" starttime="20200327 18:52:55.091" endtime="20200327 18:52:55.092"></status>
+<status status="PASS" starttime="20200329 01:34:51.366" endtime="20200329 01:34:51.367"></status>
 </kw>
-<msg timestamp="20200327 18:52:55.092" level="INFO">${sellerid} = b95db709-5e9e-410f-ae8f-3d2d6ee831f4</msg>
-<status status="PASS" starttime="20200327 18:52:54.772" endtime="20200327 18:52:55.092"></status>
+<msg timestamp="20200329 01:34:51.367" level="INFO">${sellerid} = 92476460-70a0-45fe-9bcf-606b4087e8bb</msg>
+<status status="PASS" starttime="20200329 01:34:51.114" endtime="20200329 01:34:51.367"></status>
 </kw>
-<msg timestamp="20200327 18:52:55.093" level="INFO">${SellerId} = ['b95db709-5e9e-410f-ae8f-3d2d6ee831f4', '77301475934586']</msg>
-<status status="PASS" starttime="20200327 18:52:54.506" endtime="20200327 18:52:55.093"></status>
+<msg timestamp="20200329 01:34:51.367" level="INFO">${SellerId} = 92476460-70a0-45fe-9bcf-606b4087e8bb</msg>
+<msg timestamp="20200329 01:34:51.367" level="INFO">${IdNumber} = 16343339982233</msg>
+<status status="PASS" starttime="20200329 01:34:50.611" endtime="20200329 01:34:51.367"></status>
 </kw>
-<kw name="UpdateSeller" library="UpdateSeller_Status_API">
+<kw name="GetSellerDetails" library="GetSellerDetails_API">
 <arguments>
 <arg>${TokenEscrow}</arg>
 <arg>@{escrowCompId}</arg>
 <arg>${SellerId}</arg>
-<arg>${1}</arg>
 <arg>000</arg>
 <arg>Success</arg>
 </arguments>
 <kw name="Create Session" library="RequestsLibrary">
 <doc>Create Session: create a HTTP session to a server</doc>
 <arguments>
-<arg>UpdateSeller</arg>
+<arg>GetUpdateSeller</arg>
 <arg>http://172.31.2.28/escrow_core/api/v1</arg>
 </arguments>
-<msg timestamp="20200327 18:52:55.095" level="INFO">Creating Session using : alias=UpdateSeller, url=http://172.31.2.28/escrow_core/api/v1, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" starttime="20200327 18:52:55.095" endtime="20200327 18:52:55.096"></status>
-</kw>
-<kw name="Convert To Integer" library="BuiltIn">
-<doc>Converts the given item to an integer number.</doc>
-<arguments>
-<arg>${STATUS}</arg>
-</arguments>
-<assign>
-<var>${STATUS1}</var>
-</assign>
-<msg timestamp="20200327 18:52:55.097" level="INFO">${STATUS1} = 1</msg>
-<status status="PASS" starttime="20200327 18:52:55.097" endtime="20200327 18:52:55.097"></status>
+<msg timestamp="20200329 01:34:51.369" level="INFO">Creating Session using : alias=GetUpdateSeller, url=http://172.31.2.28/escrow_core/api/v1, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20200329 01:34:51.369" endtime="20200329 01:34:51.369"></status>
 </kw>
 <kw name="Create Dictionary" library="BuiltIn">
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
 <arguments>
 <arg>escrowCompanyId=${escrowCompanyID}</arg>
-<arg>SELLERId=${SELLERId}</arg>
-<arg>STATUS=${STATUS1}</arg>
+<arg>sellerID=${SELLERId}</arg>
 </arguments>
 <assign>
 <var>${body}</var>
 </assign>
-<msg timestamp="20200327 18:52:55.099" level="INFO">${body} = {'escrowCompanyId': '001', 'SELLERId': ['b95db709-5e9e-410f-ae8f-3d2d6ee831f4', '77301475934586'], 'STATUS': 1}</msg>
-<status status="PASS" starttime="20200327 18:52:55.098" endtime="20200327 18:52:55.099"></status>
+<msg timestamp="20200329 01:34:51.370" level="INFO">${body} = {'escrowCompanyId': '001', 'sellerID': '92476460-70a0-45fe-9bcf-606b4087e8bb'}</msg>
+<status status="PASS" starttime="20200329 01:34:51.369" endtime="20200329 01:34:51.370"></status>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <doc>Returns the given values which can then be assigned to a variables.</doc>
@@ -816,8 +548,8 @@ json=None</msg>
 <assign>
 <var>${AuthToken}</var>
 </assign>
-<msg timestamp="20200327 18:52:55.100" level="INFO">${AuthToken} = bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QL2lPSTVFUkxJT2x4YldYS2dMd05PTGxnejBT...</msg>
-<status status="PASS" starttime="20200327 18:52:55.099" endtime="20200327 18:52:55.100"></status>
+<msg timestamp="20200329 01:34:51.370" level="INFO">${AuthToken} = bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QOUNTZGVVUnZCTUkxaFdCZTdpUFRIVjI0QlpV...</msg>
+<status status="PASS" starttime="20200329 01:34:51.370" endtime="20200329 01:34:51.370"></status>
 </kw>
 <kw name="Create Dictionary" library="BuiltIn">
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
@@ -828,27 +560,27 @@ json=None</msg>
 <assign>
 <var>${header}</var>
 </assign>
-<msg timestamp="20200327 18:52:55.101" level="INFO">${header} = {'Content-Type': 'application/json', 'Authorization': 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srb...</msg>
-<status status="PASS" starttime="20200327 18:52:55.101" endtime="20200327 18:52:55.102"></status>
+<msg timestamp="20200329 01:34:51.371" level="INFO">${header} = {'Content-Type': 'application/json', 'Authorization': 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srb...</msg>
+<status status="PASS" starttime="20200329 01:34:51.370" endtime="20200329 01:34:51.371"></status>
 </kw>
 <kw name="Post Request" library="RequestsLibrary">
 <doc>Send a POST request on the session object found using the
 given `alias`</doc>
 <arguments>
-<arg>UpdateSeller</arg>
-<arg>/seller/updatestatus</arg>
+<arg>GetUpdateSeller</arg>
+<arg>/seller/detail</arg>
 <arg>data=${body}</arg>
 <arg>headers=${header}</arg>
 </arguments>
 <assign>
 <var>${response}</var>
 </assign>
-<msg timestamp="20200327 18:52:55.103" level="INFO">POST Request using : uri=/seller/updatestatus, params=None, files=None, allow_redirects=True, timeout=None
-headers={'User-Agent': 'python-requests/2.23.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Authorization': 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QL2lPSTVFUkxJT2x4YldYS2dMd05PTGxnejBTL3pnNzhJeFJUcDViSHNKRUtkQUtsT0lTYWtQTVJwMzJyS2VwQ2lvRWlEelFuVXFKaDNqelIyeEtjZDA9IiwibmJmIjoxNTg1MzE1MzczLCJleHAiOjE1ODUzMTU0MzMsImlhdCI6MTU4NTMxNTM3MywiaXNzIjoiZXNjcm93LWNvcmUtYXBpIiwiYXVkIjoiZXNjcm93LWNvcmUtY2xpZW50In0._YsOxVkzSpxB8Mz9haTKVzylPLTU_r3fWubfHcbKNFY'} 
-data={"escrowCompanyId": "001", "SELLERId": ["b95db709-5e9e-410f-ae8f-3d2d6ee831f4", "77301475934586"], "STATUS": 1} 
+<msg timestamp="20200329 01:34:51.371" level="INFO">POST Request using : uri=/seller/detail, params=None, files=None, allow_redirects=True, timeout=None
+headers={'User-Agent': 'python-requests/2.23.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Authorization': 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QOUNTZGVVUnZCTUkxaFdCZTdpUFRIVjI0QlpVREhMRUlvMTZ2RWR1YytKUmQzcGJUQnpnOTF0TkJlcEFqTk42MFRRaENWcnNtMGFEZzF6T0syOXF1Mm89IiwibmJmIjoxNTg1NDI1ODkwLCJleHAiOjE1ODU0MjU5NTAsImlhdCI6MTU4NTQyNTg5MCwiaXNzIjoiZXNjcm93LWNvcmUtYXBpIiwiYXVkIjoiZXNjcm93LWNvcmUtY2xpZW50In0.R1Kp9IsSMk_Zo9aKXBYOcZHcT9n8kWPCGq2Gm-tMP9Y'} 
+data={"escrowCompanyId": "001", "sellerID": "92476460-70a0-45fe-9bcf-606b4087e8bb"} 
 json=None</msg>
-<msg timestamp="20200327 18:52:55.314" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20200327 18:52:55.102" endtime="20200327 18:52:55.315"></status>
+<msg timestamp="20200329 01:34:57.576" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20200329 01:34:51.371" endtime="20200329 01:34:57.576"></status>
 </kw>
 <kw name="Log" library="BuiltIn">
 <doc>Logs the given message with the given level.</doc>
@@ -856,8 +588,8 @@ json=None</msg>
 <arg>${response.text}</arg>
 <arg>console=True</arg>
 </arguments>
-<msg timestamp="20200327 18:52:55.315" level="INFO">{"responseCode":"E06","resDescription":"System error"}</msg>
-<status status="PASS" starttime="20200327 18:52:55.315" endtime="20200327 18:52:55.316"></status>
+<msg timestamp="20200329 01:34:57.577" level="INFO">{"escrowCompanyId":"001","sellerId":"92476460-70a0-45fe-9bcf-606b4087e8bb","idNumber":"16343339982233","typeOfId":3,"mobileCountryCode":"67","mobileNo":"7405117294","email":"pavan15510@2c2p.com","gender":"M","titleEn":"MR.","firstNameEn":"Pavan","lastNameEn":"Powar","titleLocal":"นาย","firstNameLocal":"สมชาย","lastNameLocal":"ขายดี","dateOfBirth":"20/02/1991","nationalityId":"764","otherVerification":"SM0928716357","status":1,"statusText":"Active","workPlace":"pavantest","userDefine1":"UserDef1","userDefine2":"UserDef2","userDefine3":"UserDef3","userDefine4":"UserDef4","userDefine5":"UserDef5","kycFlag":0,"createDate":"29/03/2020 03:04:50","updateDate":null,"address":{"homeAddress1":"homeaddr1","homeAddress2":"homeaddr2","countryId":"764","stateId":"001","state":"Bangkok","postalCode":"10100","addressDefine1":"addrdef1","addressDefine2":"addrdef2","addressDefine3":"addrdef3","addressDefine4":"addrdef4"},"mailingAddress":{"mailAddress1":"mailaddr1","mailAddress2":"mailaddr2","countryId":"764","stateId":"002","state":"Bangkok","postalCode":"11100","addressDefine1":"addrdef1","addressDefine2":"addrdef2","addressDefine3":"addrdef3","addressDefine4":"addrdef4"},"responseCode":"000","resDescription":"Success"}</msg>
+<status status="PASS" starttime="20200329 01:34:57.576" endtime="20200329 01:34:57.577"></status>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to strings.</doc>
@@ -865,10 +597,10 @@ json=None</msg>
 <arg>${response.status_code}</arg>
 <arg>200</arg>
 </arguments>
-<msg timestamp="20200327 18:52:55.316" level="INFO">Argument types are:
+<msg timestamp="20200329 01:34:57.578" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20200327 18:52:55.316" endtime="20200327 18:52:55.316"></status>
+<status status="PASS" starttime="20200329 01:34:57.578" endtime="20200329 01:34:57.578"></status>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to strings.</doc>
@@ -876,511 +608,7 @@ json=None</msg>
 <arg>${response.json()['responseCode']}</arg>
 <arg>${ResponseCode}</arg>
 </arguments>
-<msg timestamp="20200327 18:52:55.317" level="FAIL">E06 != 000</msg>
-<status status="FAIL" starttime="20200327 18:52:55.316" endtime="20200327 18:52:55.317"></status>
-</kw>
-<status status="FAIL" starttime="20200327 18:52:55.093" endtime="20200327 18:52:55.317"></status>
-</kw>
-<doc>Valid: To check API response with valid JWT token.</doc>
-<tags>
-<tag>000</tag>
-</tags>
-<status status="FAIL" starttime="20200327 18:52:53.958" endtime="20200327 18:52:55.318" critical="yes">E06 != 000</status>
-</test>
-<test id="s1-t3" name="TC_05 UpdateSellerDetails with valid JWT Token">
-<kw name="GetToken Escrow" library="Get Token">
-<assign>
-<var>${TokenEscrow}</var>
-</assign>
-<kw name="Create Session" library="RequestsLibrary">
-<doc>Create Session: create a HTTP session to a server</doc>
-<arguments>
-<arg>Session</arg>
-<arg>${URLEscrowAuthUAT}</arg>
-</arguments>
-<msg timestamp="20200327 18:52:55.322" level="INFO">Creating Session using : alias=Session, url=http://172.31.2.28/escrow_core/api/v1/Authentication/oauth2, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" starttime="20200327 18:52:55.321" endtime="20200327 18:52:55.322"></status>
-</kw>
-<kw name="Create Dictionary" library="BuiltIn">
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<arguments>
-<arg>Content-Type=application/x-www-form-urlencoded</arg>
-</arguments>
-<assign>
-<var>${header}</var>
-</assign>
-<msg timestamp="20200327 18:52:55.323" level="INFO">${header} = {'Content-Type': 'application/x-www-form-urlencoded'}</msg>
-<status status="PASS" starttime="20200327 18:52:55.322" endtime="20200327 18:52:55.323"></status>
-</kw>
-<kw name="Set To Dictionary" library="Collections">
-<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
-<arguments>
-<arg>${header}</arg>
-<arg>Authorization</arg>
-<arg>Basic ${Client_authKey}</arg>
-</arguments>
-<status status="PASS" starttime="20200327 18:52:55.323" endtime="20200327 18:52:55.323"></status>
-</kw>
-<kw name="Create Dictionary" library="BuiltIn">
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<arguments>
-<arg>grant_type=client_credentials</arg>
-</arguments>
-<assign>
-<var>${Body}</var>
-</assign>
-<msg timestamp="20200327 18:52:55.324" level="INFO">${Body} = {'grant_type': 'client_credentials'}</msg>
-<status status="PASS" starttime="20200327 18:52:55.323" endtime="20200327 18:52:55.324"></status>
-</kw>
-<kw name="Post Request" library="RequestsLibrary">
-<doc>Send a POST request on the session object found using the
-given `alias`</doc>
-<arguments>
-<arg>Session</arg>
-<arg>/token</arg>
-<arg>data=${Body}</arg>
-<arg>headers=${header}</arg>
-</arguments>
-<assign>
-<var>${response}</var>
-</assign>
-<msg timestamp="20200327 18:52:55.324" level="INFO">POST Request using : uri=/token, params=None, files=None, allow_redirects=True, timeout=None
-headers={'User-Agent': 'python-requests/2.23.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic MDAxOmthaWRlZVNlY3JldEtleVRlc3Q='} 
-data=grant_type=client_credentials 
-json=None</msg>
-<msg timestamp="20200327 18:52:55.703" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20200327 18:52:55.324" endtime="20200327 18:52:55.703"></status>
-</kw>
-<kw name="Should Be Equal As Strings" library="BuiltIn">
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<arguments>
-<arg>${response.status_code}</arg>
-<arg>200</arg>
-</arguments>
-<msg timestamp="20200327 18:52:55.704" level="INFO">Argument types are:
-&lt;class 'int'&gt;
-&lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20200327 18:52:55.703" endtime="20200327 18:52:55.704"></status>
-</kw>
-<kw name="Log" library="BuiltIn">
-<doc>Logs the given message with the given level.</doc>
-<arguments>
-<arg>${response.json()['accessToken']}</arg>
-</arguments>
-<msg timestamp="20200327 18:52:55.705" level="INFO">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QNTB3MUYzRTV5cysyLzZrWjNLNzN3ekVGUURhWWxzUlVHb09DcGRucDZjSXNjNGFRMmRPQ3VseVNKMDdBUldKUFBkd3pnT25vVU82ZU1UNlgwM2gyZDQ9IiwibmJmIjoxNTg1MzE1Mzc1LCJleHAiOjE1ODUzMTU0MzUsImlhdCI6MTU4NTMxNTM3NSwiaXNzIjoiZXNjcm93LWNvcmUtYXBpIiwiYXVkIjoiZXNjcm93LWNvcmUtY2xpZW50In0.meyuTs_nb41sB__tCu9OxWVHjx1KW4-MysCzUZ3v6p8</msg>
-<status status="PASS" starttime="20200327 18:52:55.704" endtime="20200327 18:52:55.706"></status>
-</kw>
-<msg timestamp="20200327 18:52:55.706" level="INFO">${TokenEscrow} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QNTB3MUYzRTV5cysyLzZrWjNLNzN3ekVGUURhWWxzUlV...</msg>
-<status status="PASS" starttime="20200327 18:52:55.321" endtime="20200327 18:52:55.707"></status>
-</kw>
-<kw name="RegisterSellerID" library="Register_Global_Keywords">
-<assign>
-<var>${SellerId}</var>
-<var>${idNum}</var>
-</assign>
-<kw name="GetToken Escrow" library="Get Token">
-<assign>
-<var>${TokenEscrow}</var>
-</assign>
-<kw name="Create Session" library="RequestsLibrary">
-<doc>Create Session: create a HTTP session to a server</doc>
-<arguments>
-<arg>Session</arg>
-<arg>${URLEscrowAuthUAT}</arg>
-</arguments>
-<msg timestamp="20200327 18:52:55.709" level="INFO">Creating Session using : alias=Session, url=http://172.31.2.28/escrow_core/api/v1/Authentication/oauth2, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" starttime="20200327 18:52:55.708" endtime="20200327 18:52:55.709"></status>
-</kw>
-<kw name="Create Dictionary" library="BuiltIn">
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<arguments>
-<arg>Content-Type=application/x-www-form-urlencoded</arg>
-</arguments>
-<assign>
-<var>${header}</var>
-</assign>
-<msg timestamp="20200327 18:52:55.710" level="INFO">${header} = {'Content-Type': 'application/x-www-form-urlencoded'}</msg>
-<status status="PASS" starttime="20200327 18:52:55.710" endtime="20200327 18:52:55.710"></status>
-</kw>
-<kw name="Set To Dictionary" library="Collections">
-<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
-<arguments>
-<arg>${header}</arg>
-<arg>Authorization</arg>
-<arg>Basic ${Client_authKey}</arg>
-</arguments>
-<status status="PASS" starttime="20200327 18:52:55.711" endtime="20200327 18:52:55.711"></status>
-</kw>
-<kw name="Create Dictionary" library="BuiltIn">
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<arguments>
-<arg>grant_type=client_credentials</arg>
-</arguments>
-<assign>
-<var>${Body}</var>
-</assign>
-<msg timestamp="20200327 18:52:55.712" level="INFO">${Body} = {'grant_type': 'client_credentials'}</msg>
-<status status="PASS" starttime="20200327 18:52:55.712" endtime="20200327 18:52:55.712"></status>
-</kw>
-<kw name="Post Request" library="RequestsLibrary">
-<doc>Send a POST request on the session object found using the
-given `alias`</doc>
-<arguments>
-<arg>Session</arg>
-<arg>/token</arg>
-<arg>data=${Body}</arg>
-<arg>headers=${header}</arg>
-</arguments>
-<assign>
-<var>${response}</var>
-</assign>
-<msg timestamp="20200327 18:52:55.714" level="INFO">POST Request using : uri=/token, params=None, files=None, allow_redirects=True, timeout=None
-headers={'User-Agent': 'python-requests/2.23.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic MDAxOmthaWRlZVNlY3JldEtleVRlc3Q='} 
-data=grant_type=client_credentials 
-json=None</msg>
-<msg timestamp="20200327 18:52:56.355" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20200327 18:52:55.713" endtime="20200327 18:52:56.355"></status>
-</kw>
-<kw name="Should Be Equal As Strings" library="BuiltIn">
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<arguments>
-<arg>${response.status_code}</arg>
-<arg>200</arg>
-</arguments>
-<msg timestamp="20200327 18:52:56.357" level="INFO">Argument types are:
-&lt;class 'int'&gt;
-&lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20200327 18:52:56.356" endtime="20200327 18:52:56.357"></status>
-</kw>
-<kw name="Log" library="BuiltIn">
-<doc>Logs the given message with the given level.</doc>
-<arguments>
-<arg>${response.json()['accessToken']}</arg>
-</arguments>
-<msg timestamp="20200327 18:52:56.358" level="INFO">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QOUVvOHF1bzRuMGk1ZXBxdGM3U2M4QkNjbHVqVzJVc0FMQ3JFMER1bkFydU93YVhyUFhmVkRhVmxUYVpySHJxTUp4d2czYlN2dHVrdkpsRk5KeGp3RUk9IiwibmJmIjoxNTg1MzE1Mzc1LCJleHAiOjE1ODUzMTU0MzUsImlhdCI6MTU4NTMxNTM3NSwiaXNzIjoiZXNjcm93LWNvcmUtYXBpIiwiYXVkIjoiZXNjcm93LWNvcmUtY2xpZW50In0.hJihE3zvcrEIOyBkdaAo0KbNjMPE8C3wNE21nSFQ21U</msg>
-<status status="PASS" starttime="20200327 18:52:56.357" endtime="20200327 18:52:56.358"></status>
-</kw>
-<msg timestamp="20200327 18:52:56.359" level="INFO">${TokenEscrow} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QOUVvOHF1bzRuMGk1ZXBxdGM3U2M4QkNjbHVqVzJVc0F...</msg>
-<status status="PASS" starttime="20200327 18:52:55.708" endtime="20200327 18:52:56.360"></status>
-</kw>
-<kw name="Randome_IDNumber" library="Register_Global_Keywords">
-<assign>
-<var>${idNum}</var>
-</assign>
-<kw name="Generate Random String" library="String">
-<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
-<arguments>
-<arg>14</arg>
-<arg>[NUMBERS]</arg>
-</arguments>
-<assign>
-<var>${Id}</var>
-</assign>
-<msg timestamp="20200327 18:52:56.361" level="INFO">${Id} = 26465022810024</msg>
-<status status="PASS" starttime="20200327 18:52:56.361" endtime="20200327 18:52:56.362"></status>
-</kw>
-<kw name="Set Global Variable" library="BuiltIn">
-<doc>Makes a variable available globally in all tests and suites.</doc>
-<arguments>
-<arg>${IdNumber}</arg>
-<arg>${Id}</arg>
-</arguments>
-<msg timestamp="20200327 18:52:56.363" level="INFO">${IdNumber} = 26465022810024</msg>
-<status status="PASS" starttime="20200327 18:52:56.362" endtime="20200327 18:52:56.363"></status>
-</kw>
-<msg timestamp="20200327 18:52:56.363" level="INFO">${idNum} = 26465022810024</msg>
-<status status="PASS" starttime="20200327 18:52:56.360" endtime="20200327 18:52:56.363"></status>
-</kw>
-<kw name="Randome_MobileNumber" library="Register_Global_Keywords">
-<assign>
-<var>${MobNo}</var>
-</assign>
-<kw name="Generate Random String" library="String">
-<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
-<arguments>
-<arg>10</arg>
-<arg>[NUMBERS]</arg>
-</arguments>
-<assign>
-<var>${mobile}</var>
-</assign>
-<msg timestamp="20200327 18:52:56.365" level="INFO">${mobile} = 3486592187</msg>
-<status status="PASS" starttime="20200327 18:52:56.364" endtime="20200327 18:52:56.365"></status>
-</kw>
-<kw name="Set Global Variable" library="BuiltIn">
-<doc>Makes a variable available globally in all tests and suites.</doc>
-<arguments>
-<arg>${mobileNo}</arg>
-<arg>${mobile}</arg>
-</arguments>
-<msg timestamp="20200327 18:52:56.366" level="INFO">${mobileNo} = 3486592187</msg>
-<status status="PASS" starttime="20200327 18:52:56.365" endtime="20200327 18:52:56.366"></status>
-</kw>
-<msg timestamp="20200327 18:52:56.367" level="INFO">${MobNo} = 3486592187</msg>
-<status status="PASS" starttime="20200327 18:52:56.364" endtime="20200327 18:52:56.367"></status>
-</kw>
-<kw name="Randome_EmailId" library="Register_Global_Keywords">
-<assign>
-<var>${emailid}</var>
-</assign>
-<kw name="Randome_Number" library="Register_Global_Keywords">
-<assign>
-<var>${num}</var>
-</assign>
-<kw name="Generate Random String" library="String">
-<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
-<arguments>
-<arg>5</arg>
-<arg>[NUMBERS]</arg>
-</arguments>
-<assign>
-<var>${Emailnum}</var>
-</assign>
-<msg timestamp="20200327 18:52:56.369" level="INFO">${Emailnum} = 87763</msg>
-<status status="PASS" starttime="20200327 18:52:56.369" endtime="20200327 18:52:56.369"></status>
-</kw>
-<kw name="Set Global Variable" library="BuiltIn">
-<doc>Makes a variable available globally in all tests and suites.</doc>
-<arguments>
-<arg>${enum}</arg>
-<arg>${Emailnum}</arg>
-</arguments>
-<msg timestamp="20200327 18:52:56.370" level="INFO">${enum} = 87763</msg>
-<status status="PASS" starttime="20200327 18:52:56.370" endtime="20200327 18:52:56.371"></status>
-</kw>
-<msg timestamp="20200327 18:52:56.371" level="INFO">${num} = 87763</msg>
-<status status="PASS" starttime="20200327 18:52:56.368" endtime="20200327 18:52:56.371"></status>
-</kw>
-<kw name="Set Variable" library="BuiltIn">
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<arguments>
-<arg>pavan${num}@2c2p.com</arg>
-</arguments>
-<assign>
-<var>${emailid}</var>
-</assign>
-<msg timestamp="20200327 18:52:56.372" level="INFO">${emailid} = pavan87763@2c2p.com</msg>
-<status status="PASS" starttime="20200327 18:52:56.372" endtime="20200327 18:52:56.372"></status>
-</kw>
-<kw name="Set Global Variable" library="BuiltIn">
-<doc>Makes a variable available globally in all tests and suites.</doc>
-<arguments>
-<arg>${email}</arg>
-<arg>${emailid}</arg>
-</arguments>
-<msg timestamp="20200327 18:52:56.374" level="INFO">${email} = pavan87763@2c2p.com</msg>
-<status status="PASS" starttime="20200327 18:52:56.373" endtime="20200327 18:52:56.374"></status>
-</kw>
-<msg timestamp="20200327 18:52:56.374" level="INFO">${emailid} = pavan87763@2c2p.com</msg>
-<status status="PASS" starttime="20200327 18:52:56.367" endtime="20200327 18:52:56.374"></status>
-</kw>
-<kw name="RegisterSeller with valid Data" library="Register_Seller_API">
-<arguments>
-<arg>${TokenEscrow}</arg>
-<arg>@{valid_mobile_country_code}[0]</arg>
-<arg>${idNum}</arg>
-<arg>${3}</arg>
-<arg>@{valid_mobile_country_code}[1]</arg>
-<arg>${MobNo}</arg>
-<arg>${emailid}</arg>
-<arg>M</arg>
-<arg>@{RegisterSellerData}[0]</arg>
-<arg>@{RegisterSellerData}[1]</arg>
-<arg>@{RegisterSellerData}[2]</arg>
-<arg>@{RegisterSellerData}[3]</arg>
-<arg>@{RegisterSellerData}[4]</arg>
-<arg>@{RegisterSellerData}[5]</arg>
-<arg>@{RegisterSellerData}[6]</arg>
-<arg>@{v_nationalityId}</arg>
-<arg>@{RegisterSellerData}[7]</arg>
-<arg>@{RegisterSellerData}[8]</arg>
-<arg>@{RegisterSellerData}[9]</arg>
-<arg>@{RegisterSellerData}[10]</arg>
-<arg>@{RegisterSellerData}[11]</arg>
-<arg>@{RegisterSellerData}[12]</arg>
-<arg>@{RegisterSellerData}[13]</arg>
-<arg>${0}</arg>
-<arg>000</arg>
-<arg>Success</arg>
-</arguments>
-<assign>
-<var>${sellerid}</var>
-</assign>
-<kw name="Create Session" library="RequestsLibrary">
-<doc>Create Session: create a HTTP session to a server</doc>
-<arguments>
-<arg>RegisterNewSeller</arg>
-<arg>http://172.31.2.28/escrow_core/api/v1</arg>
-</arguments>
-<msg timestamp="20200327 18:52:56.380" level="INFO">Creating Session using : alias=RegisterNewSeller, url=http://172.31.2.28/escrow_core/api/v1, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" starttime="20200327 18:52:56.380" endtime="20200327 18:52:56.381"></status>
-</kw>
-<kw name="Convert To Integer" library="BuiltIn">
-<doc>Converts the given item to an integer number.</doc>
-<arguments>
-<arg>${typeOfID}</arg>
-</arguments>
-<assign>
-<var>${typeID}</var>
-</assign>
-<msg timestamp="20200327 18:52:56.382" level="INFO">${typeID} = 3</msg>
-<status status="PASS" starttime="20200327 18:52:56.381" endtime="20200327 18:52:56.382"></status>
-</kw>
-<kw name="Convert To Integer" library="BuiltIn">
-<doc>Converts the given item to an integer number.</doc>
-<arguments>
-<arg>${kycRequest}</arg>
-</arguments>
-<assign>
-<var>${KeyReq}</var>
-</assign>
-<msg timestamp="20200327 18:52:56.382" level="INFO">${KeyReq} = 0</msg>
-<status status="PASS" starttime="20200327 18:52:56.382" endtime="20200327 18:52:56.382"></status>
-</kw>
-<kw name="Create Dictionary" library="BuiltIn">
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<arguments>
-<arg>homeAddress1=@{Address}[0]</arg>
-<arg>homeAddress2=@{Address}[1]</arg>
-<arg>countryId=@{Address}[2]</arg>
-<arg>stateId=@{Address}[3]</arg>
-<arg>state=@{Address}[4]</arg>
-<arg>postalCode=@{Address}[5]</arg>
-<arg>addressDefine1=@{Address}[6]</arg>
-<arg>addressDefine2=@{Address}[7]</arg>
-<arg>addressDefine3=@{Address}[8]</arg>
-<arg>addressDefine4=@{Address}[9]</arg>
-</arguments>
-<assign>
-<var>${UserAddress}</var>
-</assign>
-<msg timestamp="20200327 18:52:56.385" level="INFO">${UserAddress} = {'homeAddress1': 'homeaddr1', 'homeAddress2': 'homeaddr2', 'countryId': '764', 'stateId': '001', 'state': 'Bangkok', 'postalCode': '10100', 'addressDefine1': 'addrdef1', 'addressDefine2': 'addrdef2', ...</msg>
-<status status="PASS" starttime="20200327 18:52:56.382" endtime="20200327 18:52:56.385"></status>
-</kw>
-<kw name="Create Dictionary" library="BuiltIn">
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<arguments>
-<arg>mailAddress1=@{MailingAddress}[0]</arg>
-<arg>mailAddress2=@{MailingAddress}[1]</arg>
-<arg>countryId=@{Address}[2]</arg>
-<arg>stateId=@{MailingAddress}[2]</arg>
-<arg>state=@{Address}[4]</arg>
-<arg>postalCode=@{MailingAddress}[3]</arg>
-<arg>addressDefine1=@{Address}[6]</arg>
-<arg>addressDefine2=@{Address}[7]</arg>
-<arg>addressDefine3=@{Address}[8]</arg>
-<arg>addressDefine4=@{Address}[9]</arg>
-</arguments>
-<assign>
-<var>${MailAddress}</var>
-</assign>
-<msg timestamp="20200327 18:52:56.388" level="INFO">${MailAddress} = {'mailAddress1': 'mailaddr1', 'mailAddress2': 'mailaddr2', 'countryId': '764', 'stateId': '002', 'state': 'Bangkok', 'postalCode': '11100', 'addressDefine1': 'addrdef1', 'addressDefine2': 'addrdef2', ...</msg>
-<status status="PASS" starttime="20200327 18:52:56.386" endtime="20200327 18:52:56.388"></status>
-</kw>
-<kw name="Create Dictionary" library="BuiltIn">
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<arguments>
-<arg>escrowCompanyId=${escrowCompanyID}</arg>
-<arg>idNumber=${idNumber}</arg>
-<arg>typeOfId=${typeID}</arg>
-<arg>mobileCountryCode=${MobCountryCode}</arg>
-<arg>mobileNo=${MobNo}</arg>
-<arg>email=${emailid}</arg>
-<arg>gender=${gender}</arg>
-<arg>titleEn=${EnTitle}</arg>
-<arg>firstNameEn=${EnFirstName}</arg>
-<arg>lastNameEn=${EnLastName}</arg>
-<arg>titleLocal=${LocalTitle}</arg>
-<arg>firstNameLocal=${LocalFistName}</arg>
-<arg>lastNameLocal=${LocalLastName}</arg>
-<arg>dateOfBirth=${dob}</arg>
-<arg>nationalityId=${Nationality}</arg>
-<arg>otherVerification=${Verification}</arg>
-<arg>workPlace=${WorkPlace}</arg>
-<arg>userDefine1=${UserDef1}</arg>
-<arg>userDefine2=${UserDef2}</arg>
-<arg>userDefine3=${UserDef3}</arg>
-<arg>userDefine4=${UserDef4}</arg>
-<arg>userDefine5=${UserDef5}</arg>
-<arg>kycRequest=${KeyReq}</arg>
-<arg>address=${UserAddress}</arg>
-<arg>mailingAddress=${MailAddress}</arg>
-</arguments>
-<assign>
-<var>${body}</var>
-</assign>
-<msg timestamp="20200327 18:52:56.395" level="INFO">${body} = {'escrowCompanyId': '001', 'idNumber': '26465022810024', 'typeOfId': 3, 'mobileCountryCode': '67', 'mobileNo': '3486592187', 'email': 'pavan87763@2c2p.com', 'gender': 'M', 'titleEn': 'MR.', 'firstName...</msg>
-<status status="PASS" starttime="20200327 18:52:56.389" endtime="20200327 18:52:56.395"></status>
-</kw>
-<kw name="Set Variable" library="BuiltIn">
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<arguments>
-<arg>bearer ${Token}</arg>
-</arguments>
-<assign>
-<var>${AuthToken}</var>
-</assign>
-<msg timestamp="20200327 18:52:56.396" level="INFO">${AuthToken} = bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QOUVvOHF1bzRuMGk1ZXBxdGM3U2M4QkNjbHVq...</msg>
-<status status="PASS" starttime="20200327 18:52:56.396" endtime="20200327 18:52:56.397"></status>
-</kw>
-<kw name="Create Dictionary" library="BuiltIn">
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<arguments>
-<arg>Content-Type=application/json</arg>
-<arg>Authorization=${AuthToken}</arg>
-</arguments>
-<assign>
-<var>${header}</var>
-</assign>
-<msg timestamp="20200327 18:52:56.398" level="INFO">${header} = {'Content-Type': 'application/json', 'Authorization': 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srb...</msg>
-<status status="PASS" starttime="20200327 18:52:56.397" endtime="20200327 18:52:56.398"></status>
-</kw>
-<kw name="Post Request" library="RequestsLibrary">
-<doc>Send a POST request on the session object found using the
-given `alias`</doc>
-<arguments>
-<arg>RegisterNewSeller</arg>
-<arg>/seller/register</arg>
-<arg>data=${body}</arg>
-<arg>headers=${header}</arg>
-</arguments>
-<assign>
-<var>${response}</var>
-</assign>
-<msg timestamp="20200327 18:52:56.401" level="INFO">POST Request using : uri=/seller/register, params=None, files=None, allow_redirects=True, timeout=None
-headers={'User-Agent': 'python-requests/2.23.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Authorization': 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QOUVvOHF1bzRuMGk1ZXBxdGM3U2M4QkNjbHVqVzJVc0FMQ3JFMER1bkFydU93YVhyUFhmVkRhVmxUYVpySHJxTUp4d2czYlN2dHVrdkpsRk5KeGp3RUk9IiwibmJmIjoxNTg1MzE1Mzc1LCJleHAiOjE1ODUzMTU0MzUsImlhdCI6MTU4NTMxNTM3NSwiaXNzIjoiZXNjcm93LWNvcmUtYXBpIiwiYXVkIjoiZXNjcm93LWNvcmUtY2xpZW50In0.hJihE3zvcrEIOyBkdaAo0KbNjMPE8C3wNE21nSFQ21U'} 
-data={"escrowCompanyId": "001", "idNumber": "26465022810024", "typeOfId": 3, "mobileCountryCode": "67", "mobileNo": "3486592187", "email": "pavan87763@2c2p.com", "gender": "M", "titleEn": "MR.", "firstNameEn": "Pavan", "lastNameEn": "Powar", "titleLocal": "\u0e19\u0e32\u0e22", "firstNameLocal": "\u0e2a\u0e21\u0e0a\u0e32\u0e22", "lastNameLocal": "\u0e02\u0e32\u0e22\u0e14\u0e35", "dateOfBirth": "20/02/1991", "nationalityId": "764", "otherVerification": "SM0928716357", "workPlace": "pavantest", "userDefine1": "UserDef1", "userDefine2": "UserDef2", "userDefine3": "UserDef3", "userDefine4": "UserDef4", "userDefine5": "UserDef5", "kycRequest": 0, "address": {"homeAddress1": "homeaddr1", "homeAddress2": "homeaddr2", "countryId": "764", "stateId": "001", "state": "Bangkok", "postalCode": "10100", "addressDefine1": "addrdef1", "addressDefine2": "addrdef2", "addressDefine3": "addrdef3", "addressDefine4": "addrdef4"}, "mailingAddress": {"mailAddress1": "mailaddr1", "mailAddress2": "mailaddr2", "countryId": "764", "stateId": "002", "state": "Bangkok", "postalCode": "11100", "addressDefine1": "addrdef1", "addressDefine2": "addrdef2", "addressDefine3": "addrdef3", "addressDefine4": "addrdef4"}} 
-json=None</msg>
-<msg timestamp="20200327 18:52:57.748" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20200327 18:52:56.399" endtime="20200327 18:52:57.748"></status>
-</kw>
-<kw name="Log" library="BuiltIn">
-<doc>Logs the given message with the given level.</doc>
-<arguments>
-<arg>${response.text}</arg>
-<arg>console=True</arg>
-</arguments>
-<msg timestamp="20200327 18:52:57.749" level="INFO">{"sellerId":"ca20cac3-ce4b-46e6-be8b-7ff6c4565ecc","responseCode":"000","resDescription":"Success"}</msg>
-<status status="PASS" starttime="20200327 18:52:57.749" endtime="20200327 18:52:57.750"></status>
-</kw>
-<kw name="Should Be Equal As Strings" library="BuiltIn">
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<arguments>
-<arg>${response.status_code}</arg>
-<arg>200</arg>
-</arguments>
-<msg timestamp="20200327 18:52:57.750" level="INFO">Argument types are:
-&lt;class 'int'&gt;
-&lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20200327 18:52:57.750" endtime="20200327 18:52:57.751"></status>
-</kw>
-<kw name="Should Be Equal As Strings" library="BuiltIn">
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<arguments>
-<arg>${response.json()['responseCode']}</arg>
-<arg>${ResponseCode}</arg>
-</arguments>
-<status status="PASS" starttime="20200327 18:52:57.751" endtime="20200327 18:52:57.752"></status>
+<status status="PASS" starttime="20200329 01:34:57.578" endtime="20200329 01:34:57.579"></status>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to strings.</doc>
@@ -1388,174 +616,30 @@ json=None</msg>
 <arg>${response.json()['resDescription']}</arg>
 <arg>${ResponseDescription}</arg>
 </arguments>
-<status status="PASS" starttime="20200327 18:52:57.752" endtime="20200327 18:52:57.753"></status>
+<status status="PASS" starttime="20200329 01:34:57.579" endtime="20200329 01:34:57.580"></status>
 </kw>
-<msg timestamp="20200327 18:52:57.754" level="INFO">${sellerid} = ca20cac3-ce4b-46e6-be8b-7ff6c4565ecc</msg>
-<status status="PASS" starttime="20200327 18:52:56.375" endtime="20200327 18:52:57.754"></status>
+<status status="PASS" starttime="20200329 01:34:51.368" endtime="20200329 01:34:57.580"></status>
 </kw>
-<msg timestamp="20200327 18:52:57.754" level="INFO">${SellerId} = ca20cac3-ce4b-46e6-be8b-7ff6c4565ecc</msg>
-<msg timestamp="20200327 18:52:57.754" level="INFO">${idNum} = 26465022810024</msg>
-<status status="PASS" starttime="20200327 18:52:55.707" endtime="20200327 18:52:57.755"></status>
-</kw>
-<kw name="UpdateSellerDetails" library="UpdateSellerDetails_API">
-<arguments>
-<arg>${TokenEscrow}</arg>
-<arg>@{escrowCompId}</arg>
-<arg>${SellerId}</arg>
-<arg>${idNum}</arg>
-<arg>${1}</arg>
-<arg>${0}</arg>
-<arg>000</arg>
-<arg>Success</arg>
-</arguments>
-<kw name="Create Session" library="RequestsLibrary">
-<doc>Create Session: create a HTTP session to a server</doc>
-<arguments>
-<arg>UpdateSeller</arg>
-<arg>http://172.31.2.28/escrow_core/api/v1</arg>
-</arguments>
-<msg timestamp="20200327 18:52:57.757" level="INFO">Creating Session using : alias=UpdateSeller, url=http://172.31.2.28/escrow_core/api/v1, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" starttime="20200327 18:52:57.756" endtime="20200327 18:52:57.757"></status>
-</kw>
-<kw name="Convert To Integer" library="BuiltIn">
-<doc>Converts the given item to an integer number.</doc>
-<arguments>
-<arg>${typeOfID}</arg>
-</arguments>
-<assign>
-<var>${typeID}</var>
-</assign>
-<msg timestamp="20200327 18:52:57.758" level="INFO">${typeID} = 1</msg>
-<status status="PASS" starttime="20200327 18:52:57.758" endtime="20200327 18:52:57.758"></status>
-</kw>
-<kw name="Convert To Integer" library="BuiltIn">
-<doc>Converts the given item to an integer number.</doc>
-<arguments>
-<arg>${kycRequest}</arg>
-</arguments>
-<assign>
-<var>${KeyReq}</var>
-</assign>
-<msg timestamp="20200327 18:52:57.760" level="INFO">${KeyReq} = 0</msg>
-<status status="PASS" starttime="20200327 18:52:57.759" endtime="20200327 18:52:57.760"></status>
-</kw>
-<kw name="Create Dictionary" library="BuiltIn">
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<arguments>
-<arg>escrowCompanyId=${escrowCompanyID}</arg>
-<arg>SELLERId=${SELLERId}</arg>
-<arg>idNumber=${idNumber}</arg>
-<arg>typeOfID=${typeID}</arg>
-<arg>kycRequest=${KeyReq}</arg>
-</arguments>
-<assign>
-<var>${body}</var>
-</assign>
-<msg timestamp="20200327 18:52:57.761" level="INFO">${body} = {'escrowCompanyId': '001', 'SELLERId': 'ca20cac3-ce4b-46e6-be8b-7ff6c4565ecc', 'idNumber': '26465022810024', 'typeOfID': 1, 'kycRequest': 0}</msg>
-<status status="PASS" starttime="20200327 18:52:57.760" endtime="20200327 18:52:57.761"></status>
-</kw>
-<kw name="Set Variable" library="BuiltIn">
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<arguments>
-<arg>bearer ${Token}</arg>
-</arguments>
-<assign>
-<var>${AuthToken}</var>
-</assign>
-<msg timestamp="20200327 18:52:57.762" level="INFO">${AuthToken} = bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QNTB3MUYzRTV5cysyLzZrWjNLNzN3ekVGUURh...</msg>
-<status status="PASS" starttime="20200327 18:52:57.762" endtime="20200327 18:52:57.762"></status>
-</kw>
-<kw name="Create Dictionary" library="BuiltIn">
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<arguments>
-<arg>Content-Type=application/json</arg>
-<arg>Authorization=${AuthToken}</arg>
-</arguments>
-<assign>
-<var>${header}</var>
-</assign>
-<msg timestamp="20200327 18:52:57.763" level="INFO">${header} = {'Content-Type': 'application/json', 'Authorization': 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srb...</msg>
-<status status="PASS" starttime="20200327 18:52:57.762" endtime="20200327 18:52:57.763"></status>
-</kw>
-<kw name="Post Request" library="RequestsLibrary">
-<doc>Send a POST request on the session object found using the
-given `alias`</doc>
-<arguments>
-<arg>UpdateSeller</arg>
-<arg>/seller/updatedetail</arg>
-<arg>data=${body}</arg>
-<arg>headers=${header}</arg>
-</arguments>
-<assign>
-<var>${response}</var>
-</assign>
-<msg timestamp="20200327 18:52:57.765" level="INFO">POST Request using : uri=/seller/updatedetail, params=None, files=None, allow_redirects=True, timeout=None
-headers={'User-Agent': 'python-requests/2.23.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Authorization': 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiOTE1b2srbFFFM2Ird3ZBU1hsdE9QNTB3MUYzRTV5cysyLzZrWjNLNzN3ekVGUURhWWxzUlVHb09DcGRucDZjSXNjNGFRMmRPQ3VseVNKMDdBUldKUFBkd3pnT25vVU82ZU1UNlgwM2gyZDQ9IiwibmJmIjoxNTg1MzE1Mzc1LCJleHAiOjE1ODUzMTU0MzUsImlhdCI6MTU4NTMxNTM3NSwiaXNzIjoiZXNjcm93LWNvcmUtYXBpIiwiYXVkIjoiZXNjcm93LWNvcmUtY2xpZW50In0.meyuTs_nb41sB__tCu9OxWVHjx1KW4-MysCzUZ3v6p8'} 
-data={"escrowCompanyId": "001", "SELLERId": "ca20cac3-ce4b-46e6-be8b-7ff6c4565ecc", "idNumber": "26465022810024", "typeOfID": 1, "kycRequest": 0} 
-json=None</msg>
-<msg timestamp="20200327 18:52:58.634" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20200327 18:52:57.764" endtime="20200327 18:52:58.634"></status>
-</kw>
-<kw name="Log" library="BuiltIn">
-<doc>Logs the given message with the given level.</doc>
-<arguments>
-<arg>${response.text}</arg>
-<arg>console=True</arg>
-</arguments>
-<msg timestamp="20200327 18:52:58.635" level="INFO">{"responseCode":"000","resDescription":"Success"}</msg>
-<status status="PASS" starttime="20200327 18:52:58.634" endtime="20200327 18:52:58.635"></status>
-</kw>
-<kw name="Should Be Equal As Strings" library="BuiltIn">
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<arguments>
-<arg>${response.status_code}</arg>
-<arg>200</arg>
-</arguments>
-<msg timestamp="20200327 18:52:58.637" level="INFO">Argument types are:
-&lt;class 'int'&gt;
-&lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20200327 18:52:58.636" endtime="20200327 18:52:58.637"></status>
-</kw>
-<kw name="Should Be Equal As Strings" library="BuiltIn">
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<arguments>
-<arg>${response.json()['responseCode']}</arg>
-<arg>${ResponseCode}</arg>
-</arguments>
-<status status="PASS" starttime="20200327 18:52:58.637" endtime="20200327 18:52:58.638"></status>
-</kw>
-<kw name="Should Be Equal As Strings" library="BuiltIn">
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<arguments>
-<arg>${response.json()['resDescription']}</arg>
-<arg>${ResponseDescription}</arg>
-</arguments>
-<status status="PASS" starttime="20200327 18:52:58.639" endtime="20200327 18:52:58.640"></status>
-</kw>
-<status status="PASS" starttime="20200327 18:52:57.755" endtime="20200327 18:52:58.640"></status>
-</kw>
-<doc>Valid: To check API response with valid JWT token.</doc>
+<doc>Valid: To check API response with valid JWT token</doc>
 <tags>
-<tag>000</tag>
+<tag>thisone</tag>
 </tags>
-<status status="PASS" starttime="20200327 18:52:55.320" endtime="20200327 18:52:58.640" critical="yes"></status>
+<status status="PASS" starttime="20200329 01:34:50.424" endtime="20200329 01:34:57.580" critical="yes"></status>
 </test>
-<status status="FAIL" starttime="20200327 18:51:55.162" endtime="20200327 18:52:58.643"></status>
+<status status="PASS" starttime="20200329 01:34:49.907" endtime="20200329 01:34:57.582"></status>
 </suite>
 <statistics>
 <total>
-<stat pass="2" fail="1">Critical Tests</stat>
-<stat pass="2" fail="1">All Tests</stat>
+<stat pass="1" fail="0">Critical Tests</stat>
+<stat pass="1" fail="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="2" fail="1">000</stat>
+<stat pass="1" fail="0">thisone</stat>
 </tag>
 <suite>
-<stat pass="2" fail="1" id="s1" name="Token TestCases">Token TestCases</stat>
+<stat pass="1" fail="0" id="s1" name="Token TestCases">Token TestCases</stat>
 </suite>
 </statistics>
 <errors>
-<msg timestamp="20200327 18:52:16.661" level="WARN">Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x04961F40&gt;: Failed to establish a new connection: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond')': /escrow_core/api/v1/Authentication/oauth2/token</msg>
-<msg timestamp="20200327 18:52:37.869" level="WARN">Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0499D0A0&gt;: Failed to establish a new connection: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond')': /escrow_core/api/v1/Authentication/oauth2/token</msg>
 </errors>
 </robot>

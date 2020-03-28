@@ -6,6 +6,7 @@ Resource    ../../Resource/Keyword/Global Keyword/Get Token.robot
 Resource    ../../Resource/Keyword/Register_Seller_API.robot
 Resource    ../../Resource/Keyword/UpdateSeller_Status_API.robot
 Resource    ../../Resource/Keyword/UpdateSellerDetails_API.robot
+Resource    ../../Resource/Keyword/GetSellerDetails_API.robot
 Resource    ../../Resource/Variable/user data.robot
 
 *** Test Cases ***
@@ -127,3 +128,39 @@ TC_05 UpdateSellerDetails with valid JWT Token
     ${SellerId}  ${idNum}=  RegisterSellerID
     UpdateSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  ${idNum}  ${1}  ${0}  000  Success
 
+# Get Seller Details Token Test Cases
+
+TC_01 GetSellerDetails with Empty JWT Token
+    [Documentation]  Empty : To verify response for Empty JWT token
+    [Tags]  A01
+    ${SellerId}=  RegisterSellerID
+    GetSellerDetails  ${EMPTY}  @{escrowCompId}  ${SellerId}  A01  Invalid access token
+
+TC_02 GetSellerDetails with Invalid JWT Token
+    [Documentation]  Invalid : To verify response for Invalid JWT token
+    [Tags]  A01
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}=  RegisterSellerID
+    GetSellerDetails  ${TokenEscrow}2c2p  @{escrowCompId}  ${SellerId}  A01  Invalid access token
+
+TC_03 GetSellerDetails with Expired JWT Token
+    [Documentation]  Invalid : To verify response for Expired JWT token
+    [Tags]  A02
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${IdNumber}=  RegisterSellerID
+    Sleep  7 minutes
+    GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  A02  Access token expired
+
+TC_04 GetSellerDetails with Other Company JWT TOken
+    [Documentation]  Invalid: To check API response with other company JWT token
+    [Tags]  A01
+    ${TokenEscrow}=  GetToken BIGC
+    ${SellerId}  ${IdNumber}=  RegisterSellerID
+    GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  A01  Invalid access token
+
+TC_05 GetSellerDetails with Valid JWT Token
+    [Documentation]  Valid: To check API response with valid JWT token
+    [Tags]  thisone
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${IdNumber}=  RegisterSellerID
+    GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  000  Success
