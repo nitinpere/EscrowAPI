@@ -144,7 +144,28 @@ TC_24_1 GetSellerDetails with Thai FirstNameLocal, LastNameLocal, TitleLocal
 
 TC_24_2 GetSellerDetails with Valid Address and Mailing Address
     [Documentation]  Valid : To Check the system return data correctly in the response when User is registered with address and mailingAddress  in EN language
-    [Tags]  thisone
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${IdNumber}=  RegisterSellerID
+    GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  000  Success
+
+TC_25 GetSellerDetails with Valid UserDefine 1-5
+    [Documentation]  Valid : To Check the system return data correctly in the response when User is registered with userdefine 1-5  in EN language
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${IdNumber}=  RegisterSellerID
+    GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  000  Success
+
+TC_26 GetSellerDetails with Thai Address and Mailing Address Details
+    [Documentation]  Valid : To Check the system return data correctly in the response when User is registered with address and mailingAddress  in Thai language
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${IdNumber}=  RegisterSellerID
+    GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  000  Success
+
+TC_27 GetSellerDetails with Thai UserDefined 1-5
+    [Documentation]  Valid : To Check the system return data correctly in the response when User is registered with userdefine 1-5  in Thai language
+    [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${IdNumber}=  RegisterSellerID
     GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  000  Success
