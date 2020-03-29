@@ -269,5 +269,5 @@ TC_36 Seller Details API mobilecountrycode mobile
     UpdateSellerDetails MobileCountrycode mobile  ${TokenEscrow}  @{escrowCompId}[0]  @{valid_mobile_country_code}[1]  ${MobNo}  ${SellerId}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-
+TC_37
 
