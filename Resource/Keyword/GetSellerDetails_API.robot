@@ -30,3 +30,8 @@ GetSellerDetails
     Should Be Equal As Strings    ${response.status_code}    200
     Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
     Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
+
+
+#GetSellerDetails Attribute
+#    [Arguments]
+
