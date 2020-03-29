@@ -160,7 +160,7 @@ TC_04 GetSellerDetails with Other Company JWT TOken
 
 TC_05 GetSellerDetails with Valid JWT Token
     [Documentation]  Valid: To check API response with valid JWT token
-    [Tags]  thisone
+    [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${IdNumber}=  RegisterSellerID
     GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  000  Success
