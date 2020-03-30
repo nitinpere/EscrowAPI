@@ -2,7 +2,7 @@
 Resource    Get Token.robot
 Resource    ../../Keyword/Register_Seller_API.robot
 *** Variables ***
-
+${MobNo1}
 ${enum}
 ${email}
 ${mobileNo}
