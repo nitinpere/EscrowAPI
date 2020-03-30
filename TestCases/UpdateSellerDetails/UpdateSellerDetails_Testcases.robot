@@ -58,7 +58,7 @@ TC_11 Seller_Details_API Valid EscrowCompId
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
 TC_12 Seller_Details_API Invalid EscrowCompId
-    [Documentation]  Valid: To check API response when escrowCompanyId parameter is entered Valid and request is sent with mandatory fields
+    [Documentation]  Invalid: To check API response when escrowCompanyId parameter is entered Invalid and request is sent with mandatory fields
     [Tags]  E03
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${idnumber}=  RegisterSellerID
@@ -105,7 +105,7 @@ TC_17 Selle_Details_API SellerId More than 36
     UpdateSellerDetails_kyc  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}12  ${0}  E11  Data length is over limit
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_18 Selle_Details_API Duplicate idNum
+TC_18 Selle_Details_API Duplicate Idno
     [Documentation]  Invalid: To Verify response if idNumber parameter is  entered more than size 30 and request is sent with all mandatory fields
     [Tags]  E11
     ${TokenEscrow}=  GetToken Escrow
@@ -114,7 +114,7 @@ TC_18 Selle_Details_API Duplicate idNum
     UpdateSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  ${Id}  ${3}  ${0}  E11  Data length is over limit
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_19 Selle_Details_API duplicate idNum
+TC_19 Selle_Details_API Duplicate Idno TypeId 3
     [Documentation]  Duplicate: To check idNumber is entered duplicate (duplicate id number should belong to Seller status = Active) and request is send with all mandatory fields
     [Tags]  U01
     ${TokenEscrow}=  GetToken Escrow
@@ -122,7 +122,15 @@ TC_19 Selle_Details_API duplicate idNum
     UpdateSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  ${Id23}  ${3}  ${0}  U01  Duplicate ID card, email or mobile no
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_20 Selle_Details_API duplicate idNum
+TC_20 Selle_Details_API Duplicate Idno TypeId 1
+    [Documentation]  Duplicate: To check idNumber is entered duplicate with own user (duplicate id number should belong to Seller status = Active) and request is send with all mandatory fields
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${Id23}=  RegisterSellerID
+    UpdateSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  ${Id23}  ${1}  ${0}  000  Success
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_21 Selle_Details_API Duplicate Idno Status 4
     [Documentation]  Duplicate: To check idNumber is entered duplicate (duplicate id number should belong to Seller status = terminated ) and request is send with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
@@ -131,7 +139,17 @@ TC_20 Selle_Details_API duplicate idNum
     UpdateSellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${Idnum}  ${3}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_21 Selle_Details_API idNum
+TC_22 Selle_Details_API Valid Email
+    [Documentation]  Duplicate: To check idNumber is entered duplicate with own user (duplicate id number should belong to Seller status = terminated) and request is send with all mandatory fields
+    [Tags]  E03
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    ${emailid}=  Randome_EmailId
+    UpdateSeller to convert    ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${4}
+    UpdateSellerDetails Email TypeId  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${email}  ${1}  ${0}  E03  Invalid Request
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_23 Selle_Details_API Empty Idno
     [Documentation]  Empty: To Verify response if idNumber parameter is  NOT entered and KYCRequest’ = 1 and request sent with all mandatory fields
     [Tags]  E05
     ${TokenEscrow}=  GetToken Escrow
@@ -139,7 +157,7 @@ TC_21 Selle_Details_API idNum
     UpdateSellerDetails IDNUMBER KYC 1  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${EMPTY}  @{IDno_enter_kyc_1}[1]  @{IDno_enter_kyc_1}[2]  @{IDno_enter_kyc_1}[3]  ${IDno_enter_kyc_1}[4]  ${1}  ${1}  E05  Missing mandatory field
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_22 Selle_Details_API duplicate idNum
+TC_24 Selle_Details_API Empty Idno Kyc 0
     [Documentation]  Empty: To Verify response if idNumber parameter is  NOT entered and KYCRequest’ = 0 and request sent with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
@@ -147,8 +165,8 @@ TC_22 Selle_Details_API duplicate idNum
     UpdateSellerDetails KYC 0  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${EMPTY}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_23 Selle_Details_API duplicate idNum
-    [Documentation]   Valid: To Verify response if idNumber parameter is entered valid and KYCRequest’ = 0 and request sent with all mandatory fieldsith all mandatory fields
+TC_25 Selle_Details_API Valid Idno
+    [Documentation]   Valid: To Verify response if idNumber parameter is entered valid and KYCRequest’ = 0 and request sent with all mandatory fieldsndatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${idnumber}=  RegisterSellerID
@@ -156,7 +174,7 @@ TC_23 Selle_Details_API duplicate idNum
     UpdateSellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${Idnum}  ${3}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_24 Selle_Details_API idNum
+TC_26 Selle_Details_API Idno
     [Documentation]  Valid: To Verify response if idNumber parameter is entered valid and KYCRequest’ = 1 and request sent with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
@@ -166,91 +184,100 @@ TC_24 Selle_Details_API idNum
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
 
-TC_26 Selle_Details_API Valid TypeOfId
+TC_27 Selle_Details_API Valid TypeOfId
+    [Documentation]  Valid: To Verify response if we enter valid typeOfId and request is sent with all mandatory fields (KYCRequest’ = 1 and Valid Id parameter)
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    ${idNum}=  Randome_IDNumber
+    UpdateSellerDetails IDNUMBER KYC 1  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  @{IDno_enter_kyc_1}[1]  @{IDno_enter_kyc_1}[2]  @{IDno_enter_kyc_1}[3]  ${IDno_enter_kyc_1}[4]  ${2}  ${1}  000  Success
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_28 Selle_Details_API TypeOfId Equal Citizen
     [Documentation]  Valid: To Verify response when  typeOfId = Citizen id and kycRequest = 0 request is sent with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${idnumber}=  RegisterSellerID
     ${idNum}=  Randome_IDNumber
-    UpdateSellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${Idnum}  ${1}  ${0}  000  Success
+    UpdateSellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  ${1}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_27 Selle_Details_API TypeOfId equal passport
+TC_29 Selle_Details_API TypeOfId equal passport
     [Documentation]  Valid: To Verify response when  typeOfId = Passport and kycRequest =0, request is sent with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${idnumber}=  RegisterSellerID
     ${idNum}=  Randome_IDNumber
-    UpdateSellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${Idnum}  ${2}  ${0}  000  Success
+    UpdateSellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  ${2}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_28 Selle_Details_API TypeOfId equal Others
+TC_30 Selle_Details_API TypeOfId equal Others
     [Documentation]  Valid: To Verify response when  typeOfId = Others  and kycRequest = 0,  request is sent with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${idnumber}=  RegisterSellerID
     ${idNum}=  Randome_IDNumber
-    UpdateSellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${Idnum}  ${3}  ${0}  000  Success
+    UpdateSellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  ${3}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_29 Selle_Details_API Diff TypeOfId
+TC_31 Selle_Details_API Diff TypeOfId
     [Documentation]  Valid: To Verify response with duplicate "idNumber" but typeOfId is different from orignal, KYCRequest = 0 and request is sent with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${idnumber}=  RegisterSellerID
     ${idNum}=  Randome_IDNumber
-    UpdateSellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${Idnum}  ${1}  ${0}  000  Success
+    UpdateSellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  ${1}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_30 Selle_Details_API TypeOfId equal citizen
-    [Documentation]  Valid: To Verify response when  typeOfId = Citizen id and kycRequest = 1 request is sent with all mandatory fields
-    [Tags]  000
-    ${TokenEscrow}=  GetToken Escrow
-    ${idNum}=  Randome_IDNumber
-    ${SellerId}  ${idnumber}=  RegisterSellerID
-    UpdateSellerDetails IDNUMBER KYC 1  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  @{IDno_enter_kyc_1}[1]  @{IDno_enter_kyc_1}[2]  @{IDno_enter_kyc_1}[3]  ${IDno_enter_kyc_1}[4]  ${1}  ${1}  000  Success
-    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+#TC_32 Selle_Details_API TypeOfId equal citizen KYC 1 ->Testcase skipped
+#    [Documentation]  Valid: To Verify response when  typeOfId = Citizen id and kycRequest = 1 request is sent with all mandatory fields
+#    [Tags]  000
+#    ${TokenEscrow}=  GetToken Escrow
+#    ${idNum}=  Randome_IDNumber
+#    ${SellerId}  ${idnumber}=  RegisterSellerID
+#    UpdateSellerDetails IDNUMBER KYC 1  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  @{IDno_enter_kyc_1}[1]  @{IDno_enter_kyc_1}[2]  @{IDno_enter_kyc_1}[3]  ${IDno_enter_kyc_1}[4]  ${1}  ${1}  000  Success
+#    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_31 Selle_Details_API TypeOfId equal passport
-    [Documentation]  Valid: To Verify response when  typeOfId = Passport and kycRequest =1, request is sent with all mandatory fields
-    [Tags]  000
-    ${TokenEscrow}=  GetToken Escrow
-    ${idNum}=  Randome_IDNumber
-    ${SellerId}  ${idnumber}=  RegisterSellerID
-    UpdateSellerDetails IDNUMBER KYC 1  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  @{IDno_enter_kyc_1}[1]  @{IDno_enter_kyc_1}[2]  @{IDno_enter_kyc_1}[3]  ${IDno_enter_kyc_1}[4]  ${2}  ${1}  000  Success
-    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+#TC_33 Selle_Details_API TypeOfId equal passport ->Testcase skipped
+#    [Documentation]  Valid: To Verify response when  typeOfId = Passport and kycRequest =1, request is sent with all mandatory fields
+#    [Tags]  000
+#    ${TokenEscrow}=  GetToken Escrow
+#    ${idNum}=  Randome_IDNumber
+#    ${SellerId}  ${idnumber}=  RegisterSellerID
+#    UpdateSellerDetails IDNUMBER KYC 1  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  @{IDno_enter_kyc_1}[1]  @{IDno_enter_kyc_1}[2]  @{IDno_enter_kyc_1}[3]  ${IDno_enter_kyc_1}[4]  ${2}  ${1}  000  Success
+#    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+#
+#TC_34 Selle_Details_API TypeOfId equal Others kyc 1 ->Testcase skipped
+#    [Documentation]  Valid: To Verify response when  typeOfId = Others  and kycRequest = 1,  request is sent with all mandatory fields
+#    [Tags]  000
+#    ${TokenEscrow}=  GetToken Escrow
+#    ${idNum}=  Randome_IDNumber
+#    ${SellerId}  ${idnumber}=  RegisterSellerID
+#    ${emailid}=  Randome_EmailId
+#    UpdateSellerDetails Valid data  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  @{IDno_enter_kyc_1}[1]  @{IDno_enter_kyc_1}[2]  @{IDno_enter_kyc_1}[3]  ${IDno_enter_kyc_1}[4]  ${3}  ${1}  ${emailid}  000  Success
+#    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_32 Selle_Details_API TypeOfId equal Others kyc 1
-    [Documentation]  Valid: To Verify response when  typeOfId = Others  and kycRequest = 1,  request is sent with all mandatory fields
-    [Tags]  000
-    ${TokenEscrow}=  GetToken Escrow
-    ${idNum}=  Randome_IDNumber
-    ${SellerId}  ${idnumber}=  RegisterSellerID
-    ${emailid}=  Randome_EmailId
-    UpdateSellerDetails typeOfId equal to others  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  @{IDno_enter_kyc_1}[1]  @{IDno_enter_kyc_1}[2]  @{IDno_enter_kyc_1}[3]  ${IDno_enter_kyc_1}[4]  ${3}  ${1}  ${emailid}  000  Success
-    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
-
-TC_33 Selle_Details_API Invalid typeOfId
+TC_35 Selle_Details_API Invalid typeOfId
     [Documentation]  Invalid: To Verify response if we enter invalid typeOfId and request is sent with all mandatory fields (KYCRequest’ = 1 and Valid Id parameter)
     [Tags]  E03
     ${TokenEscrow}=  GetToken Escrow
     ${idNum}=  Randome_IDNumber
     ${SellerId}  ${idnumber}=  RegisterSellerID
     ${emailid}=  Randome_EmailId
-    UpdateSellerDetails typeOfId equal to others  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  @{IDno_enter_kyc_1}[1]  @{IDno_enter_kyc_1}[2]  @{IDno_enter_kyc_1}[3]  ${IDno_enter_kyc_1}[4]  ${44}  ${1}  ${emailid}  E03  Invalid request
+    UpdateSellerDetails Valid data  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  @{IDno_enter_kyc_1}[1]  @{IDno_enter_kyc_1}[2]  @{IDno_enter_kyc_1}[3]  ${IDno_enter_kyc_1}[4]  ${44}  ${1}  ${emailid}  E03  Invalid request
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_34 Selle_Details_API Empty typeOfId
+TC_36 Selle_Details_API Empty typeOfId
     [Documentation]  Invalid: To Verify response if we enter invalid typeOfId and request is sent with all mandatory fields (KYCRequest’ = 1 and Valid Id parameter)
-    [Tags]  E03
+    [Tags]  E05
     ${TokenEscrow}=  GetToken Escrow
     ${idNum}=  Randome_IDNumber
     ${SellerId}  ${idnumber}=  RegisterSellerID
     ${emailid}=  Randome_EmailId
-    UpdateSellerDetails typeOfId equal to others  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  @{IDno_enter_kyc_1}[1]  @{IDno_enter_kyc_1}[2]  @{IDno_enter_kyc_1}[3]  ${IDno_enter_kyc_1}[4]  ${EMPTY}  ${1}  ${emailid}  E03  Invalid request
+    UpdateSellerDetails Valid data  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  @{IDno_enter_kyc_1}[1]  @{IDno_enter_kyc_1}[2]  @{IDno_enter_kyc_1}[3]  ${IDno_enter_kyc_1}[4]  ${EMPTY}  ${1}  ${emailid}  E05  Missing mandatory field
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_35 Seller Details API mobile country code empty
+TC_37 Selle_Details_API mobilecountrycode empty
     [Documentation]  Valid : To Verify response if mobileCountryCode parameter is entered empty and request sent with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
@@ -258,7 +285,7 @@ TC_35 Seller Details API mobile country code empty
     UpdateSellerDetails Empty MobileCountryCode  ${TokenEscrow}  @{escrowCompId}[0]  ${EMPTY}  ${SellerId}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_36 Seller Details API mobilecountrycode mobile
+TC_38 Selle_Details_API Valid mobile_country_code
     [Documentation]  Valid: To Verify response if mobileCountryCode parameter is  entered valid and request sent with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
@@ -267,7 +294,7 @@ TC_36 Seller Details API mobilecountrycode mobile
     UpdateSellerDetails MobileCountrycode mobile  ${TokenEscrow}  @{escrowCompId}[0]  @{valid_mobile_country_code}[1]  ${MobNo}  ${SellerId}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_37 Seller Details API mobile no
+TC_39 Selle_Details_API mobile no
     [Documentation]  Valid: To Verify response if mobileNo parameter is  entered valid without first digit 0 and request sent with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
@@ -276,7 +303,7 @@ TC_37 Seller Details API mobile no
     UpdateSellerDetails MobileCountrycode mobile  ${TokenEscrow}  @{escrowCompId}[0]  @{valid_mobile_country_code}[1]  ${MobNo}  ${SellerId}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_38 Seller Details API Empty mobile no
+TC_40 Selle_Details_API Empty mobile no
     [Documentation]  Empty: To Verify response if mobileNo parameter is not entered and request sent with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
@@ -284,16 +311,16 @@ TC_38 Seller Details API Empty mobile no
     UpdateSellerDetails MobileCountrycode mobile  ${TokenEscrow}  @{escrowCompId}[0]  @{valid_mobile_country_code}[1]  ${EMPTY}  ${SellerId}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_39 Seller Details API Empty mobilecountrycode
+TC_41 Selle_Details_API Empty mobilecountrycode
     [Documentation]  Empty: To Verify response if mobileNo parameter is entered and mobileCountryCode is NOT entered and request sent with all mandatory fields
-    [Tags]  000
+    [Tags]  E05
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${idnumber}=  RegisterSellerID
     ${MobNo}=  Randome_MobileNumber
     UpdateSellerDetails MobileCountrycode mobile  ${TokenEscrow}  @{escrowCompId}[0]  ${EMPTY}  ${MobNo}  ${SellerId}  ${0}  E05  Missing mandatory field
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_40 Seller Details API Valid mobile no
+TC_42 Selle_Details_API Valid mobile no
     [Documentation]  Valid: To Verify response if mobileNo parameter is  entered valid and request sent with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
@@ -304,7 +331,7 @@ TC_40 Seller Details API Valid mobile no
     UpdateSellerDetails MobileCountrycode mobile  ${TokenEscrow}  @{escrowCompId}[0]  @{valid_mobile_country_code}[1]  ${MobNo1}  ${SellerId}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_41 Seller Details API Duplicate mobile no
+TC_43 Selle_Details_API Duplicate mobile no Status 1
     [Documentation]  Duplicate: To check Mobile number is entered duplicate (duplicate mobile number should belong to Seller status = Active) and request is send with all mandatory fields
     [Tags]  U01
     ${TokenEscrow}=  GetToken Escrow
@@ -313,8 +340,8 @@ TC_41 Seller Details API Duplicate mobile no
     UpdateSellerDetails MobileCountrycode mobile  ${TokenEscrow}  @{escrowCompId}[0]  @{valid_mobile_country_code}[1]  ${MobNo1}  ${SellerId}  ${0}  U01  Duplicate ID card, email or mobile no
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_42 Selle_Details_API duplicate idNum
-    [Documentation]  Duplicate : To check Mobile number is entered duplicate (duplicate mobile number should belong to Seller status = terminated ) and request is send with all mandatory fields ith all mandatory fields
+TC_44 Selle_Details_API Duplicate mobile no Status 4
+    [Documentation]  Duplicate : To check Mobile number is entered duplicate (duplicate mobile number should belong to Seller status = terminated ) and request is send with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${Idnum}=  RegisterSellerID
@@ -323,15 +350,35 @@ TC_42 Selle_Details_API duplicate idNum
     UpdateSellerDetails MobileCountrycode mobile  ${TokenEscrow}  @{escrowCompId}[0]  @{valid_mobile_country_code}[1]  ${MobNo1}  ${SellerId}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_43 Selle_Details_API Empty Email
-    [Documentation]  Valid: To Verify response  parameter of Update Seller Detail API
+TC_45 Selle_Details_API Duplicate mobile no Status 1
+    [Documentation]  Duplicate : To check Mobile number is entered duplicate (duplicate mobile number should belong to Seller status = terminated ) and request is send with all mandatory fields
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${Idnum}=  RegisterSellerID
+    UpdateSeller to convert    ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${4}
+    log to console  ${MobNo1}
+    UpdateSellerDetails MobileCountrycode mobile  ${TokenEscrow}  @{escrowCompId}[0]  @{valid_mobile_country_code}[1]  ${MobNo1}  ${SellerId}  ${0}  000  Success
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_46 Selle_Details_API Duplicate mobile no Status 4
+    [Documentation]  Duplicate : To check Mobile number is entered duplicate (duplicate mobile number should belong to Seller status = terminated ) and request is send with all mandatory fields
+    [Tags]  E03
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${Idnum}=  RegisterSellerID
+    UpdateSeller to convert    ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${4}
+    log to console  ${MobNo1}
+    UpdateSellerDetails MobileCountrycode mobile  ${TokenEscrow}  @{escrowCompId}[0]  @{valid_mobile_country_code}[1]  ${MobNo1}  ${SellerId}  ${0}  E03  Invalid request
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_47 Selle_Details_API Empty Email
+    [Documentation]  Valid: To Verify response if email parameter is  entered valid and request sent with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${idnumber}=  RegisterSellerID
     UpdateSellerDetails Email  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${EMPTY}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_44 Selle_Details_API Invalid Email
+TC_48 Selle_Details_API Invalid Email
     [Documentation]  Invalid: To Verify response if email parameter is  entered invalid and request sent with all mandatory fields
     [Tags]  R01
     ${TokenEscrow}=  GetToken Escrow
@@ -340,7 +387,7 @@ TC_44 Selle_Details_API Invalid Email
     UpdateSellerDetails Email  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  pavan${emailid}  ${0}  R01  Validation failed
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_45 Selle_Details_API Valid Email
+TC_49 Selle_Details_API Valid Email
     [Documentation]  Valid: To Verify response if email parameter is  entered valid and request sent with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
@@ -350,7 +397,7 @@ TC_45 Selle_Details_API Valid Email
     UpdateSellerDetails Email  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${email}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_46 Selle_Details_API Duplicate Email Status 1
+TC_50 Selle_Details_API Duplicate Email Status 1
     [Documentation]  Duplicate: To check Email Address is entered duplicate (duplicate Email Address should belong to Seller status = Active)and request is send with all mandatory fields
     [Tags]  U01
     ${TokenEscrow}=  GetToken Escrow
@@ -358,15 +405,36 @@ TC_46 Selle_Details_API Duplicate Email Status 1
     UpdateSellerDetails Email  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${email}  ${0}  U01  Duplicate ID card, email or mobile no
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_47 Selle_Details_API Duplicate Email Status 4
+TC_51 Selle_Details_API Duplicate Email Status 4
     [Documentation]  Duplicate: To check Email Address is entered duplicate (duplicate Email Address should belong to Seller status = terminated )and request is send with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSeller to convert    ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${4}
     UpdateSellerDetails Email  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${email}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_48 Selle_Details_API Empty Gender
+TC_52 Selle_Details_API Duplicate Email Status 1
+    [Documentation]  Duplicate: To check Email Address is entered duplicate (duplicate Email Address should belong to Seller status = terminated )and request is send with all mandatory fields
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    ${idNum}=  Randome_IDNumber
+    UpdateSeller to convert    ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${1}
+    UpdateSellerDetails Email TypeId  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  ${email}  ${1}  ${0}  000  Success
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_53 Selle_Details_API Duplicate Email Status 4
+    [Documentation]  Duplicate: To check Email Address is entered duplicate (duplicate Email Address should belong to Seller status = terminated )and request is send with all mandatory fields
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    ${idNum}=  Randome_IDNumber
+    UpdateSeller to convert    ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${4}
+    UpdateSellerDetails Email TypeId  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  ${email}  ${1}  ${0}  E03  Invalid request
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_54 Selle_Details_API Empty Gender
     [Documentation]  Empty: To Verify response if gender parameter is not entered and request sent with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
@@ -374,7 +442,7 @@ TC_48 Selle_Details_API Empty Gender
     UpdateSellerDetails Gender  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${EMPTY}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_49 Selle_Details_API Invalid Gender
+TC_55 Selle_Details_API Invalid Gender
     [Documentation]  Invalid: To Verify response if gender parameter is  entered invalid and request sent with all mandatory fields
     [Tags]  R01
     ${TokenEscrow}=  GetToken Escrow
@@ -382,7 +450,7 @@ TC_49 Selle_Details_API Invalid Gender
     UpdateSellerDetails Gender  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  Y  ${0}  R01  Validation failed
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_50 Selle_Details_API Valid Gender
+TC_56 Selle_Details_API Valid Gender
     [Documentation]  Valid: To Verify response if gender parameter is  entered valid and request sent with all mandatory fields
     [Tags]  R01
     ${TokenEscrow}=  GetToken Escrow
@@ -390,7 +458,7 @@ TC_50 Selle_Details_API Valid Gender
     UpdateSellerDetails Gender  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  M  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_51 Selle_Details_API Valid titleEn
+TC_57 Selle_Details_API Valid titleEn
     [Documentation]  Valid: To Verify response if titleEn is entered valid  and request sent with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
@@ -398,7 +466,7 @@ TC_51 Selle_Details_API Valid titleEn
     UpdateSellerDetails titleEn  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  Mr  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_52 Selle_Details_API Empty titleEn
+TC_58 Selle_Details_API Empty titleEn
     [Documentation]  Empty: To Verify response if titleEn parameter is not entered and request sent with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
@@ -406,7 +474,7 @@ TC_52 Selle_Details_API Empty titleEn
     UpdateSellerDetails titleEn  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${EMPTY}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_53 Selle_Details_API Invalid titleEn
+TC_59 Selle_Details_API Invalid titleEn
     [Documentation]  Invalid: To Verify response if titleEn parameter is  entered more than size 5 and request sent with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
@@ -414,7 +482,7 @@ TC_53 Selle_Details_API Invalid titleEn
     UpdateSellerDetails titleEn  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  Mr.3467  ${0}  E11  Data length is over limit
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_54 Selle_Details_API Valid firstNameEn
+TC_60 Selle_Details_API Valid firstNameEn
     [Documentation]  Valid: To Verify response if titleEn is entered valid  and request sent with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
@@ -422,7 +490,7 @@ TC_54 Selle_Details_API Valid firstNameEn
     UpdateSellerDetails firstNameEn  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  @{firstNameEn}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_55 Selle_Details_API Empty firstNameEn
+TC_61 Selle_Details_API Empty firstNameEn
     [Documentation]  Empty: To Verify response if titleEn parameter is not entered and request sent with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
@@ -430,7 +498,7 @@ TC_55 Selle_Details_API Empty firstNameEn
     UpdateSellerDetails firstNameEn  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${EMPTY}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_56 Selle_Details_API Invalid firstNameEn
+TC_62 Selle_Details_API Invalid firstNameEn
     [Documentation]  Invalid: To Verify response if titleEn parameter is  entered more than size 5 and request sent with all mandatory fields
     [Tags]  E11
     ${TokenEscrow}=  GetToken Escrow
@@ -438,7 +506,7 @@ TC_56 Selle_Details_API Invalid firstNameEn
     UpdateSellerDetails firstNameEn  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  @{firstNameEn1_lastnm}  ${0}  E11  Data length is over limit
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_57 Selle_Details_API Valid lastNameEn
+TC_63 Selle_Details_API Valid lastNameEn
     [Documentation]  Valid: To Verify response if titleEn is entered valid  and request sent with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
@@ -446,7 +514,7 @@ TC_57 Selle_Details_API Valid lastNameEn
     UpdateSellerDetails lastNameEn  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  @{firstNameEn}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_58 Selle_Details_API Empty lastNameEn
+TC_64 Selle_Details_API Empty lastNameEn
     [Documentation]  Empty: To Verify response if titleEn parameter is not entered and request sent with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
@@ -454,15 +522,15 @@ TC_58 Selle_Details_API Empty lastNameEn
     UpdateSellerDetails lastNameEn  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${EMPTY}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_59 Selle_Details_API Invalid lastNameEn
-    [Documentation]  Invalid: To Verify response if titleEn parameter is  entered more than size 5 and request sent with all mandatory fields
+TC_65 Selle_Details_API Invalid lastNameEn
+    [Documentation]  Invalid: To Verify response if lastNameEn parameter is  entered more than size 100 and request sent with all mandatory fields
     [Tags]  E11
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${idnumber}=  RegisterSellerID
-    UpdateSellerDetails lastNameEn  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  @{firstNameEn1_lastnm}  ${0}  E11  Data length is over limit
+    UpdateSellerDetails lastNameEn  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  @{firstNameEn1_lastnm}[0]  ${0}  E11  Data length is over limit
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_60 Selle_Details_API Valid titleLocal
+TC_66 Selle_Details_API Valid titleLocal
     [Documentation]  Valid: To Verify response if titleEn is entered valid  and request sent with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
@@ -470,7 +538,7 @@ TC_60 Selle_Details_API Valid titleLocal
     UpdateSellerDetails titleLocal  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  TH  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_61 Selle_Details_API Empty titleLocal
+TC_67 Selle_Details_API Empty titleLocal
     [Documentation]  Empty: To Verify response if titleEn parameter is not entered and request sent with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
@@ -478,10 +546,266 @@ TC_61 Selle_Details_API Empty titleLocal
     UpdateSellerDetails titleLocal  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${EMPTY}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
-TC_62 Selle_Details_API Invalid titleLocal
+TC_68 Selle_Details_API Invalid titleLocal
     [Documentation]  Invalid: To Verify response if titleEn parameter is  entered more than size 5 and request sent with all mandatory fields
     [Tags]  E11
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${idnumber}=  RegisterSellerID
     UpdateSellerDetails titleLocal  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  @{titleLocal_more_50}  ${0}  E11  Data length is over limit
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+#TC_69 Selle_Details_API valid firstNameLocal ->Testcase skipped
+#    [Documentation]  Valid : To Verify response if we enter valid firstNameLocal and request is sent with all mandatory fields with KYCRequest=1
+#    [Tags]  000
+#    ${TokenEscrow}=  GetToken Escrow
+#    ${idNum}=  Randome_IDNumber
+#    ${SellerId}  ${idnumber}=  RegisterSellerID
+#    ${emailid}=  Randome_EmailId
+#    UpdateSellerDetails Valid data  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  @{IDno_enter_kyc_1}[1]  @{IDno_enter_kyc_1}[2]  @{IDno_enter_kyc_1}[3]  ${IDno_enter_kyc_1}[4]  ${1}  ${1}  ${emailid}  000  Success
+#    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_70 Selle_Details_API Valid firstNameLocal
+    [Documentation]  Valid : To Verify response if we enter valid firstNameLocal and request is sent with all mandatory fields with KYCRequest=0
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails firstNameLocal  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  @{firstNameLocal}  ${0}  000  Success
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_71 Selle_Details_API valid firstNameLocal
+    [Documentation]  Empty: To Verify response if we NOT enter firstNameLocal and request is sent with all mandatory fields with KYCRequest=1
+    [Tags]  E05
+    ${TokenEscrow}=  GetToken Escrow
+    ${idNum}=  Randome_IDNumber
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    ${emailid}=  Randome_EmailId
+    UpdateSellerDetails Valid data  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  ${EMPTY}  @{IDno_enter_kyc_1}[2]  @{IDno_enter_kyc_1}[3]  ${IDno_enter_kyc_1}[4]  ${1}  ${1}  ${emailid}  E05  Missing mandatory field
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_72 Selle_Details_API EMPTY firstNameLocal
+    [Documentation]  Valid : To Verify response if we enter valid firstNameLocal and request is sent with all mandatory fields with KYCRequest=0
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails firstNameLocal  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${EMPTY}  ${0}  000  Success
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_73 Selle_Details_API Invalid firstNameLocal
+    [Documentation]  Invalid: To Verify response if firstNameLocal parameter is  entered more than size 100 and request sent with all mandatory fields
+    [Tags]  E11
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails firstNameLocal  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  @{firstNameEn1_lastnm}[0]  ${0}  E11  Data length is over limit
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+#TC_74 Selle_Details_API valid lastNameLocal ->Testcase skipped
+#    [Documentation]  Valid : To Verify response if we enter valid lastNameLocal and request is sent with all mandatory fields with KYCRequest=1
+#    [Tags]  000
+#    ${TokenEscrow}=  GetToken Escrow
+#    ${idNum}=  Randome_IDNumber
+#    ${SellerId}  ${idnumber}=  RegisterSellerID
+#    ${emailid}=  Randome_EmailId
+#    UpdateSellerDetails Valid data  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  @{IDno_enter_kyc_1}[1]  @{IDno_enter_kyc_1}[2]  @{IDno_enter_kyc_1}[3]  ${IDno_enter_kyc_1}[4]  ${1}  ${1}  ${emailid}  000  Success
+#    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_75 Selle_Details_API Valid lastNameLocal
+    [Documentation]  Valid : To Verify response if we enter valid lastNameLocal and request is sent with all mandatory fields with KYCRequest=0
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails lastNameLocal  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  @{LastNameLocal}  ${0}  000  Success
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_76 Selle_Details_API EMPTY lastNameLocal
+    [Documentation]  Empty: To Verify response if we NOT enter lastNameLocal and request is sent with all mandatory fields with KYCRequest=1
+    [Tags]  E05
+    ${TokenEscrow}=  GetToken Escrow
+    ${idNum}=  Randome_IDNumber
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    ${emailid}=  Randome_EmailId
+    UpdateSellerDetails Valid data  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  @{IDno_enter_kyc_1}[1]  ${EMPTY}  @{IDno_enter_kyc_1}[3]  ${IDno_enter_kyc_1}[4]  ${1}  ${1}  ${emailid}  E05  Missing mandatory field
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_77 Selle_Details_API Empty lastNameLocal
+    [Documentation]  Empty: To Verify response if we NOT enter lastNameLocal and request is sent with all mandatory fields with KYCRequest=0
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails lastNameLocal  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${EMPTY}  ${0}  000  Success
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_78 Selle_Details_API InValid lastNameLocal
+    [Documentation]  Invalid: To Verify response if lastNameLocal parameter is  entered more than size 150 and request sent with all mandatory fields
+    [Tags]  E11
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails lastNameLocal  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  @{firstNameEn1_lastnm}[0]  ${0}  E11  Data length is over limit
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+#TC_79 Selle_Details_API valid Dateofbirth kyc 1 ->Testcase skipped
+#    [Documentation]  Valid : To Verify response if we enter valid dateOfBirth and request is sent with all mandatory fields with KYCRequest=1
+#    [Tags]  000
+#    ${TokenEscrow}=  GetToken Escrow
+#    ${idNum}=  Randome_IDNumber
+#    ${SellerId}  ${idnumber}=  RegisterSellerID
+#    ${emailid}=  Randome_EmailId
+#    UpdateSellerDetails Valid data  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  @{IDno_enter_kyc_1}[1]  @{IDno_enter_kyc_1}[2]  @{IDno_enter_kyc_1}[3]  ${IDno_enter_kyc_1}[4]  ${1}  ${1}  ${emailid}  000  Success
+#    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_80 Selle_Details_API Valid Dateofbirth
+    [Documentation]  Valid : To Verify response if we enter valid dateOfBirth and request is sent with all mandatory fields with KYCRequest=0
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails DateofBirth  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  @{dateOfBirth}[0]  ${0}  000  Success
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_81 Selle_Details_API Empty Dateofbirth kyc 1
+    [Documentation]  Empty: To Verify response if we NOT enter dateOfBirth and request is sent with all mandatory fields with KYCRequest=1
+    [Tags]  E05
+    ${TokenEscrow}=  GetToken Escrow
+    ${idNum}=  Randome_IDNumber
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    ${emailid}=  Randome_EmailId
+    UpdateSellerDetails DateofBirth  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  @{IDno_enter_kyc_1}[1]  @{IDno_enter_kyc_1}[2]  @{IDno_enter_kyc_1}[3]  ${EMPTY}  ${1}  ${1}  ${emailid}  E05  Missing mandatory field
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_82 Selle_Details_API Valid Dateofbirth
+    [Documentation]  Empty: To Verify response if we NOT enter dateOfBirth and request is sent with all mandatory fields with KYCRequest=0
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails DateofBirth  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${EMPTY}  ${0}  000  Success
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_83 Selle_Details_API InValid Dateofbirth
+    [Documentation]  Empty: To Verify response if we NOT enter dateOfBirth and request is sent with all mandatory fields with KYCRequest=0
+    [Tags]  E04
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails DateofBirth  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  @{IN_dateOfBirth}[0]  ${0}  E04  Invalid date/time format
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_84 Selle_Details_API Empty nationalityId
+    [Documentation]  Empty: To Verify response if nationalityId parameter is not entered and request sent with all mandatory fields with KYCRequest=0
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails nationalityId  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${EMPTY}  ${0}  000  Success
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_85 Selle_Details_API InValid nationalityId
+    [Documentation]  Invalid: To Verify response if nationalityId parameter is  entered invalid and request sent with all mandatory fields
+    [Tags]  R01
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails nationalityId  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  aaa  ${0}  R01  Validation failed
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_86 Selle_Details_API Valid nationalityId
+    [Documentation]  Valid: To Verify response if nationalityId parameter is  entered valid and request sent with all mandatory fields
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails nationalityId  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  @{v_nationalityId}[0]  ${0}  000  Success
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_87 Selle_Details_API InValid nationalityId
+    [Documentation]  Invalid: To Verify response if nationalityId parameter is  entered more than size 3 and request sent with all mandatory fields
+    [Tags]  E11
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails nationalityId  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  @{nationalityId_more_3}[0]  ${0}  E11  Data length is over limit
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+#TC_88 Selle_Details_API valid otherverification kyc 1 ->Testcase skipped
+#    [Documentation]  Valid : To Verify response if we enter valid otherVerification and request is sent with all mandatory fields with KYCRequest=1
+#    [Tags]  000
+#    ${TokenEscrow}=  GetToken Escrow
+#    ${idNum}=  Randome_IDNumber
+#    ${SellerId}  ${idnumber}=  RegisterSellerID
+#    ${emailid}=  Randome_EmailId
+#    UpdateSellerDetails Valid data  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  @{IDno_enter_kyc_1}[1]  @{IDno_enter_kyc_1}[2]  @{IDno_enter_kyc_1}[3]  ${IDno_enter_kyc_1}[4]  ${1}  ${1}  ${emailid}  000  Success
+#    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_89 Selle_Details_API Valid otherVerification
+    [Documentation]  Valid : To Verify response if we enter valid otherVerification and request is sent with all mandatory fields with KYCRequest=0
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails otherVerification  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  @{type_id_others}[4]  ${0}  000  Success
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_90 Selle_Details_API Empty otherverification kyc 1
+    [Documentation]  Valid : To Verify response if we enter valid otherVerification and request is sent with all mandatory fields with KYCRequest=1
+    [Tags]  E05
+    ${TokenEscrow}=  GetToken Escrow
+    ${idNum}=  Randome_IDNumber
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    ${emailid}=  Randome_EmailId
+    UpdateSellerDetails Valid data  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  @{IDno_enter_kyc_1}[1]  @{IDno_enter_kyc_1}[2]  @{IDno_enter_kyc_1}[3]  ${EMPTY}  ${1}  ${1}  ${emailid}  E05  Missing mandatory field
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_91 Selle_Details_API Empty otherVerification
+    [Documentation]  Valid : To Verify response if we enter valid otherVerification and request is sent with all mandatory fields with KYCRequest=0
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails otherVerification  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${EMPTY}  ${0}  000  Success
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_92 Selle_Details_API InValid otherVerification
+    [Documentation]  Invalid: To Verify response if otherVerification  parameter is  entered more than size 15 and request sent with all mandatory fields
+    [Tags]  E11
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails otherVerification  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  @{type_id_others}[5]  ${0}  E11  Data length is over limit
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_93 Seller_Details_API Valid workPlace
+    [Documentation]  Valid: To Verify response if workPlace is entered valid  and request sent with all mandatory fields
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails workPlace  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${workPlace}[0]  ${0}  000  Success
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_94 Seller_Details_API Empty workPlace
+    [Documentation]  Empty: To Verify response if workPlace parameter is not entered and request sent with all mandatory fields
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails workPlace  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${EMPTY}  ${0}  000  Success
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_95 Seller_Details_API InValid workPlace
+    [Documentation]  Invalid: To Verify response if workPlace parameter is  entered more than size 100 and request sent with all mandatory fields
+    [Tags]  E11
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails workPlace  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${work_space}[0]  ${0}  E11  Data length is over limit
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_96 Seller_Details_API Valid workPlace
+    [Documentation]  Valid: To Verify response if userDefine1-5 parameter is entered valid  and request sent with all mandatory fields
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails userDefine  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  @{userDefine}[0]  @{userDefine}[1]  @{userDefine}[2]  @{userDefine}[3]  @{userDefine}[4]  ${0}  000  Success
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_97 Seller_Details_API Empty workPlace
+    [Documentation]  Empty: To Verify response  if userDefine1-5 parameter is entered empty and request sent with all mandatory fields
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails userDefine  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${EMPTY}  ${EMPTY}  ${EMPTY}  ${EMPTY}  ${EMPTY}  ${0}  000  Success
+    VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_98 Seller_Details_API InValid workPlace
+    [Documentation]  Invalid: To Verify response if userDefine1-5 parameter is entered invalid (more than size 100)  and request sent with all mandatory fields
+    [Tags]  E11
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails userDefine  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  @{In_User_Def}[0]  @{In_User_Def}[0]  @{In_User_Def}[0]  @{In_User_Def}[0]  @{In_User_Def}[0]  ${0}  E11  Data length is over limit
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
