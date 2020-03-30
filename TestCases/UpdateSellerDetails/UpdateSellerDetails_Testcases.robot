@@ -809,3 +809,140 @@ TC_98 Seller_Details_API InValid workPlace
     ${SellerId}  ${idnumber}=  RegisterSellerID
     UpdateSellerDetails userDefine  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  @{In_User_Def}[0]  @{In_User_Def}[0]  @{In_User_Def}[0]  @{In_User_Def}[0]  @{In_User_Def}[0]  ${0}  E11  Data length is over limit
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
+
+TC_99 UpdateSellerDetails with Empty Kyc and Mandetory Data
+    [Documentation]  Empty : To verify response when kycRequest parameter is not entered and request is sent with all mandatory fields
+    [Tags]  E05
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails_Empty_kyc   ${TokenEscrow}   @{escrowCompId}[0]  ${SellerId}   ${EMPTY}   E05   Missing mandatory field
+
+TC_100 UpdateSellerDetails with Invalid Kyc and Mandetory Data
+    [Documentation]  Invalid : To verify response when kycRequest parameter is entered invalid and request is sent with all mandatory fields
+    [Tags]  E03
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails_kyc   ${TokenEscrow}   @{escrowCompId}[0]  ${SellerId}   ${3}   E03   Invalid request
+
+TC_101 UpdateSellerDetails with Valid Kyc and Mandetory Data
+    [Documentation]  Valid: To verify response when kycRequest parameter is entered valid and request is sent with all mandatory fields
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails_kyc   ${TokenEscrow}   @{escrowCompId}[0]  ${SellerId}   ${0}   000   Success
+
+TC_102 UpdateSellerDetails with Empty Address
+    [Documentation]  Empty: To Verify response if All address{} parameter is entered Empty and request sent with all mandatory fields
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails Address   ${TokenEscrow}   @{escrowCompId}[0]   ${SellerId}   ${0}   ${EMPTY}   ${EMPTY}   ${EMPTY}   ${EMPTY}   ${EMPTY}   ${EMPTY}   ${EMPTY}   ${EMPTY}   ${EMPTY}   ${EMPTY}   000   Success
+
+TC_103 UpdateSellerDetails with Invalid CountryId
+    [Documentation]  Empty: To Verify response if address.countryId parameter is entered Invalid and request sent with all mandatory fields
+    [Tags]  R01
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails Address   ${TokenEscrow}   @{escrowCompId}[0]   ${SellerId}   ${0}   @{MailingAddress}[0]   @{MailingAddress}[1]   999   @{MailingAddress}[2]   @{Address}[4]   @{MailingAddress}[3]   @{Address}[6]   @{Address}[7]   @{Address}[8]   @{Address}[9]   R01   Validation failed
+
+TC_104 UpdateSellerDetails with Valid Address
+    [Documentation]  Valid: To Verify response if All address{} parameter is entered valid  and request sent with all mandatory fields
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails Address   ${TokenEscrow}   @{escrowCompId}[0]   ${SellerId}   ${0}   @{MailingAddress}[0]   @{MailingAddress}[1]   @{Address}[2]   @{MailingAddress}[2]   @{Address}[4]   @{MailingAddress}[3]   @{Address}[6]   @{Address}[7]   @{Address}[8]   @{Address}[9]   000   Success
+
+TC_105 UpdateSellerDetails with Empty MailingAddress
+    [Documentation]  Empty: To Verify response if All mailingAddress{} parameter is entered Empty and request sent with all mandatory fields
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails MailingAddress  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}   ${0}   ${EMPTY}   ${EMPTY}   ${EMPTY}   ${EMPTY}   ${EMPTY}   ${EMPTY}   ${EMPTY}   ${EMPTY}   ${EMPTY}   ${EMPTY}   000   Success
+
+TC_106 UpdateSellerDetails with Invalid CountryId
+    [Documentation]  Empty: To Verify response if mailingAddress.countryId parameter is entered Invalid and request sent with all mandatory fields
+    [Tags]  R01
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails MailingAddress  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}   ${0}   @{MailingAddress}[0]   @{MailingAddress}[1]   999   @{MailingAddress}[2]   @{Address}[4]   @{MailingAddress}[3]   @{Address}[6]   @{Address}[7]   @{Address}[8]   @{Address}[9]   R01   Validation failed
+
+TC_107 UpdateSellerDetails with Valid MailingAddress
+    [Documentation]  Valid: To Verify response if All mailingAddress{} parameter is entered valid  and request sent with all mandatory fields
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSellerDetails MailingAddress  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}   ${0}   @{MailingAddress}[0]   @{MailingAddress}[1]   @{Address}[2]   @{MailingAddress}[2]   @{Address}[4]   @{MailingAddress}[3]   @{Address}[6]   @{Address}[7]   @{Address}[8]   @{Address}[9]   000   Success
+
+TC_108 UpdateSellerDetails Update to Kyc=1 -> TestCase Skipped
+    [Documentation]  Valid: To check API response when register "kycRequest": 0 but update seller detail "kycRequest": 1
+
+TC_109 UpdateSellerDetails with registered Kyc=1 -> TestCase Skipped
+    [Documentation]  Valid: To check API response when register "kycRequest": 1 but update update seller detail "kycRequest": 0
+
+TC_110 UpdateSellerDetails with IdNumber is Invalid
+    [Documentation]  Invalid:To check API response when idNumber is enter invalid( with out check sum validation) and request is sent with all mandatory fields (KycRequest=1)
+    [Tags]  R01
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    ${emailid}=  Randome_EmailId
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    ${Invalid_IdNum}=  Generate Random String  10  [NUMBERS]
+    UpdateSeller with valid Data  ${TokenEscrow}  @{valid_mobile_country_code}[0]  ${SellerId}  ${Invalid_IdNum}  ${3}  @{valid_mobile_country_code}[1]  ${MobNo}  ${emailid}  M  @{RegisterSellerData}[0]  @{RegisterSellerData}[1]  @{RegisterSellerData}[2]  @{RegisterSellerData}[3]  @{RegisterSellerData}[4]  @{RegisterSellerData}[5]  @{RegisterSellerData}[6]  @{v_nationalityId}  @{Kyc1_Data}[1]  @{RegisterSellerData}[8]  @{RegisterSellerData}[9]  @{RegisterSellerData}[10]  @{RegisterSellerData}[11]  @{RegisterSellerData}[12]  @{RegisterSellerData}[13]  ${1}  R01  Validation failed
+
+TC_111 UpdateSellerDetails with OtherVarification is Invalid
+    [Documentation]  Invalid : To check API response when otherVerification is entered invalid and request is sent with all mandatory fields (KycRequest=1)
+    [Tags]  R01
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    ${emailid}=  Randome_EmailId
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSeller with valid Data  ${TokenEscrow}  @{valid_mobile_country_code}[0]  ${SellerId}  ${idnumber}  ${3}  @{valid_mobile_country_code}[1]  ${MobNo}  ${emailid}  M  @{RegisterSellerData}[0]  @{RegisterSellerData}[1]  @{RegisterSellerData}[2]  @{RegisterSellerData}[3]  @{RegisterSellerData}[4]  @{RegisterSellerData}[5]  @{RegisterSellerData}[6]  @{v_nationalityId}  @{Kyc1_Data}[1]  @{RegisterSellerData}[8]  @{RegisterSellerData}[9]  @{RegisterSellerData}[10]  @{RegisterSellerData}[11]  @{RegisterSellerData}[12]  @{RegisterSellerData}[13]  ${1}  R01  Validation failed
+
+TC_112 UpdateSellerDetails with IdNumber is Invalid
+    [Documentation]  Invalid: To check API reponse when IdNumber is enter invalid and request is sent with all mandatory fields (KycRequest=1)
+    [Tags]  R02
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    ${emailid}=  Randome_EmailId
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSeller with valid Data  ${TokenEscrow}  @{valid_mobile_country_code}[0]  ${SellerId}  @{Kyc1_Data}[0]  ${3}  @{valid_mobile_country_code}[1]  ${MobNo}  ${emailid}  M  @{RegisterSellerData}[0]  @{RegisterSellerData}[1]  @{RegisterSellerData}[2]  @{RegisterSellerData}[3]  @{RegisterSellerData}[4]  @{RegisterSellerData}[5]  @{RegisterSellerData}[6]  @{v_nationalityId}  @{Kyc1_Data}[1]  @{RegisterSellerData}[8]  @{RegisterSellerData}[9]  @{RegisterSellerData}[10]  @{RegisterSellerData}[11]  @{RegisterSellerData}[12]  @{RegisterSellerData}[13]  ${1}  R02  ข้อมูลที่ใช้ในการตรวจสอบไม่ถูกต้อง
+
+TC_113 UpdateSellerDetails with Active SellerId
+    [Documentation]  Valid: To check API response when sellerId parameter is entered Valid and request is sent with mandatory fields(when Seller Status is Active)
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    ${emailid}=  Randome_EmailId
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSeller to convert    ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${1}
+    UpdateSeller with valid Data  ${TokenEscrow}  @{valid_mobile_country_code}[0]  ${SellerId}  ${idnumber}  ${3}  @{valid_mobile_country_code}[1]  ${MobNo}  ${emailid}  M  @{RegisterSellerData}[0]  @{RegisterSellerData}[1]  @{RegisterSellerData}[2]  @{RegisterSellerData}[3]  @{RegisterSellerData}[4]  @{RegisterSellerData}[5]  @{RegisterSellerData}[6]  @{v_nationalityId}  @{RegisterSellerData}[7]  @{RegisterSellerData}[8]  @{RegisterSellerData}[9]  @{RegisterSellerData}[10]  @{RegisterSellerData}[11]  @{RegisterSellerData}[12]  @{RegisterSellerData}[13]  ${0}  000  Success
+
+TC_114 UpdateSellerDetails with Locked SellerId and All valid data
+    [Documentation]  Valid: To check API response when sellerId parameter is entered Valid and request is sent with all valid fields(when Seller Status is Locked)
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    ${emailid}=  Randome_EmailId
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSeller to convert    ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${2}
+    UpdateSeller with valid Data  ${TokenEscrow}  @{valid_mobile_country_code}[0]  ${SellerId}  ${idnumber}  ${3}  @{valid_mobile_country_code}[1]  ${MobNo}  ${emailid}  M  @{RegisterSellerData}[0]  @{RegisterSellerData}[1]  @{RegisterSellerData}[2]  @{RegisterSellerData}[3]  @{RegisterSellerData}[4]  @{RegisterSellerData}[5]  @{RegisterSellerData}[6]  @{v_nationalityId}  @{RegisterSellerData}[7]  @{RegisterSellerData}[8]  @{RegisterSellerData}[9]  @{RegisterSellerData}[10]  @{RegisterSellerData}[11]  @{RegisterSellerData}[12]  @{RegisterSellerData}[13]  ${0}  000  Success
+
+TC_115 UpdateSellerDetails with Suspended SellerId and All Valid Data
+    [Documentation]  Valid: To check API response when sellerId parameter is entered Valid and request is sent with all valid fields(when Seller Status is Suspended)
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    ${emailid}=  Randome_EmailId
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSeller to convert    ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${3}
+    UpdateSeller with valid Data  ${TokenEscrow}  @{valid_mobile_country_code}[0]  ${SellerId}  ${idnumber}  ${3}  @{valid_mobile_country_code}[1]  ${MobNo}  ${emailid}  M  @{RegisterSellerData}[0]  @{RegisterSellerData}[1]  @{RegisterSellerData}[2]  @{RegisterSellerData}[3]  @{RegisterSellerData}[4]  @{RegisterSellerData}[5]  @{RegisterSellerData}[6]  @{v_nationalityId}  @{RegisterSellerData}[7]  @{RegisterSellerData}[8]  @{RegisterSellerData}[9]  @{RegisterSellerData}[10]  @{RegisterSellerData}[11]  @{RegisterSellerData}[12]  @{RegisterSellerData}[13]  ${0}  000  Success
+
+TC_116 UpdateSellerDetails with Terminated SellerId and All Valid Data
+    [Documentation]  Valid: To check API response when sellerId parameter is entered Valid and request is sent with all valid fields(when Seller Status is Terminated)
+    [Tags]  E03
+    ${TokenEscrow}=  GetToken Escrow
+    ${MobNo}=  Randome_MobileNumber
+    ${emailid}=  Randome_EmailId
+    ${SellerId}  ${idnumber}=  RegisterSellerID
+    UpdateSeller to convert    ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${4}
+    UpdateSeller with valid Data  ${TokenEscrow}  @{valid_mobile_country_code}[0]  ${SellerId}  ${idnumber}  ${3}  @{valid_mobile_country_code}[1]  ${MobNo}  ${emailid}  M  @{RegisterSellerData}[0]  @{RegisterSellerData}[1]  @{RegisterSellerData}[2]  @{RegisterSellerData}[3]  @{RegisterSellerData}[4]  @{RegisterSellerData}[5]  @{RegisterSellerData}[6]  @{v_nationalityId}  @{RegisterSellerData}[7]  @{RegisterSellerData}[8]  @{RegisterSellerData}[9]  @{RegisterSellerData}[10]  @{RegisterSellerData}[11]  @{RegisterSellerData}[12]  @{RegisterSellerData}[13]  ${0}  E03  Invalid request

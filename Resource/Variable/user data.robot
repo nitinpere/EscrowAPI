@@ -40,4 +40,6 @@
 @{Invalid_Update}=  002  0010  01
 @{Invalid_SellerID}=  aaaaaaaaaaaaaa  f7fbf240-c190-43ae-8cd5-4a6ee58f632d123  f7fbf240-c190-43ae-8cd5-4a6ee58f63
 
+#For Kyc=1  Test Cases
+@{Kyc1_Data}=  1101xxxx13655  PP3xxxx33786
 

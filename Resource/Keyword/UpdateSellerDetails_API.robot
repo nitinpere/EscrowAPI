@@ -37,6 +37,7 @@ UpdateSellerDetails_kyc
 UpdateSellerDetails_Empty_kyc
     [Arguments]  ${Token}  ${escrowCompanyID}  ${SELLERId}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  UpdateSeller   http://172.31.2.28/escrow_core/api/v1
+    ${kycRequest}=  Set Variable If  "${kycRequest}"=="${EMPTY}"    ${null}
     ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  SELLERId=${SELLERId}  kycRequest=${kycRequest}
     ${AuthToken}=  Set Variable  bearer ${Token}
     ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
@@ -341,6 +342,31 @@ UpdateSellerDetails userDefine
     Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
 
 
+UpdateSellerDetails MailingAddress
+    [Arguments]   ${Token}   ${escrowCompanyID}   ${SELLERId}   ${kycRequest}   ${mailAddress1}   ${mailAddress2}   ${countryId}   ${stateId}   ${state}   ${postalCode}   ${addressDefine1}   ${addressDefine2}   ${addressDefine3}   ${addressDefine4}  ${ResponseCode}   ${ResponseDescription}
+    Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
+    ${KeyReq}=  Convert To Integer  ${kycRequest}
+    ${MailAddress}  Create Dictionary  mailAddress1=${mailAddress1}  mailAddress2=${mailAddress2}  countryId=${countryId}  stateId=${stateId}  state=${state}  postalCode=${postalCode}  addressDefine1=${addressDefine1}  addressDefine2=${addressDefine2}  addressDefine3=${addressDefine3}  addressDefine4=${addressDefine4}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  SELLERId=${SELLERId}  kycRequest=${KeyReq}  mailingAddress=${MailAddress}
+    ${AuthToken}=  Set Variable  bearer ${Token}
+    ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
+    ${response}=  POST request  RegisterNewSeller  /seller/updatedetail  data=${body}  headers=${header}
+    Log  ${response.text}    console=True
+#    Should Be Equal As Strings    ${response.status_code}    200
+    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
 
-
+UpdateSellerDetails Address
+    [Arguments]   ${Token}   ${escrowCompanyID}   ${SELLERId}   ${kycRequest}   ${mailAddress1}   ${mailAddress2}   ${countryId}   ${stateId}   ${state}   ${postalCode}   ${addressDefine1}   ${addressDefine2}   ${addressDefine3}   ${addressDefine4}  ${ResponseCode}   ${ResponseDescription}
+    Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
+    ${KeyReq}=  Convert To Integer  ${kycRequest}
+    ${UserAddress}  Create Dictionary  homeAddress1=${mailAddress1}  homeAddress2=${mailAddress2}  countryId=${countryId}  stateId=${stateId}  state=${state}  postalCode=${postalCode}  addressDefine1=${addressDefine1}  addressDefine2=${addressDefine2}  addressDefine3=${addressDefine3}  addressDefine4=${addressDefine4}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  SELLERId=${SELLERId}  kycRequest=${KeyReq}  address=${UserAddress}
+    ${AuthToken}=  Set Variable  bearer ${Token}
+    ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
+    ${response}=  POST request  RegisterNewSeller  /seller/updatedetail  data=${body}  headers=${header}
+    Log  ${response.text}    console=True
+#    Should Be Equal As Strings    ${response.status_code}    200
+    Should be Equal as Strings    ${response.json()['responseCode']}    ${ResponseCode}
+    Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
 
