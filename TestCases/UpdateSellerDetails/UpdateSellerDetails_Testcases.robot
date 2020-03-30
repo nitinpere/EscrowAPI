@@ -27,7 +27,7 @@ TC_07 Request Update Seller Details API
 
 TC_08 Empty body
     [Documentation]  Empty : To verify Response when all request fields are entered empty without body
-    [Tags]  test
+    [Tags]  E05
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${idnumber}=  RegisterSellerID
     UpdateSellerDetails_Empty_kyc  ${TokenEscrow}  ${EMPTY}  ${EMPTY}  ${EMPTY}  E05  Missing mandatory field
@@ -35,7 +35,7 @@ TC_08 Empty body
 
 TC_09 Empty body Update Seller Details API
     [Documentation]   Empty : To verify Response when request is send with mandatory fields and other fields are send as "".
-    [Tags]  test
+    [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${idnumber}=  RegisterSellerID
     UpdateSeller with valid Data  ${TokenEscrow}  @{valid_mobile_country_code}[0]  ${SellerId}  ${EMPTY}  ${0}  ${EMPTY}  ${EMPTY}  ${EMPTY}  ${EMPTY}  ${EMPTY}  ${EMPTY}  ${EMPTY}  ${EMPTY}  ${EMPTY}  ${EMPTY}  ${EMPTY}  ${EMPTY}  ${EMPTY}  ${EMPTY}  ${EMPTY}  ${EMPTY}  ${EMPTY}  ${EMPTY}  ${EMPTY}  ${0}  000  Success
