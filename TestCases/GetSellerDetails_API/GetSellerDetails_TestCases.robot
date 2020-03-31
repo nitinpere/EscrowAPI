@@ -7,7 +7,14 @@ Resource    ../../Resource/Variable/user data.robot
 
 *** Test Cases ***
 
-TC_06 GetSellerDetails To Verify Response
+TC_06 GetSellerDetails to Verify Request
+    [Documentation]  Valid: To Verify request parameter of get Seller detail API
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${SellerId}  ${IdNumber}=  RegisterSellerID
+    GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  000  Success
+
+TC_07 GetSellerDetails To Verify Response
     [Documentation]  Valid: To Verify response  parameter of get Seller detail API
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
@@ -63,7 +70,7 @@ TC_14 GetSellerDetails with Empty SellerID
 
 TC_15 GetSellerDetails with Invalid SellerId
     [Documentation]  Invalid: To check API response when sellerId parameter is entered Invalid and request is sent with mandatory fields  (seller Id not existing in company)
-    [Tags]  E08
+    [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${IdNumber}=  RegisterSellerID
     GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}a  E08  Data not found
@@ -73,7 +80,7 @@ TC_16 GetSellerDetails with More than 36 SellerId
     [Tags]  E08
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${IdNumber}=  RegisterSellerID
-    GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}abc-2c2p   E08   Data not found
+    GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}abc2c2p   E08   Data not found
 
 TC_17 GetSellerDetails with Valid SellerID and status is Active
     [Documentation]  Valid : To check API response when sellerId parameter is entered Valid and seller status is Active and request is sent with all mandatory fields
@@ -81,92 +88,141 @@ TC_17 GetSellerDetails with Valid SellerID and status is Active
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${IdNumber}=  RegisterSellerID
     GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  000  Success
+    ${Value}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   status
+    Log to Console  "Seller Status is : "${Value}
 
-TC_18_1 GetSellerDetails with Valid SellerId and Status is Locked
+TC_18 GetSellerDetails with Valid SellerId and Status is Locked
     [Documentation]  Valid : To check API response when sellerId parameter is entered Valid and seller status is Locked and request is sent with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${IdNumber}=  RegisterSellerID
     UpdateSeller to convert   ${TokenEscrow}  @{escrowCompId}  ${SellerId}  ${2}
     GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  000  Success
+    ${Value}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   status
+    Log to Console  "Seller Status is : "${Value}
 
-TC_18_2 GetSellerDetails with Valid SellerId and Status is Suspended
+TC_19 GetSellerDetails with Valid SellerId and Status is Suspended
     [Documentation]  Valid : To check API response when sellerId parameter is entered Valid and seller status is Suspended and request is sent with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${IdNumber}=  RegisterSellerID
     UpdateSeller to convert   ${TokenEscrow}  @{escrowCompId}  ${SellerId}  ${3}
     GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  000  Success
+    ${Value}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   status
+    Log to Console  "Seller Status is : "${Value}
 
-TC_19 GetSellerDetails with Valid SellerId and Status is Terminated
+TC_20 GetSellerDetails with Valid SellerId and Status is Terminated
     [Documentation]  Valid : To check API response when sellerId parameter is entered Valid and seller status is Terminated and request is sent with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${IdNumber}=  RegisterSellerID
     UpdateSeller to convert   ${TokenEscrow}  @{escrowCompId}  ${SellerId}  ${4}
     GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  000  Success
+    ${Value}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   status
+    Log to Console  "Seller Status is : "${Value}
 
-TC_20 GetSellerDetails with valid SellerId and Valid Format
+TC_21 GetSellerDetails with valid SellerId and Valid Format
     [Documentation]  Valid: To Verify format of sellerId in API request of Get Seller Detail API
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${IdNumber}=  RegisterSellerID
     GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  000  Success
-    Log to Console  ${SellerId}
+    ${Value}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   sellerId
+    Log to Console  "SellerId is : "${Value}
 
-TC_21 GetSellerDetails with valid SellerId and Valid CreateDate Format
+TC_22 GetSellerDetails with valid SellerId and Valid CreateDate Format
     [Documentation]  Valid: To Verify format of createDate in API response of Get Seller Detail API
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${IdNumber}=  RegisterSellerID
     GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  000  Success
+    ${Value}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   createDate
+    Log to Console  "Seller Created Date is : "${Value}
 
-TC_22 GetSellerDetails with valid SellerId and Valid UpdateDate Format
+TC_23 GetSellerDetails with valid SellerId and Valid UpdateDate Format
     [Documentation]  Valid: To Verify format of updateDate in API response of Get Seller Detail API
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${IdNumber}=  RegisterSellerID
     GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  000  Success
+    UpdateSeller to convert   ${TokenEscrow}  @{escrowCompId}  ${SellerId}  ${1}
+    ${Value}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   updateDate
+    Log to Console  "Seller Updated Date is : "${Value}
 
-TC_23 GetSellerDetails with valid SellerId and Valid OtherVerification Format
+TC_24 GetSellerDetails with valid SellerId and Valid OtherVerification Format
     [Documentation]  Valid: To Verify format of otherVerification in API response of Get Seller Detail API
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${IdNumber}=  RegisterSellerID
     GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  000  Success
+    ${Value}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   otherVerification
+    Log to Console  "OtherVerification is : "${Value}
 
-TC_24_1 GetSellerDetails with Thai FirstNameLocal, LastNameLocal, TitleLocal
+TC_25 GetSellerDetails with Thai FirstNameLocal, LastNameLocal, TitleLocal
     [Documentation]  Valid : To Check the system return data correctly in the response when User is registered with firstNameLocal , lastNameLocal , titleLocal  in Thai language
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${IdNumber}=  RegisterSellerID
     GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  000  Success
+    ${Value}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   titleLocal
+    Log to Console  "Title in Thai : "${Value}
+    ${Value}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   firstNameLocal
+    Log to Console  "FirstName in Thai : "${Value}
+    ${Value}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   lastNameLocal
+    Log to Console  "LastName in Thai : "${Value}
 
-TC_24_2 GetSellerDetails with Valid Address and Mailing Address
+TC_26 GetSellerDetails with Valid Address and Mailing Address
     [Documentation]  Valid : To Check the system return data correctly in the response when User is registered with address and mailingAddress  in EN language
-    [Tags]  000
+    [Tags]  thisone
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${IdNumber}=  RegisterSellerID
     GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  000  Success
+    ${Value}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   address
+    Log to Console  "Address : "${Value}
+    ${Value}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   mailingAddress
+    Log to Console  "MailingAddress : "${Value}
 
-TC_25 GetSellerDetails with Valid UserDefine 1-5
+TC_27 GetSellerDetails with Valid UserDefine 1-5
     [Documentation]  Valid : To Check the system return data correctly in the response when User is registered with userdefine 1-5  in EN language
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${IdNumber}=  RegisterSellerID
     GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  000  Success
+    ${Value}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   userDefine1
+    Log to Console  ${Value}
+    ${Value}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   userDefine2
+    Log to Console  ${Value}
+    ${Value}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   userDefine3
+    Log to Console  ${Value}
+    ${Value}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   userDefine4
+    Log to Console  ${Value}
+    ${Value}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   userDefine5
+    Log to Console  ${Value}
 
-TC_26 GetSellerDetails with Thai Address and Mailing Address Details
+TC_28 GetSellerDetails with Thai Address and Mailing Address Details
     [Documentation]  Valid : To Check the system return data correctly in the response when User is registered with address and mailingAddress  in Thai language
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${IdNumber}=  RegisterSellerID
     GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  000  Success
+    ${Value}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   address
+    Log to Console  ${Value}
+    ${Value}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   mailingAddress
+    Log to Console  ${Value}
 
-TC_27 GetSellerDetails with Thai UserDefined 1-5
+TC_29 GetSellerDetails with Thai UserDefined 1-5
     [Documentation]  Valid : To Check the system return data correctly in the response when User is registered with userdefine 1-5  in Thai language
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${IdNumber}=  RegisterSellerID
     GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  000  Success
-
+    ${Value}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   userDefine1
+    Log to Console  ${Value}
+    ${Value}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   userDefine2
+    Log to Console  ${Value}
+    ${Value}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   userDefine3
+    Log to Console  ${Value}
+    ${Value}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   userDefine4
+    Log to Console  ${Value}
+    ${Value}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   userDefine5
+    Log to Console  ${Value}
