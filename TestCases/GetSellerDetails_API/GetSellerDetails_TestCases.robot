@@ -70,7 +70,7 @@ TC_14 GetSellerDetails with Empty SellerID
 
 TC_15 GetSellerDetails with Invalid SellerId
     [Documentation]  Invalid: To check API response when sellerId parameter is entered Invalid and request is sent with mandatory fields  (seller Id not existing in company)
-    [Tags]  000
+    [Tags]  E08
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${IdNumber}=  RegisterSellerID
     GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}a  E08  Data not found
@@ -173,7 +173,7 @@ TC_25 GetSellerDetails with Thai FirstNameLocal, LastNameLocal, TitleLocal
 
 TC_26 GetSellerDetails with Valid Address and Mailing Address
     [Documentation]  Valid : To Check the system return data correctly in the response when User is registered with address and mailingAddress  in EN language
-    [Tags]  thisone
+    [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${IdNumber}=  RegisterSellerID
     GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  000  Success
@@ -203,7 +203,7 @@ TC_28 GetSellerDetails with Thai Address and Mailing Address Details
     [Documentation]  Valid : To Check the system return data correctly in the response when User is registered with address and mailingAddress  in Thai language
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
-    ${SellerId}  ${IdNumber}=  RegisterSellerID
+    ${SellerId}  ${IdNumber}=  RegisterSellerID with Thai Data
     GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  000  Success
     ${Value}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   address
     Log to Console  ${Value}
@@ -214,7 +214,7 @@ TC_29 GetSellerDetails with Thai UserDefined 1-5
     [Documentation]  Valid : To Check the system return data correctly in the response when User is registered with userdefine 1-5  in Thai language
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
-    ${SellerId}  ${IdNumber}=  RegisterSellerID
+    ${SellerId}  ${IdNumber}=  RegisterSellerID with Thai Data
     GetSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId}  000  Success
     ${Value}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   userDefine1
     Log to Console  ${Value}

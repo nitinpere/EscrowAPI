@@ -42,4 +42,5 @@
 
 #For Kyc=1  Test Cases
 @{Kyc1_Data}=  1101xxxx13655  PP3xxxx33786
+@{ThaiData}=  ทดสอบ  สมชาย  เจ็ดร้อยหกสิบสี่
 

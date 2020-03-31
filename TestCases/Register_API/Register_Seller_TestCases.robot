@@ -2,6 +2,7 @@
 Resource    ../../Resource/Keyword/Global Keyword/Get Token.robot
 Resource    ../../Resource/Keyword/Global Keyword/Register_Global_Keywords.robot
 Resource    ../../Resource/Keyword/Register_Seller_API.robot
+Resource    ../../Resource/Keyword/UpdateSeller_Status_API.robot
 Resource    ../../Resource/Variable/user data.robot
 *** Test Cases ***
 Register Seller Valid data
@@ -299,6 +300,24 @@ TC_46 RegisterNewSeller with Dublicate Email
     [Tags]  R03
     ${TokenEscrow}=  GetToken Escrow
     RegisterSeller with Email  ${TokenEscrow}  @{escrowCompId}  ${email}  ${0}  R03   Duplicate ID card, email or mobile no.
+
+TC_47 RegisterNewSeller with Duplicate Email which belongs to terminated SellerId
+    [Documentation]  Valid : To check Email Address is entered duplicate (duplicate Email Address should belong to Seller status = terminated )and request is send with all mandatory fields
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${emailid}=  Randome_EmailId
+    ${Sellerid}=  RegisterSeller with Email  ${TokenEscrow}  @{escrowCompId}  ${emailid}  ${0}  000  Success
+    UpdateSeller to convert  ${TokenEscrow}  @{escrowCompId}[0]  ${Sellerid}  ${4}
+    RegisterSeller with Email  ${TokenEscrow}  @{escrowCompId}  ${emailid}  ${0}  000  Success
+
+TC_48 RegisterNewSeller with Duplicate MobileNumber which belongs to ternimated SellerId
+    [Documentation]  Valid : To check Mobile number is entered duplicate (duplicate mobile number should belong to Seller status = terminated ) and request is send with all mandatory fields
+    [Tags]  000
+    ${TokenEscrow}=  GetToken Escrow
+    ${mobile}=  Randome_MobileNumber
+    ${sellerid}=  RegisterSeller MobileNo   ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${mobile}  ${0}  000  Success
+    UpdateSeller to convert  ${TokenEscrow}  @{escrowCompId}[0]  ${sellerid}  ${4}
+    RegisterSeller MobileNo   ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${mobile}  ${0}  000  Success
 
 TC_49 RegisterNewSeller with Empty Gender
     [Documentation]  Empty: To Verify response if gender paramter is not entered and request sent with all mandatory fields
