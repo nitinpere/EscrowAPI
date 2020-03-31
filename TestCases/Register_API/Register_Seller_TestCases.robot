@@ -157,8 +157,8 @@ TC_26 RegisterSeller duplicate_IDnumber @post
     [Documentation]  Valid : To check idNumber is entered duplicate and request is send with all mandatory fields
     [Tags]  R03
     ${TokenEscrow}=  GetToken Escrow
-    ${IdNumber}=  Randome_IDNumber
-    RegisterSeller duplicateIdNumber @post  ${TokenEscrow}      @{escrowCompId}[0]  ${IdNumber1}  ${1}  ${0}    R03  Duplicate ID card, email or mobile no
+    ${SellerId}  ${idnumber2}=  RegisterSellerID with Thai Data
+    RegisterSeller duplicateIdNumber @post   ${TokenEscrow}   @{escrowCompId}  ${idnumber2}  ${1}  ${0}   R03  Duplicate ID card, email or mobile no.
 
 TC_27 RegisterNewSeller NotENTER TYPEOFID kyc is 1
     [Documentation]  Empty: To Verify response if we NOT enter typeOfId and request is sent with all mandatory fields with KYCRequest=1 and Valid IdNumber
@@ -210,7 +210,7 @@ TC_33 RegisterNewSeller Invalid TYPEOFID kyc is 1
     [Tags]  R01
     ${TokenEscrow}=  GetToken Escrow
     ${Idr}=  Randome_IDNumber
-    RegisterSeller Invalid TYPEOFID kyc is 1 @post  ${TokenEscrow}  @{type_id_passport}[0]  @{type_id_passport}[1]  @{type_id_passport}[2]  @{type_id_passport}[5]  @{type_id_passport}[6]  ${Idr}  ${33}  ${1}  R01  Validation failed
+    RegisterSeller Invalid TYPEOFID kyc is 1 @post  ${TokenEscrow}  @{type_id_passport}[0]  @{type_id_passport}[1]  @{type_id_passport}[2]  @{type_id_passport}[5]  @{Kyc1_Data}[1]   ${Idr}   ${33}   ${1}  R01  Validation failed
 
 TC_34 RegisterNewSeller Empty Mobilecountrycode kyc is 0
     [Documentation]  Invalid To Verify response if mobileCountryCode paramter is entered empty and request sent with all mandatory fields with Mobile number

@@ -49,5 +49,5 @@ RegisterSellerID with Thai Data
     ${idNum}=  Randome_IDNumber
     ${MobNo}=  Randome_MobileNumber
     ${emailid}=  Randome_EmailId
-    ${sellerid}=  RegisterSeller with valid Thai Data  ${TokenEscrow}  @{valid_mobile_country_code}[0]  ${idNum}  ${3}  @{valid_mobile_country_code}[1]  ${MobNo}  ${emailid}  M  @{RegisterSellerData}[0]  @{RegisterSellerData}[1]  @{RegisterSellerData}[2]  @{RegisterSellerData}[3]  @{RegisterSellerData}[4]  @{RegisterSellerData}[5]  @{RegisterSellerData}[6]  @{v_nationalityId}  @{RegisterSellerData}[7]  @{RegisterSellerData}[8]  @{ThaiData}[0]  @{ThaiData}[0]  @{ThaiData}[0]  @{ThaiData}[0]  @{ThaiData}[0]  ${0}  000  Success
+    ${sellerid}=  RegisterSeller with valid Thai Data  ${TokenEscrow}  @{valid_mobile_country_code}[0]  ${idNum}  ${1}  @{valid_mobile_country_code}[1]  ${MobNo}  ${emailid}  M  @{RegisterSellerData}[0]  @{RegisterSellerData}[1]  @{RegisterSellerData}[2]  @{RegisterSellerData}[3]  @{RegisterSellerData}[4]  @{RegisterSellerData}[5]  @{RegisterSellerData}[6]  @{v_nationalityId}  @{RegisterSellerData}[7]  @{RegisterSellerData}[8]  @{ThaiData}[0]  @{ThaiData}[0]  @{ThaiData}[0]  @{ThaiData}[0]  @{ThaiData}[0]  ${0}  000  Success
     [Return]  ${sellerid}  ${idNum}

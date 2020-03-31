@@ -104,7 +104,7 @@ TC_17 Selle_Details_API SellerId More than 36
     [Tags]  E11
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${idnumber}=  RegisterSellerID
-    UpdateSellerDetails_kyc  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}12  ${0}  E11  Data length is over limit
+    UpdateSellerDetails_kyc  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}1234  ${0}  E11  Data length is over limit
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
 TC_18 Selle_Details_API Duplicate Idno
@@ -273,7 +273,7 @@ TC_35 Selle_Details_API Invalid typeOfId
 
 TC_36 Selle_Details_API Empty typeOfId
     [Documentation]  Invalid: To Verify response if we enter invalid typeOfId and request is sent with all mandatory fields (KYCRequest’ = 1 and Valid Id parameter)
-    [Tags]  E051
+    [Tags]  E05
     ${TokenEscrow}=  GetToken Escrow
     ${idNum}=  Randome_IDNumber
     ${SellerId}  ${idnumber}=  RegisterSellerID
@@ -671,7 +671,7 @@ TC_81 Selle_Details_API Empty Dateofbirth kyc 1
     ${idNum}=  Randome_IDNumber
     ${SellerId}  ${idnumber}=  RegisterSellerID
     ${emailid}=  Randome_EmailId
-    UpdateSellerDetails DateofBirth  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  @{IDno_enter_kyc_1}[1]  @{IDno_enter_kyc_1}[2]  @{IDno_enter_kyc_1}[3]  ${EMPTY}  ${1}  ${1}  ${emailid}  E05  Missing mandatory field
+    UpdateSellerDetails Valid data  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  @{IDno_enter_kyc_1}[1]  @{IDno_enter_kyc_1}[2]  ${EMPTY}  ${IDno_enter_kyc_1}[4]  ${1}  ${1}  ${emailid}  E05  Missing mandatory field
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
 TC_82 Selle_Details_API Valid Dateofbirth
