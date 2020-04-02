@@ -1,10 +1,9 @@
 *** Settings ***
-Resource    ../../Resource/Keyword/Global Keyword/Get Token.robot
 Resource    ../../Resource/Keyword/Global Keyword/Register_Global_Keywords.robot
-Resource    ../../Resource/Keyword/UpdateSeller_Status_API.robot
-Resource    ../../Resource/Keyword/GetSellerDetails_API.robot
+Resource    ../../Resource/Keyword/All Keywords EscrowAPI.robot
 Resource    ../../Resource/Variable/user data.robot
-Resource    ../../Resource/Keyword/Global Keyword/Register_Global_Keywords.robot
+Test Setup   Sleep  2s
+
 *** Test Cases ***
 TC_06 UpdateSellerStatus Request Update Seller Status API
     [Documentation]  Valid: To Verify request parameter of Update Seller Status API

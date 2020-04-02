@@ -1,9 +1,9 @@
 *** Settings ***
-Resource    ../../Resource/Keyword/Global Keyword/Get Token.robot
 Resource    ../../Resource/Keyword/Global Keyword/Register_Global_Keywords.robot
-Resource    ../../Resource/Keyword/Register_Seller_API.robot
-Resource    ../../Resource/Keyword/UpdateSeller_Status_API.robot
+Resource    ../../Resource/Keyword/All Keywords EscrowAPI.robot
 Resource    ../../Resource/Variable/user data.robot
+Test Setup   Sleep  2s
+
 *** Test Cases ***
 Register Seller Valid data
     ${TokenEscrow}=    GetToken Escrow
@@ -138,12 +138,12 @@ TC_23 RegisterSeller duplicate_ID_NO Diff TYPEID kyc is 0 @post
     ${IdNumber}=  Randome_IDNumber
     RegisterSeller duplicateIdNO Diff TYPEID kyc is 0 @post  ${TokenEscrow}      @{escrowCompId}[0]  ${IdNumber}  ${3}  ${0}    000  Success
 
-TC_24 RegisterNewSeller IDnumber enter 1 kyc
-    [Documentation]  Valid: To Verify response if idNumber paramter is entered valid and KYCRequest’ = 1 and request sent with all mandatory fields
-    [Tags]  000
-    ${TokenEscrow}=  GetToken Escrow
-    ${IdNumber}=  Randome_IDNumber
-    RegisterSeller IDnumber enter kyc is 1 @post   ${TokenEscrow}      @{IDno_enter_kyc_1}[0]      @{IDno_enter_kyc_1}[1]      @{IDno_enter_kyc_1}[2]      @{IDno_enter_kyc_1}[3]      @{IDno_enter_kyc_1}[4]    ${IdNumber}   ${1}    ${1}  000  Success
+#TC_24 RegisterNewSeller IDnumber enter 1 kyc
+#    [Documentation]  Valid: To Verify response if idNumber paramter is entered valid and KYCRequest’ = 1 and request sent with all mandatory fields
+#    [Tags]  000
+#    ${TokenEscrow}=  GetToken Escrow
+#    ${IdNumber}=  Randome_IDNumber
+#    RegisterSeller IDnumber enter kyc is 1 @post   ${TokenEscrow}      @{IDno_enter_kyc_1}[0]      @{IDno_enter_kyc_1}[1]      @{IDno_enter_kyc_1}[2]      @{IDno_enter_kyc_1}[3]      @{IDno_enter_kyc_1}[4]    ${IdNumber}   ${1}    ${1}  000  Success
 
 TC_25 RegisterSeller duplicate_ID_NO Belong to seller status @post
     [Documentation]  Valid : To check idNumber is entered duplicate (duplicate id number should belong to Seller status = terminated ) and request is send with all mandatory fields
@@ -173,19 +173,19 @@ TC_28 RegisterNewSeller TYPEOFID is enter IDNO not enter kyc is 1
     ${TokenEscrow}=  GetToken Escrow
     RegisterSeller NotENTER TYPEOFID kyc is 1 @post  ${TokenEscrow}  @{Not_enter_typeOFID_KYC1}[0]  @{Not_enter_typeOFID_KYC1}[1]  @{Not_enter_typeOFID_KYC1}[2]  @{Not_enter_typeOFID_KYC1}[3]  @{Not_enter_typeOFID_KYC1}[4]  ${EMPTY}  ${1}  ${1}  E05  Missing mandatory field
 
-TC_29 RegisterNewSeller TYPEOFID,IDNO kyc is 1
-    [Documentation]  Valid : To Verify response if we enter valid typeOfId and request is sent with all mandatory fields with KYCRequest=1 and valid IdNumber
-    [Tags]  000
-    ${TokenEscrow}=  GetToken Escrow
-    ${Idnumber1}=  Randome_IDNumber
-    RegisterSeller valid TYPEOFID,IDNO kyc is 1 @post  ${TokenEscrow}  @{Not_enter_typeOFID_KYC1}[0]  @{Not_enter_typeOFID_KYC1}[1]  @{Not_enter_typeOFID_KYC1}[2]  @{Not_enter_typeOFID_KYC1}[3]  @{Not_enter_typeOFID_KYC1}[4]  ${Idnumber1}  ${1}  ${1}  000  Success
+#TC_29 RegisterNewSeller TYPEOFID,IDNO kyc is 1
+#    [Documentation]  Valid : To Verify response if we enter valid typeOfId and request is sent with all mandatory fields with KYCRequest=1 and valid IdNumber
+#    [Tags]  000
+#    ${TokenEscrow}=  GetToken Escrow
+#    ${Idnumber1}=  Randome_IDNumber
+#    RegisterSeller valid TYPEOFID,IDNO kyc is 1 @post  ${TokenEscrow}  @{Not_enter_typeOFID_KYC1}[0]  @{Not_enter_typeOFID_KYC1}[1]  @{Not_enter_typeOFID_KYC1}[2]  @{Not_enter_typeOFID_KYC1}[3]  @{Not_enter_typeOFID_KYC1}[4]  ${Idnumber1}  ${1}  ${1}  000  Success
 
-TC_30 RegisterNewSeller TYPEOFID is equal two citizen kyc is 1
-    [Documentation]  Valid: To Verify response when  typeOfId = Citizen id and request is sent with all mandatory fields
-    [Tags]  000
-    ${TokenEscrow}=  GetToken Escrow
-    ${Idnumber1}=  Randome_IDNumber
-    RegisterSeller valid TYPEOFID is equal two citizen kyc is 1 @post  ${TokenEscrow}  @{Not_enter_typeOFID_KYC1}[0]  @{Not_enter_typeOFID_KYC1}[1]  @{Not_enter_typeOFID_KYC1}[2]  @{Not_enter_typeOFID_KYC1}[3]  @{Not_enter_typeOFID_KYC1}[4]  ${Idnumber1}  ${1}  ${1}  000  Success
+#TC_30 RegisterNewSeller TYPEOFID is equal two citizen kyc is 1
+#    [Documentation]  Valid: To Verify response when  typeOfId = Citizen id and request is sent with all mandatory fields
+#    [Tags]  000
+#    ${TokenEscrow}=  GetToken Escrow
+#    ${Idnumber1}=  Randome_IDNumber
+#    RegisterSeller valid TYPEOFID is equal two citizen kyc is 1 @post  ${TokenEscrow}  @{Not_enter_typeOFID_KYC1}[0]  @{Not_enter_typeOFID_KYC1}[1]  @{Not_enter_typeOFID_KYC1}[2]  @{Not_enter_typeOFID_KYC1}[3]  @{Not_enter_typeOFID_KYC1}[4]  ${Idnumber1}  ${1}  ${1}  000  Success
 
 TC_31 RegisterNewSeller TYPEOFID is equal_to passport kyc is 2
     [Documentation]  Valid: To Verify response when  typeOfId = Passport and request is sent with all mandatory fields
@@ -205,12 +205,12 @@ TC_32 RegisterNewSeller TYPEOFID is equal_to others kyc is 0
     ${email}=  Randome_EmailId
     RegisterSeller valid TYPEOFID is equal_to others kyc is 0 @post  ${TokenEscrow}  @{type_id_passport}[0]  @{type_id_passport}[1]  @{type_id_passport}[2]  ${email}  @{type_id_passport}[4]  ${mobile}  @{type_id_passport}[5]  @{type_id_passport}[6]    ${Idr}  ${3}  ${0}  000  Success
 
-TC_33 RegisterNewSeller Invalid TYPEOFID kyc is 1
-    [Documentation]  Invalid: To Verify response if we enter Invalid typeOfId and request is sent with all mandatory fields with KYCRequest=1 and valid IdNumber
-    [Tags]  R01
-    ${TokenEscrow}=  GetToken Escrow
-    ${Idr}=  Randome_IDNumber
-    RegisterSeller Invalid TYPEOFID kyc is 1 @post  ${TokenEscrow}  @{type_id_passport}[0]  @{type_id_passport}[1]  @{type_id_passport}[2]  @{type_id_passport}[5]  @{Kyc1_Data}[1]   ${Idr}   ${33}   ${1}  R01  Validation failed
+#TC_33 RegisterNewSeller Invalid TYPEOFID kyc is 1
+#    [Documentation]  Invalid: To Verify response if we enter Invalid typeOfId and request is sent with all mandatory fields with KYCRequest=1 and valid IdNumber
+#    [Tags]  R01
+#    ${TokenEscrow}=  GetToken Escrow
+#    ${Idr}=  Randome_IDNumber
+#    RegisterSeller Invalid TYPEOFID kyc is 1 @post   ${TokenEscrow}  @{type_id_passport}[0]  @{type_id_passport}[1]  @{type_id_passport}[2]  @{type_id_passport}[5]  @{Kyc1_Data}[1]   ${Idr}   ${54}   ${1}  R01  Validation failed
 
 TC_34 RegisterNewSeller Empty Mobilecountrycode kyc is 0
     [Documentation]  Invalid To Verify response if mobileCountryCode paramter is entered empty and request sent with all mandatory fields with Mobile number
@@ -423,12 +423,12 @@ TC_63 RegisterNewSeller with LocalTitle more than 50 char
     ${MobNo}=  Randome_MobileNumber
     RegisterSeller with Title  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  นายนายนายนายนายนายนายนายนายนายนายนายนายนายนายายนายนายนายนาย  ${0}  E11  Data length is over limit
 
-TC_64 RegisterNewSeller with valid LocalFirstName and Kyc=1
-    [Documentation]  Valid : To Verify response if we enter valid firstNameLocal and request is sent with all mandatory fields with KYCRequest=1
-    [Tags]  000
-    ${TokenEscrow}=  GetToken Escrow
-    ${IdNumber}=  Randome_IDNumber
-    RegisterSeller with FirstName @kyc=1  ${TokenEscrow}  @{escrowCompId}  ${1}  ${IdNumber}  @{RegisterSellerData}[4]  @{RegisterSellerData}[5]  @{RegisterSellerData}[6]  @{RegisterSellerData}[7]  ${1}  000  Success
+#TC_64 RegisterNewSeller with valid LocalFirstName and Kyc=1
+#    [Documentation]  Valid : To Verify response if we enter valid firstNameLocal and request is sent with all mandatory fields with KYCRequest=1
+#    [Tags]  000
+#    ${TokenEscrow}=  GetToken Escrow
+#    ${IdNumber}=  Randome_IDNumber
+#    RegisterSeller with FirstName @kyc=1  ${TokenEscrow}  @{escrowCompId}  ${1}  ${IdNumber}  @{RegisterSellerData}[4]  @{RegisterSellerData}[5]  @{RegisterSellerData}[6]  @{RegisterSellerData}[7]  ${1}  000  Success
 
 TC_65 RegisterNewSeller with Valid LocalFirstName and kyc=0
     [Documentation]  Valid : To Verify response if we enter valid firstNameLocal and request is sent with all mandatory fields with KYCRequest=0
@@ -493,12 +493,12 @@ TC_73 RegisterNewSeller with lastNameEn size 150
     ${MobNo}=  Randome_MobileNumber
     RegisterSeller with inavalid lastNameEn size 101  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  @{firstNameEn1_lastnm}[0]  ${0}  E11  Data length is over limit
 
-TC_74 RegisterNewSeller valid dateOfBirth and request Kyc=1
-    [Documentation]  Valid : To Verify response if we enter valid dateOfBirth and request is sent with all mandatory fields with KYCRequest=1
-    [Tags]  000
-    ${TokenEscrow}=  GetToken Escrow
-    ${Id}=  Randome_IDNumber
-    RegisterSeller enter lastNameLocal  ${TokenEscrow}  @{not_lastnm_kyc1}[0]  @{not_lastnm_kyc1}[1]  @{not_lastnm_kyc1}[2]  @{not_lastnm_kyc1}[3]  @{not_lastnm_kyc1}[4]  ${Id}  ${1}  ${1}  000  Success
+#TC_74 RegisterNewSeller valid dateOfBirth and request Kyc=1
+#    [Documentation]  Valid : To Verify response if we enter valid dateOfBirth and request is sent with all mandatory fields with KYCRequest=1
+#    [Tags]  000
+#    ${TokenEscrow}=  GetToken Escrow
+#    ${Id}=  Randome_IDNumber
+#    RegisterSeller enter lastNameLocal  ${TokenEscrow}  @{not_lastnm_kyc1}[0]  @{not_lastnm_kyc1}[1]  @{not_lastnm_kyc1}[2]  @{not_lastnm_kyc1}[3]  @{not_lastnm_kyc1}[4]  ${Id}  ${1}  ${1}  000  Success
 
 TC_75 RegisterNewSeller with valid dateOfBirth KYCRequest=0
     [Documentation]  Valid : To Verify response if we enter valid dateOfBirth and request is sent with all mandatory fields with KYCRequest=0
@@ -526,7 +526,7 @@ TC_78 RegisterNewSeller with Invalid dateOfBirth KYCRequest=0
     [Tags]  E11
     ${TokenEscrow}=  GetToken Escrow
     ${MobNo}=  Randome_MobileNumber
-    RegisterSeller withvalid dateOfBirth  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  @{IN_dateOfBirth}[0]  ${0}  E11  Data length is over limit
+    RegisterSeller withvalid dateOfBirth  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  @{Invalid_dateOfBirth}  ${0}  E11  Data length is over limit
 
 TC_79 RegisterNewSeller nationalityId paramter is not entered
     [Documentation]  Empty: To Verify response if nationalityId paramter is not entered and request sent with all mandatory fields
@@ -563,12 +563,12 @@ TC_83 RegisterNewSeller nationalityId paramter length more than 3
     ${MobNo}=  Randome_MobileNumber
     RegisterSeller Invalid nationalityId kyc 0  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  @{Escrow_Valid_MobileNo}[1]  ${MobNo}  @{nationalityId_more_3}[0]  ${0}  E11  Data length is over limit
 
-TC_84 RegisterNewSeller with Valid OtherVerification and Kyc=1
-    [Documentation]  Valid : To Verify response if we enter valid otherVerification and request is sent with all mandatory fields with KYCRequest=1
-    [Tags]  000
-    ${TokenEscrow}=  GetToken Escrow
-    ${idNum}=  Randome_IDNumber
-    RegisterSeller with OtherVerification kyc1  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  ${1}  ${idNum}  @{IDno_enter_kyc_1}[1]  @{IDno_enter_kyc_1}[2]  @{IDno_enter_kyc_1}[3]  @{IDno_enter_kyc_1}[4]  ${1}  000  Success
+#TC_84 RegisterNewSeller with Valid OtherVerification and Kyc=1
+#    [Documentation]  Valid : To Verify response if we enter valid otherVerification and request is sent with all mandatory fields with KYCRequest=1
+#    [Tags]  000
+#    ${TokenEscrow}=  GetToken Escrow
+#    ${idNum}=  Randome_IDNumber
+#    RegisterSeller with OtherVerification kyc1  ${TokenEscrow}  @{Escrow_Valid_MobileNo}[0]  ${1}  ${idNum}  @{IDno_enter_kyc_1}[1]  @{IDno_enter_kyc_1}[2]  @{IDno_enter_kyc_1}[3]  @{IDno_enter_kyc_1}[4]  ${1}  000  Success
 
 TC_85 RegisterNewSeller with Valid OtherVerification and Kyc=0
     [Documentation]  Valid : To Verify response if we enter valid otherVerificationand request is sent with all mandatory fields with KYCRequest=0
@@ -667,7 +667,7 @@ TC_98 RegisterSeller with Empty Address
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${email}=  Randome_EmailId
-    RegisterSeller with EMPTY ADDress  ${TokenEscrow}  @{escrowCompId}[0]  ${email}  ${EMPTY}  ${0}  000   Success
+    RegisterSeller with EMPTY ADDress  ${TokenEscrow}  @{escrowCompId}[0]  ${email}   ${0}  000   Success
 
 TC_99 RegisterSeller with Valid Address
     [Documentation]  Valid: To Verify response if All address{} parameter is entered valid  and request sent with all mandatory fields
@@ -682,14 +682,14 @@ TC_100 RegisterSeller with Empty MailingAddress
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${email}=  Randome_EmailId
-    RegisterSeller with MailingAddress  ${TokenEscrow}  @{escrowCompId}[0]  ${email}  ${EMPTY}  ${0}  000   Success
+    RegisterSeller with EMPTY ADDress  ${TokenEscrow}  @{escrowCompId}[0]  ${email}   ${0}  000   Success
 
 TC_101 RegisterSeller with valid MailingAddress
     [Documentation]  Valid: To Verify response if All mailingAddress{} parameter is entered valid  and request sent with all mandatory fields
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${email}=  Randome_EmailId
-    ${MailAddress}  Create Dictionary  mailAddress1=@{MailingAddress}[0]  mailAddress2=@{MailingAddress}[1]  countryId=@{Address}[2]  stateId=@{MailingAddress}[2]  state=@{Address}[4]  postalCode=@{MailingAddress}[3]  addressDefine1=@{Address}[6]  addressDefine2=@{Address}[7]  addressDefine3=@{Address}[8]  addressDefine4=@{Address}[9]
+    ${MailAddress}   Create Dictionary  mailAddress1=@{MailingAddress}[0]  mailAddress2=@{MailingAddress}[1]  countryId=@{Address}[2]  stateId=@{MailingAddress}[2]  state=@{Address}[4]  postalCode=@{MailingAddress}[3]  addressDefine1=@{Address}[6]  addressDefine2=@{Address}[7]  addressDefine3=@{Address}[8]  addressDefine4=@{Address}[9]
     RegisterSeller with MailingAddress  ${TokenEscrow}  @{escrowCompId}[0]  ${email}  ${MailAddress}  ${0}  000   Success
 
 TC_102 RegisterSeller verify response SellerId

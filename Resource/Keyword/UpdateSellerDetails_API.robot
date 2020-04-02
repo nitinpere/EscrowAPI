@@ -4,8 +4,7 @@ Library    Collections
 Library    String
 Library    SeleniumLibrary
 Resource    ../../Resource/Variable/user data.robot
-Resource    Global Keyword/Get Token.robot
-Resource    Global Keyword/Register_Global_Keywords.robot
+Resource    All Keywords EscrowAPI.robot
 *** Keywords ***
 UpdateSellerDetails
     [Arguments]  ${Token}  ${escrowCompanyID}  ${SELLERId}  ${idNumber}  ${typeOfID}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}

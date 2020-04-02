@@ -441,11 +441,12 @@ RegisterSeller valid TYPEOFID is equal_to others kyc is 0 @post
 
 
 RegisterSeller Invalid TYPEOFID kyc is 1 @post
-    [Arguments]    ${Token}    ${escrowCompanyID}  ${firstNameLocal}  ${lastNameLocal}  ${dateOfBirth}   ${otherVerification}    ${idNumber}     ${typeOfId}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    [Arguments]    ${Token}    ${escrowCompanyID}   ${firstNameLocal}   ${lastNameLocal}   ${dateOfBirth}   ${otherVerification}    ${idNumber}     ${typeOfId}    ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${typeID}=  Convert To Integer  ${typeOfID}
     ${KeyReq}=  Convert To Integer  ${kycRequest}
-    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  firstNameLocal=${firstNameLocal}  lastNameLocal=${lastNameLocal}  dateOfBirth=${dateOfBirth}  otherVerification=${otherVerification}  idNumber=${idNumber}  typeOfId=${typeID}  kycRequest=${KeyReq}
+    ${body}  Create Dictionary   escrowCompanyId=${escrowCompanyID}   idNumber=${idNumber}   typeOfId=${typeID}   firstNameLocal=${firstNameLocal}   lastNameLocal=${lastNameLocal}   dateOfBirth=${dateOfBirth}    otherVerification=${otherVerification}   kycRequest=${KeyReq}
+    #escrowCompanyId=${escrowCompanyID}  firstNameLocal=${firstNameLocal}  lastNameLocal=${lastNameLocal}  dateOfBirth=${dateOfBirth}  otherVerification=${otherVerification}  idNumber=${idNumber}  typeOfId=${typeID}  kycRequest=${KeyReq}
     ${AuthToken}=  Set Variable  bearer ${Token}
     ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
     ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}
@@ -977,8 +978,9 @@ RegisterSeller Empty Kyc
     [Arguments]    ${Token}    ${escrowCompanyID}    ${idNumber}    ${typeOfID}    ${kycRequest}    ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${typeID}=  Convert To Integer  ${typeOfID}
+    ${KycReq}=  Set Variable If  "${kycRequest}"=="${EMPTY}"    ${null}
 #    ${KeyReq}=  Convert To Integer  ${kycRequest}
-    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}    idNumber=${idNumber}    typeOfID=${typeOfID}    kycRequest=${kycRequest}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}    idNumber=${idNumber}    typeOfID=${typeOfID}    kycRequest=${KycReq}
     ${AuthToken}=  Set Variable  bearer ${Token}
     ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
     ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}
@@ -988,10 +990,10 @@ RegisterSeller Empty Kyc
     Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
 
 RegisterSeller with EMPTY ADDress
-    [Arguments]  ${Token}  ${escrowCompanyID}  ${email}  ${address}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    [Arguments]  ${Token}  ${escrowCompanyID}  ${email}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${KeyReq}=  Convert To Integer  ${kycRequest}
-    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  email=${email}  address=${address}  kycRequest=${KeyReq}
+    ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  email=${email}   kycRequest=${KeyReq}
     ${AuthToken}=  Set Variable  bearer ${Token}
     ${header}  Create Dictionary  Content-Type=application/json  Authorization=${AuthToken}
     ${response}=  POST request  RegisterNewSeller  /seller/register  data=${body}  headers=${header}
@@ -1015,7 +1017,7 @@ RegisterSeller with ADDress
     Should be Equal as Strings    ${response.json()['resDescription']}    ${ResponseDescription}
 
 RegisterSeller with MailingAddress
-    [Arguments]  ${Token}  ${escrowCompanyID}  ${email}  ${address}  ${kycRequest}  ${ResponseCode}  ${ResponseDescription}
+    [Arguments]  ${Token}   ${escrowCompanyID}   ${email}   ${address}   ${kycRequest}   ${ResponseCode}   ${ResponseDescription}
     Create Session  RegisterNewSeller  http://172.31.2.28/escrow_core/api/v1
     ${KeyReq}=  Convert To Integer  ${kycRequest}
     ${body}  Create Dictionary  escrowCompanyId=${escrowCompanyID}  email=${email}  mailingAddress=${address}  kycRequest=${KeyReq}

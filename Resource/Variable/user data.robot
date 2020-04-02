@@ -27,6 +27,7 @@
 @{not_lastnm_kyc1}=  001  pavan  pavar  08/03/1992  JW12333000919
 @{dateOfBirth}=  20/02/1987
 @{IN_dateOfBirth}=  35/33/2001
+@{Invalid_dateOfBirth}=  2018/02/1987
 @{nationalityId}=  999
 @{v_nationalityId}=  764
 @{nationalityId_more_3}=  764455
