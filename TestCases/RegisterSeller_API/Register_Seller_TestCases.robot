@@ -147,11 +147,10 @@ TC_23 RegisterSeller duplicate_ID_NO Diff TYPEID kyc is 0 @post
 
 TC_25 RegisterSeller duplicate_ID_NO Belong to seller status @post
     [Documentation]  Valid : To check idNumber is entered duplicate (duplicate id number should belong to Seller status = terminated ) and request is send with all mandatory fields
-    [Tags]  000
+    [Tags]  0000
     ${TokenEscrow}=  GetToken Escrow
     ${IdNumber}=  Randome_IDNumber
-    SET GLOBAL VARIABLE  ${IdNumber1}  ${IdNumber}
-    RegisterSeller duplicateIdNO Belong to sellerID @post  ${TokenEscrow}      @{escrowCompId}[0]  ${IdNumber1}  ${2}  ${0}    000  Success
+    RegisterSeller duplicateIdNO Belong to sellerID @post  ${TokenEscrow}      @{escrowCompId}[0]  ${IdNumber}  ${2}  ${0}    000  Success
 
 TC_26 RegisterSeller duplicate_IDnumber @post
     [Documentation]  Valid : To check idNumber is entered duplicate and request is send with all mandatory fields

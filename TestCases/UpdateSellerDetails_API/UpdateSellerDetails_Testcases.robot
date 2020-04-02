@@ -52,8 +52,6 @@ TC_11 Seller_Details_API Valid EscrowCompId
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${idnumber}=  RegisterSellerID
-    SET GLOBAL VARIABLE  ${Idno_dup}  ${idnumber}
-    SET GLOBAL VARIABLE  ${SellerId000}  ${SellerId}
     UpdateSellerDetails_kyc  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
@@ -119,7 +117,6 @@ TC_19 Selle_Details_API Duplicate Idno TypeId 3
     [Tags]  U01
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${Id23}=  RegisterSellerID
-    SET GLOBAL VARIABLE  ${SellerId1}  ${SellerId}
     ${SellerId23}  ${IdNum23}=  RegisterSellerID
     UpdateSellerDetails  ${TokenEscrow}  @{escrowCompId}  ${SellerId23}  ${Id23}  ${3}  ${0}  U01  Duplicate ID card, email or mobile no.
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
@@ -138,8 +135,9 @@ TC_21 Selle_Details_API Duplicate Idno Status 4
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${Idnum}=  RegisterSellerID
     ${SellerId1}  ${Idnum1}=  RegisterSellerID
-    UpdateSeller to convert    ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${4}
-    UpdateSellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId1}  ${Idnum}  ${3}  ${0}  000  Success
+    UpdateSeller to convert    ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId1}  ${4}
+    ${idNumber}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId1}  idNumber
+    UpdateSellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNumber}  ${3}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
 TC_22 Selle_Details_API Valid Email
@@ -328,7 +326,6 @@ TC_42 Selle_Details_API Valid mobile no
     [Tags]  000
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${idnumber}=  RegisterSellerID
-    #SET GLOBAL VARIABLE  ${SellerIdno1}  ${SellerId}
     ${MobNo}=  Randome_MobileNumber
     UpdateSellerDetails MobileCountrycode mobile  ${TokenEscrow}  @{escrowCompId}[0]  @{valid_mobile_country_code}[1]  ${MobNo}  ${SellerId}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
@@ -338,6 +335,8 @@ TC_43 Selle_Details_API Duplicate mobile no Status 1
     [Tags]  U01
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${idnumber}=  RegisterSellerID
+    ${SellerId1}  ${Idnum1}=  RegisterSellerID
+    UpdateSeller to convert    ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId1}  ${1}
     ${MobNo1}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId1}   mobileNo
     UpdateSellerDetails MobileCountrycode mobile  ${TokenEscrow}  @{escrowCompId}[0]  @{valid_mobile_country_code}[1]  ${MobNo1}  ${SellerId}  ${0}  U01  Duplicate ID card, email or mobile no.
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
@@ -395,8 +394,7 @@ TC_49 Selle_Details_API Valid Email
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${idnumber}=  RegisterSellerID
     ${emailid}=  Randome_EmailId
-    SET GLOBAL VARIABLE  ${email}  ${emailid}
-    UpdateSellerDetails Email  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${email}  ${0}  000  Success
+    UpdateSellerDetails Email  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${emailid}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
 TC_50 Selle_Details_API Duplicate Email Status 1
@@ -404,6 +402,7 @@ TC_50 Selle_Details_API Duplicate Email Status 1
     [Tags]  U01
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${idnumber}=  RegisterSellerID
+    ${SellerId1}  ${idnumber}=  RegisterSellerID
     ${Email}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId1}   email
     UpdateSellerDetails Email  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${Email}  ${0}  U01  Duplicate ID card, email or mobile no.
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
@@ -425,8 +424,8 @@ TC_52 Selle_Details_API Duplicate Email Status 1
     ${TokenEscrow}=  GetToken Escrow
     ${SellerId}  ${idnumber}=  RegisterSellerID
     ${idNum}=  Randome_IDNumber
-    UpdateSeller to convert    ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${1}
-    UpdateSellerDetails Email TypeId  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  ${email}  ${1}  ${0}  000  Success
+    ${Email}=  GetSellerDetails ReturnAttribute   ${TokenEscrow}   @{escrowCompId}   ${SellerId}   email
+    UpdateSellerDetails Email TypeId  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}  ${idNum}  ${Email}  ${1}  ${0}  000  Success
     VerifySellerDetails  ${TokenEscrow}  @{escrowCompId}[0]  ${SellerId}
 
 TC_53 Selle_Details_API Duplicate Email Status 4
